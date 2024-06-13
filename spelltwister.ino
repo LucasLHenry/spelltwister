@@ -1,4 +1,13 @@
+/*
+Developed by Lucas Henry, May 2024
+
+This file is meant to be as readable as possible, showing only high-level logic. All of the meat of this
+project is within the src directory, so dig into that to do your hacking.
+*/
+
 #include <Arduino.h>
+
+#include "src/classes/Waveformer/waveformer.h"
 
 /*
 RP2040 is a dual core processor. These cores are referred to as c0 and c1. c0 calls setup() and loop(),
@@ -15,8 +24,20 @@ with an output bit depth of 11 (range of 0 to 2047). Because of this, the sample
 called within loop1(), it is called based on a hardware timer. Therefore, loop1() is completely empty.
 */
 
+Waveformer a(0, 1);
+Waveformer b(2, 3);
+
 void setup() {
     // initialize objects
+    a.init();
+    b.init();
+    a.pha = 0.1 * HZPHASOR;
+    b.pha = 0.9 * HZPHASOR;
+
+    a.rat = b.rat = 511;
+    a.shp = b.shp = 511;
+    a.uslp = b.uslp = calc_upslope(511);
+    a.dslp = b.dslp = calc_downslope(511);
 }
 
 void loop() {
