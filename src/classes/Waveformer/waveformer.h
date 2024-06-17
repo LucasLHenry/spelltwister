@@ -1,4 +1,6 @@
 #include <Arduino.h>
+#include <Mux.h>
+#include <ResponsiveAnalogRead.h>
 
 #include "../../wave_algos/generator.h"
 
@@ -6,7 +8,12 @@
 #define WAVEFORMER_H
 
 class Waveformer {
-    int pri_out_pin, sec_out_pin;
+    int lin_time_pin, mux_pin;
+    ResponsiveAnalogRead rat_read, shp_read, time_read, algo_read;
+    
+    bool is_a;
+    uint16_t mux_sigs;
+    admux::Mux mux;
     uint16_t rat, shp;
     uint16_t upslope, downslope;
     public:
