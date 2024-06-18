@@ -102,9 +102,9 @@ bool TimerHandler(repeating_timer_t* rt) {
     // c.val = waveform_generator(c.acc >> 22, c.shp, c.rat, c.uslp, c.dslp);
     // d.val = waveform_generator(d.acc >> 22, d.shp, d.rat, d.uslp, d.dslp);
 
-    pwm_set_gpio_level(PRI_OUT_A, 1023 - (A.generate() >> 6));
+    pwm_set_gpio_level(PRI_OUT_A, 2047 - (A.generate() >> 5));
     // pwm_set_gpio_level(SEC_OUT_A, b.val >> 5);
-    pwm_set_gpio_level(PRI_OUT_B, 1023 - (B.generate() >> 6));
+    pwm_set_gpio_level(PRI_OUT_B, 2047 - (B.generate() >> 5));
     // pwm_set_gpio_level(SEC_OUT_B, d.val >> 5);
     return true;
 }
