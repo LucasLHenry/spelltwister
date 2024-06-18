@@ -7,6 +7,7 @@ project is within the src directory, so dig into that to do your hacking.
 
 #include <Arduino.h>
 #include <Adafruit_NeoPXL8.h>
+#include <hardware/pwm.h>
 
 #include "src/classes/Waveformer/waveformer.h"
 #include "src/classes/LedRing/led_ring.h"
@@ -34,34 +35,33 @@ Adafruit_NeoPXL8 leds(NUM_LEDS, led_pins, NEO_GRB);  // led strip controller
 LedRing ring(ALGO_ENC_1, ALGO_ENC_2, ALGO_BTN);  // algorithm ring controller
 LedRing* _LEDRING = &ring; // used for internal ISR stuff
 
-Waveformer a();
-Waveformer b();
+Waveformer A(LIN_TIME_A, MUX_A, true);  // left side controller
+Waveformer B(LIN_TIME_B, MUX_B, false); // right side controller
 
 void setup() {
-    // initialize objects
-    // a.init();
-    // b.init();
-    a.pha = 0.1 * HZPHASOR;
-    b.pha = 0.9 * HZPHASOR;
-    c.pha = 0.1 * HZPHASOR;
-    b.pha = 0.9 * HZPHASOR;
-
-    a.rat = b.rat = 511;
-    a.shp = b.shp = 511;
-    a.uslp = b.uslp = calc_upslope(511);
-    a.dslp = b.dslp = calc_downslope(511);
-
     leds.begin();
     ring.begin();
     Serial.begin(9600);
 }
 
+
+uint64_t loop_counter = 0;  // increments per run of loop() function
 void loop() {
     // read inputs
-    ring.update(0, 0);
+    A.read_inputs_frequent(B);
+    B.read_inputs_frequent(A);
+
+    // update values that change infrequently
+    if (loop_counter % 20 == 0) {
+        A.read_inputs_infrequent();
+        B.read_inputs_infrequent();
+    }
+
+    ring.update(A.mod_idx_change, B.mod_idx_change);  // update the LED ring (takes cv values from A and B)
     ring.write_leds(leds);
     leds.show();
-    Serial.println(ring.a_idx);
+
+    loop_counter++;
 }
 
 repeating_timer_t timer;
@@ -95,19 +95,16 @@ void setup1() {
 void loop1() {}  // nothing handled here, core 1 only does the interrupt
 
 bool TimerHandler(repeating_timer_t* rt) {
-    a.acc += a.pha;
-    b.acc += b.pha;
-    c.acc += c.pha;
-    d.acc += d.pha;
+    A.update();
+    B.update();
+    // a.val = waveform_generator(a.acc >> 22, a.shp, a.rat, a.uslp, a.dslp);
+    // b.val = waveform_generator(b.acc >> 22, b.shp, b.rat, b.uslp, b.dslp);
+    // c.val = waveform_generator(c.acc >> 22, c.shp, c.rat, c.uslp, c.dslp);
+    // d.val = waveform_generator(d.acc >> 22, d.shp, d.rat, d.uslp, d.dslp);
 
-    a.val = waveform_generator(a.acc >> 22, a.shp, a.rat, a.uslp, a.dslp);
-    b.val = waveform_generator(b.acc >> 22, b.shp, b.rat, b.uslp, b.dslp);
-    c.val = waveform_generator(c.acc >> 22, c.shp, c.rat, c.uslp, c.dslp);
-    d.val = waveform_generator(d.acc >> 22, d.shp, d.rat, d.uslp, d.dslp);
-
-    pwm_set_gpio_level(PRI_OUT_A, a.val >> 5);
-    pwm_set_gpio_level(SEC_OUT_A, b.val >> 5);
-    pwm_set_gpio_level(PRI_OUT_B, c.val >> 5);
-    pwm_set_gpio_level(SEC_OUT_B, d.val >> 5);
+    pwm_set_gpio_level(PRI_OUT_A, 1023 - (A.generate() >> 6));
+    // pwm_set_gpio_level(SEC_OUT_A, b.val >> 5);
+    pwm_set_gpio_level(PRI_OUT_B, 1023 - (B.generate() >> 6));
+    // pwm_set_gpio_level(SEC_OUT_B, d.val >> 5);
     return true;
 }

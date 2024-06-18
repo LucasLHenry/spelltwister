@@ -1,20 +1,164 @@
 #include "waveformer.h"
 
-Waveformer::Waveformer(int pri_pin, int sec_pin):
-    pri_out_pin {pri_pin},
-    sec_out_pin {sec_pin}
-{
+uint32_t Waveformer::get_phasor(Waveformer& other) {
+    if (!is_A && follow) return other.pha;
 
+    raw_exp_time = mux.read(mux_assignments[VO_IDX]);
+    time_read.update(raw_exp_time);
+
+    int16_t fm_val = (analogRead(lin_time_pin) - configs.fm_offset) / FM_ATTENUATION;
+
+    uint16_t processed_val = CLIP(MAX_X - ((time_read.getValue() * configs.vo_scale) >> 8) + configs.vo_offset + fm_val, 0, MAX_X);
+    return pgm_read_dword_near(((mode == VCO)? phasor_table : slow_phasor_table) + processed_val);
 }
 
-void Waveformer::init() {
+void Waveformer::update_mode() {
+    bool val1 = (mux.read(mux_assignments[SW_1_IDX]) > HALF_X)? true : false;
+    bool val2 = (mux.read(mux_assignments[SW_2_IDX]) > HALF_X)? true : false;
+    if (is_A) {
+        if (val1 && !val2) mode = ENV;
+        else if (!val1 && val2) mode = VCO;
+        else mode = LFO;
+    } else {
+        if (val1 && !val2) mode = VCO;
+        else if (!val1 && val2) mode = ENV;
+        else mode = LFO;
+    }
+    if (mode != ENV) running = true;
+}
 
+uint16_t Waveformer::get_ratio() {
+    raw_ratio_pot = mux.read(mux_assignments[R_PT_IDX]);
+    raw_ratio_cv = mux.read(mux_assignments[R_CV_IDX]);
+    // rat_read.update(CLIP(MAX_X - raw_ratio_pot + raw_ratio_cv - configs.ratio_offset, 0, MAX_X));
+    // return rat_read.getValue();
+    return (CLIP(MAX_X - raw_ratio_pot + raw_ratio_cv - configs.ratio_offset, 0, MAX_X) >> 2) << 2;
+}
+
+uint16_t Waveformer::get_shape() {
+    raw_shape_pot = mux.read(mux_assignments[S_PT_IDX]);
+    raw_shape_cv = mux.read(mux_assignments[S_CV_IDX]);
+    // shp_read.update(CLIP(MAX_X - raw_shape_pot + raw_shape_cv - configs.shape_offset, 0, MAX_X));
+    // return shp_read.getValue();
+    return (CLIP(MAX_X - raw_shape_pot + raw_shape_cv - configs.shape_offset, 0, MAX_X) >> 2) << 2;
+}
+
+int8_t Waveformer::get_mod_idx_change() {
+    prev_mod_idx = mod_idx;
+
+    algo_read.update(mux.read(mux_assignments[M_CV_IDX]));
+    raw_mod = algo_read.getValue();
+    mod_idx = static_cast<int8_t>((raw_mod - configs.mod_offset) >> 7);
+    return mod_idx - prev_mod_idx;
+}
+
+
+// from the mux wiring, different for the two sides
+uint16_t A_mux_assignments[] = {R_CV_A, R_POT_A, S_CV_A, S_POT_A, M_CV_A, SW_1_A, SW_2_A, EXP_CV_A};
+uint16_t B_mux_assignments[] = {R_CV_B, R_POT_B, S_CV_B, S_POT_B, M_CV_B, SW_1_B, SW_2_B, EXP_CV_B};
+
+Waveformer::Waveformer(int time_pin, int mux_pin, bool _is_A): 
+    mode(VCO),
+    mux(admux::Pin(mux_pin, INPUT, admux::PinType::Analog), admux::Pinset(MUX_S0, MUX_S1, MUX_S2)),
+    lin_time_pin(time_pin),
+    rat_read(0, true),
+    shp_read(0, true),
+    algo_read(0, true),
+    time_read(0, true, 0.1),
+    is_A(_is_A) {
+        mux_assignments = (is_A)? A_mux_assignments : B_mux_assignments;
+        shape = 512;
+        ratio = 512;
+        upslope = calc_upslope(ratio);
+        downslope = calc_upslope(ratio);
+        configs = {264, 322, 570, 567, 570, 570};
+}
+
+void Waveformer::read_inputs_frequent(Waveformer& other) {
+    uint16_t temp_ratio = get_ratio();
+    if (temp_ratio != ratio) {
+        ratio = temp_ratio;
+        upslope = calc_upslope(ratio);
+        downslope = calc_downslope(ratio);
+    }
+
+    shape = get_shape();
+    pha = get_phasor(other);  // need to pass other in case we're in follow mode
+    mod_idx_change = get_mod_idx_change();
+}
+
+void Waveformer::read_inputs_infrequent() {
+    update_mode();
 }
 
 void Waveformer::update() {
+    prev_eos = end_of_cycle;
+    prev_shifted_acc = shifted_acc;
+    acc += pha;
+    shifted_acc = acc >> 22;  // range is 0-1023
 
+    if (prev_shifted_acc > shifted_acc) {
+        if (running) {
+            end_of_cycle = true;
+            eos_led = true;
+            EOS_start_time = update_counter;
+            if (mode == ENV) running = false;
+        }
+    }
+
+    if (update_counter == EOS_start_time + trig_length_in_updates) end_of_cycle = false;
+    if (update_counter == EOS_start_time + trig_led_length_in_updates) eos_led = false;
+
+    update_counter++;
 }
 
-void Waveformer::generate() {
+uint16_t Waveformer::generate() {
+    val = (running)? waveform_generator(shifted_acc, shape, ratio, upslope, downslope) : 0;
+    if (mode == ENV) val = (val >> 1) + HALF_Y;  // so that it goes from 0 to top instead of -top to top
+    if (shifted_acc < ratio) acc_by_val[val >> 6] = acc;  // for retriggering of envelopes
+    return val;
+}
 
+void Waveformer::reset() {
+    if (mode == ENV && shifted_acc >= ratio) {
+        acc = acc_by_val[val >> 6];
+        shifted_acc = acc >> 22;
+        prev_shifted_acc = shifted_acc;
+    } else {
+        acc = 0;
+        shifted_acc = 0;
+        prev_shifted_acc = 0;
+    }
+}
+
+void Waveformer::print_info(bool verbose) {
+    Serial.println((is_A)? "A" : "B");
+
+    Serial.print("mode: ");
+    if (mode == ENV) Serial.println("ENV");
+    else if (mode == VCO) Serial.println("VCO");
+    else Serial.println("LFO");
+
+    Serial.print("phasor: ");
+    Serial.println(pha);
+
+    if (verbose) {
+        Serial.print("mod val: ");
+        Serial.println(raw_mod);
+
+        Serial.print("rat pot: ");
+        Serial.println(raw_ratio_pot);
+
+        Serial.print("rat cv: ");
+        Serial.println(raw_ratio_cv);
+
+        Serial.print("shp pot: ");
+        Serial.println(raw_shape_pot);
+
+        Serial.print("shp cv: ");
+        Serial.println(raw_shape_cv);
+
+        Serial.print("exp time: ");
+        Serial.println(raw_exp_time);
+    }
 }

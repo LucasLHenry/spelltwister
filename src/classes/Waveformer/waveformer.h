@@ -1,29 +1,81 @@
 #include <Arduino.h>
 #include <Mux.h>
 #include <ResponsiveAnalogRead.h>
+#include <avr/pgmspace.h>
 
 #include "../../wave_algos/generator.h"
+#include "../../hardware/settings.h"
+#include "../../hardware/pins.h"
+#include "../../tables/phasors.h"
+#include "../../tables/slow_phasors.h"
 
 #ifndef WAVEFORMER_H
 #define WAVEFORMER_H
 
+constexpr uint64_t trig_length_in_updates = static_cast<uint64_t>(TRIG_LENGTH_MS * 48);
+constexpr uint64_t trig_led_length_in_updates = static_cast<uint64_t>(TRIG_LED_LENGTH_MS * 48);
+
+enum Mode {VCO, LFO, ENV};
+
+typedef struct ConfigData {
+    uint16_t vo_offset;
+    uint16_t vo_scale;
+    uint16_t fm_offset;
+    uint16_t mod_offset;
+    uint16_t shape_offset;
+    uint16_t ratio_offset;
+} ConfigData;
+
 class Waveformer {
+    uint16_t raw_shape_pot, raw_ratio_pot, raw_shape_cv, raw_ratio_cv, raw_lin_time, raw_exp_time, raw_mod;
+    uint64_t update_counter;
+    uint64_t EOS_start_time;
     int lin_time_pin, mux_pin;
+    bool is_A;
+    uint16_t* mux_assignments;
+    uint32_t get_phasor(Waveformer& other);
+    void update_mode();
+    uint16_t get_ratio();
+    uint16_t get_shape();
+    int8_t get_mod_idx_change();
     ResponsiveAnalogRead rat_read, shp_read, time_read, algo_read;
-    
-    bool is_a;
-    uint16_t mux_sigs;
     admux::Mux mux;
-    uint16_t rat, shp;
-    uint16_t upslope, downslope;
+    uint32_t prev_shifted_acc;
+    uint32_t acc_by_val[1024];
+    int8_t mod_idx, prev_mod_idx;
+    ConfigData configs;
     public:
-        uint32_t acc, pha;
+        Mode mode;
+        bool follow;
         uint16_t shifted_acc;
-        uint16_t val;
-        Waveformer(int pri_pin, int sec_pin);
-        void init();
+        uint32_t acc, pha;
+        uint16_t upslope, downslope;
+        uint16_t ratio, shape;
+        bool running;
+        Waveformer(int time_pin, int mux_pin, bool is_A);
+        void read_inputs_frequent(Waveformer& other); // for things that need to be updated often
+        void read_inputs_infrequent(); // for things that don't need to be updated as often
         void update();
-        void generate();
+        uint16_t generate();
+        void reset();
+        uint16_t val;
+        uint16_t algo_offset;
+        void print_info(bool verbose);
+        bool end_of_cycle, prev_eos;
+        bool eos_led;
+        int8_t mod_idx_change;
 };
+
+
+// order for mux_assignemnts is ratio cv, ratio pot, shape cv, shape pot, algo cv, switch 1, switch 2, exp time cv
+#define R_CV_IDX 0
+#define R_PT_IDX 1
+#define S_CV_IDX 2
+#define S_PT_IDX 3
+#define M_CV_IDX 4
+#define SW_1_IDX 5
+#define SW_2_IDX 6
+#define VO_IDX   7
+
 
 #endif
