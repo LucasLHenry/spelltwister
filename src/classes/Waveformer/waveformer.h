@@ -4,20 +4,32 @@
 
 #include "../../wave_algos/generator.h"
 #include "../../hardware/pins.h"
+#include "../../hardware/settings.h"
 
 #ifndef WAVEFORMER_H
 #define WAVEFORMER_H
 
+typedef struct ConfigData {
+    uint16_t vo_offset;
+    uint16_t vo_scale;
+    uint16_t fm_offset;
+    uint16_t mod_offset;
+    uint16_t shape_offset;
+    uint16_t ratio_offset;
+} ConfigData;
+
 class Waveformer {
     int lin_time_pin, mux_pin;
     ResponsiveAnalogRead rat_read, shp_read, time_read, algo_read;
-    
+    uint16_t uslp, dslp;
     bool is_a;
-    uint16_t mux_sigs;
+    uint16_t* mux_sigs;
     admux::Mux mux;
+    uint16_t get_ratio();
+    uint16_t get_shape();
+    ConfigData configs;
     public:
         uint16_t rat, shp;
-        uint16_t uslp, dslp;
         uint32_t acc, pha;
         uint16_t s_acc;
         uint16_t val;
@@ -25,6 +37,17 @@ class Waveformer {
         void init();
         void update();
         void generate();
+        void read();
 };
+
+// order for mux_assignemnts is ratio cv, ratio pot, shape cv, shape pot, algo cv, switch 1, switch 2, exp time cv
+#define R_CV_IDX 0
+#define R_PT_IDX 1
+#define S_CV_IDX 2
+#define S_PT_IDX 3
+#define M_CV_IDX 4
+#define SW_1_IDX 5
+#define SW_2_IDX 6
+#define VO_IDX   7
 
 #endif

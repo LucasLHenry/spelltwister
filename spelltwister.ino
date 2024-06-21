@@ -45,15 +45,19 @@ void setup() {
     b.init();
     leds.begin();
     ring.begin();
+
     Serial.begin(9600);
+    analogReadResolution(BITS_ADC);
 }
 
 void loop() {
     // read inputs
+    a.read();
+    b.read();
+
     ring.update(0, 0);
     ring.write_leds(leds);
     leds.show();
-    Serial.println(a.s_acc);
 }
 
 repeating_timer_t timer;

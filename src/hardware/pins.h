@@ -18,7 +18,8 @@
 #define SEC_OUT_B 0  // same as above
 #define TRIG_OUT_B 5
 
-#define LED_DATA {25, -1, -1, -1, -1, -1, -1, -1}
+#define LED_PIN 25
+#define LED_DATA {LED_PIN, -1, -1, -1, -1, -1, -1, -1}
 
 #define ALGO_ENC_1 23
 #define ALGO_ENC_2 22
