@@ -11,7 +11,7 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
     rat_read(0, true, 0.001),
     shp_read(0, true),
     algo_read(0, true),
-    time_read(0, true, 0.1)
+    time_read(0, true)
 {
     if (is_a) {
         mux_sigs = A_mux_sigs;
@@ -34,6 +34,7 @@ void Waveformer::init() {
     shp_read.enableEdgeSnap();
     algo_read.setAnalogResolution(1 << BITS_ADC);
     time_read.setAnalogResolution(1 << BITS_ADC);
+    mode = VCO;
 }
 
 void Waveformer::update() {
@@ -54,6 +55,8 @@ void Waveformer::read() {
     }
 
     shp = get_shape();
+
+    pha = get_phasor();
 }
 
 uint16_t Waveformer::get_shape() {
@@ -75,4 +78,17 @@ uint16_t Waveformer::get_ratio() {
     // minus on ratio pot because it's wired the other way around
     // rat_read.update(CLIP(max_adc - raw_ratio_pot + raw_ratio_cv - configs.ratio_offset, 0, max_adc));
     // return rat_read.getValue() >> 1; // we use 11b values internally, so shift it down 1
+}
+
+uint32_t Waveformer::get_phasor() {
+    // if (!is_A && follow) return other.pha;
+
+    uint16_t raw_exp_time = mux.read(mux_sigs[VO_IDX]);
+    time_read.update(raw_exp_time);
+    // return pgm_read_dword_near(phasor_table + time_read.getValue());
+    int16_t fm_val = (analogRead(lin_time_pin) - configs.fm_offset) / FM_ATTENUATION;
+
+    uint16_t processed_val = CLIP(max_adc - ((time_read.getValue() * configs.vo_scale) >> 8) + configs.vo_offset + fm_val, 0, max_adc);
+    return pgm_read_dword(phasor_table + processed_val);
+    // return pgm_read_dword_near(((mode == VCO)? phasor_table : slow_phasor_table) + processed_val);
 }

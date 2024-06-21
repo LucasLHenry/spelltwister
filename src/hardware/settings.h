@@ -35,5 +35,6 @@
 #define OUTPUT_FREQ_kHz 44.1
 #define BIT_DEPTH 11
 #define CLOCK_FREQ 125000000
+#define FM_ATTENUATION 8
 
 #endif

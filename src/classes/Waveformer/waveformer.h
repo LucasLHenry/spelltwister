@@ -5,6 +5,7 @@
 #include "../../wave_algos/generator.h"
 #include "../../hardware/pins.h"
 #include "../../hardware/settings.h"
+#include "../../tables/phasors.h"
 
 #ifndef WAVEFORMER_H
 #define WAVEFORMER_H
@@ -18,6 +19,8 @@ typedef struct ConfigData {
     uint16_t ratio_offset;
 } ConfigData;
 
+enum Mode {VCO, LFO, ENV};
+
 class Waveformer {
     int lin_time_pin, mux_pin;
     ResponsiveAnalogRead rat_read, shp_read, time_read, algo_read;
@@ -27,7 +30,9 @@ class Waveformer {
     admux::Mux mux;
     uint16_t get_ratio();
     uint16_t get_shape();
+    uint32_t get_phasor();
     ConfigData configs;
+    Mode mode;
     public:
         uint16_t rat, shp;
         uint32_t acc, pha;
