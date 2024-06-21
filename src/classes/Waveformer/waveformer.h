@@ -19,7 +19,7 @@ class Waveformer {
         uint16_t rat, shp;
         uint16_t uslp, dslp;
         uint32_t acc, pha;
-        uint16_t shifted_acc;
+        uint16_t s_acc;
         uint16_t val;
         Waveformer(bool is_A, int mux_pin, int time_pin);
         void init();

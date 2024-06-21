@@ -41,16 +41,8 @@ Waveformer b(false, MUX_B, LIN_TIME_B);
 
 void setup() {
     // initialize objects
-    // a.init();
-    // b.init();
-    a.pha = 0.1 * HZPHASOR;
-    b.pha = 0.9 * HZPHASOR;
-
-    a.rat = b.rat = 511;
-    a.shp = b.shp = 511;
-    a.uslp = b.uslp = calc_upslope(511);
-    a.dslp = b.dslp = calc_downslope(511);
-
+    a.init();
+    b.init();
     leds.begin();
     ring.begin();
     Serial.begin(9600);
@@ -61,7 +53,6 @@ void loop() {
     ring.update(0, 0);
     ring.write_leds(leds);
     leds.show();
-    Serial.println(ring.a_idx);
 }
 
 repeating_timer_t timer;
@@ -95,11 +86,11 @@ void setup1() {
 void loop1() {}  // nothing handled here, core 1 only does the interrupt
 
 bool TimerHandler(repeating_timer_t* rt) {
-    a.acc += a.pha;
-    b.acc += b.pha;
+    a.update();
+    b.update();
 
-    a.val = waveform_generator(a.acc >> 22, a.shp, a.rat, a.uslp, a.dslp);
-    b.val = waveform_generator(b.acc >> 22, b.shp, b.rat, b.uslp, b.dslp);
+    a.generate();
+    b.generate();
 
     pwm_set_gpio_level(PRI_OUT_A, a.val >> 5);
     pwm_set_gpio_level(PRI_OUT_B, b.val >> 5);
