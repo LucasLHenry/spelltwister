@@ -53,6 +53,7 @@ void loop() {
     ring.update(0, 0);
     ring.write_leds(leds);
     leds.show();
+    Serial.println(a.s_acc);
 }
 
 repeating_timer_t timer;
@@ -92,7 +93,7 @@ bool TimerHandler(repeating_timer_t* rt) {
     a.generate();
     b.generate();
 
-    pwm_set_gpio_level(PRI_OUT_A, a.val >> 5);
-    pwm_set_gpio_level(PRI_OUT_B, b.val >> 5);
+    pwm_set_gpio_level(PRI_OUT_A, a.val >> bit_diff);
+    pwm_set_gpio_level(PRI_OUT_B, b.val >> bit_diff);
     return true;
 }

@@ -14,15 +14,15 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
 
 void Waveformer::init() {
     pha = 50 * HZPHASOR;
-    rat = 511;
-    shp = 511;
+    rat = 1023;
+    shp = 1023;
     uslp = calc_upslope(511);
     dslp = calc_downslope(511);
 }
 
 void Waveformer::update() {
     acc += pha;
-    s_acc = acc >> 22;  // acc is 32b, 32-22 = 10b → 0-1023 range
+    s_acc = acc >> 21;  // acc is 32b, 32-21 = 11b → 0-2047 range
 }
 
 void Waveformer::generate() {
