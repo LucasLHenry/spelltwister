@@ -7,6 +7,8 @@ project is within the src directory, so dig into that to do your hacking.
 
 #include <Arduino.h>
 #include <Adafruit_NeoPXL8.h>
+#include <hardware/pwm.h>
+// #include <iloveannabelle>
 
 #include "src/classes/Waveformer/waveformer.h"
 #include "src/classes/LedRing/led_ring.h"
@@ -34,16 +36,14 @@ Adafruit_NeoPXL8 leds(NUM_LEDS, led_pins, NEO_GRB);  // led strip controller
 LedRing ring(ALGO_ENC_1, ALGO_ENC_2, ALGO_BTN);  // algorithm ring controller
 LedRing* _LEDRING = &ring; // used for internal ISR stuff
 
-Waveformer a();
-Waveformer b();
+Waveformer a(true,  MUX_A, LIN_TIME_A);
+Waveformer b(false, MUX_B, LIN_TIME_B);
 
 void setup() {
     // initialize objects
     // a.init();
     // b.init();
     a.pha = 0.1 * HZPHASOR;
-    b.pha = 0.9 * HZPHASOR;
-    c.pha = 0.1 * HZPHASOR;
     b.pha = 0.9 * HZPHASOR;
 
     a.rat = b.rat = 511;
@@ -97,17 +97,11 @@ void loop1() {}  // nothing handled here, core 1 only does the interrupt
 bool TimerHandler(repeating_timer_t* rt) {
     a.acc += a.pha;
     b.acc += b.pha;
-    c.acc += c.pha;
-    d.acc += d.pha;
 
     a.val = waveform_generator(a.acc >> 22, a.shp, a.rat, a.uslp, a.dslp);
     b.val = waveform_generator(b.acc >> 22, b.shp, b.rat, b.uslp, b.dslp);
-    c.val = waveform_generator(c.acc >> 22, c.shp, c.rat, c.uslp, c.dslp);
-    d.val = waveform_generator(d.acc >> 22, d.shp, d.rat, d.uslp, d.dslp);
 
     pwm_set_gpio_level(PRI_OUT_A, a.val >> 5);
-    pwm_set_gpio_level(SEC_OUT_A, b.val >> 5);
-    pwm_set_gpio_level(PRI_OUT_B, c.val >> 5);
-    pwm_set_gpio_level(SEC_OUT_B, d.val >> 5);
+    pwm_set_gpio_level(PRI_OUT_B, b.val >> 5);
     return true;
 }
