@@ -57,6 +57,8 @@ void Waveformer::read() {
     shp = get_shape();
 
     pha = get_phasor();
+
+    mode = get_mode();
 }
 
 uint16_t Waveformer::get_shape() {
@@ -85,10 +87,23 @@ uint32_t Waveformer::get_phasor() {
 
     uint16_t raw_exp_time = mux.read(mux_sigs[VO_IDX]);
     time_read.update(raw_exp_time);
-    // return pgm_read_dword_near(phasor_table + time_read.getValue());
     int16_t fm_val = (analogRead(lin_time_pin) - configs.fm_offset) / FM_ATTENUATION;
 
     uint16_t processed_val = CLIP(max_adc - ((time_read.getValue() * configs.vo_scale) >> 8) + configs.vo_offset + fm_val, 0, max_adc);
     return pgm_read_dword(phasor_table + processed_val);
-    // return pgm_read_dword_near(((mode == VCO)? phasor_table : slow_phasor_table) + processed_val);
+}
+
+Mode Waveformer::get_mode() {
+    bool val1 = (mux.read(mux_sigs[SW_1_IDX]) > half_adc)? true : false;
+    bool val2 = (mux.read(mux_sigs[SW_2_IDX]) > half_adc)? true : false;
+    if (is_a) {
+        if (val1 && !val2) return ENV;
+        else if (!val1 && val2) return VCO;
+        else return LFO;
+    } else {
+        if (val1 && !val2) return VCO;
+        else if (!val1 && val2) return ENV;
+        else return LFO;
+    }
+    if (mode != ENV) running = true;
 }

@@ -12,4 +12,5 @@ constexpr uint16_t bit_diff = BITS_Y - BITS_X;
 
 #define BITS_ADC 12
 constexpr uint16_t max_adc = (1 << BITS_ADC) - 1;
+constexpr uint16_t half_adc = (1 << (BITS_ADC - 1)) - 1;
 #endif

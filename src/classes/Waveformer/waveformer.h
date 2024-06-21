@@ -31,9 +31,11 @@ class Waveformer {
     uint16_t get_ratio();
     uint16_t get_shape();
     uint32_t get_phasor();
+    Mode get_mode();
     ConfigData configs;
-    Mode mode;
     public:
+        Mode mode;
+        bool running;
         uint16_t rat, shp;
         uint32_t acc, pha;
         uint16_t s_acc;
