@@ -4,7 +4,7 @@
 
 #include "../../wave_algos/generator.h"
 #include "../../hardware/pins.h"
-#include "../../hardware/settings.h"
+#include "../../constants.h"
 #include "../../tables/phasors.h"
 #include "../../tables/slow_phasors.h"
 
@@ -25,7 +25,6 @@ enum Mode {VCO, LFO, ENV};
 class Waveformer {
     int lin_time_pin, mux_pin;
     ResponsiveAnalogRead rat_read, shp_read, time_read, algo_read;
-    uint16_t uslp, dslp;
     bool is_a;
     uint16_t* mux_sigs;
     admux::Mux mux;
@@ -37,6 +36,7 @@ class Waveformer {
     uint32_t acc_by_val[2048];  // for envelope retriggering
     Waveformer* _other;
     public:
+        uint16_t uslp, dslp;
         bool follow;
         Mode mode;
         bool running;

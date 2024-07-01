@@ -11,9 +11,11 @@ project is within the src directory, so dig into that to do your hacking.
 
 #include "src/classes/Waveformer/waveformer.h"
 #include "src/classes/LedRing/led_ring.h"
+#include "src/classes/Modulator/modulator.h"
 #include "src/hardware/pins.h"
-#include "src/hardware/settings.h"
+#include "src/constants.h"
 #include "src/wave_algos/generator.h"
+#include "src/wave_algos/mod_algorithms.h"
 /*
 RP2040 is a dual core processor. These cores are referred to as c0 and c1. c0 calls setup() and loop(),
 while c1 calls setup1() and loop1(). In this implementation, the two cores are configured to perform 
@@ -29,6 +31,25 @@ with an output bit depth of 11 (range of 0 to 2047). Because of this, the sample
 called within loop1(), it is called based on a hardware timer. Therefore, loop1() is completely empty.
 */
 
+algo_f_ptr algo_arr[16] = {
+    rectify,
+    half_freq,
+    double_freq,
+    invert,
+    exculsive_or,
+    difference,
+    sum,
+    frequency_mod,
+    amplitude_mod,
+    gate,
+    shape_mod,
+    ratio_mod,
+    wavefold,
+    sample_rate_reduce,
+    noisify,
+    bitcrush
+};
+
 
 int8_t led_pins[8] = LED_DATA;
 Adafruit_NeoPXL8 leds(NUM_LEDS, led_pins, NEO_GRB);  // led strip controller
@@ -38,6 +59,9 @@ OneButton follow_btn(FLW_BTN, false, false);  // button in center
 
 Waveformer a(true,  MUX_A, LIN_TIME_A);
 Waveformer b(false, MUX_B, LIN_TIME_B);
+Modulator modulator(a, b, ring, algo_arr);  // handles modulation algorithms
+// Waveformer c(true,  MUX_A, LIN_TIME_A);
+// Waveformer d(false, MUX_B, LIN_TIME_B);
 
 // called when the follow button is pressed
 void follow_ISR() {
@@ -53,6 +77,8 @@ void setup() {
     // initialize objects
     a.init(&b);
     b.init(&a);
+    // c.init(&d);
+    // d.init(&c);
     leds.begin();
     ring.begin();
 
@@ -65,6 +91,8 @@ void loop() {
     // read inputs
     a.read();
     b.read();
+    // c.read();
+    // d.read();
     follow_btn.tick();
 
     ring.update(0, 0);
@@ -119,10 +147,18 @@ void loop1() {}  // nothing handled here, core 1 only does the interrupt
 bool PwmTimerHandler(repeating_timer_t* rt) {
     a.update();
     b.update();
+    // c.update();
+    // d.update();
 
     a.generate();
     b.generate();
+    modulator.generate_a();
+    modulator.generate_b();
+    // c.generate();
+    // d.generate();
     pwm_set_gpio_level(PRI_OUT_A, max_x - (a.val >> bit_diff));
     pwm_set_gpio_level(PRI_OUT_B, max_x - (b.val >> bit_diff));
+    pwm_set_gpio_level(SEC_OUT_A, max_x - (modulator.a_val >> bit_diff));
+    pwm_set_gpio_level(SEC_OUT_B, max_x - (modulator.b_val >> bit_diff));
     return true;
 }
