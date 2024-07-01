@@ -22,7 +22,7 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
     }
 }
 
-void Waveformer::init() {
+void Waveformer::init(Waveformer* other) {
     pha = 50 * HZPHASOR;
     rat = 1023;
     shp = 511;
@@ -36,6 +36,7 @@ void Waveformer::init() {
     time_read.setAnalogResolution(1 << BITS_ADC);
     mode = VCO;
     running = true;
+    _other = other;
 }
 
 void Waveformer::update() {
@@ -73,10 +74,6 @@ uint16_t Waveformer::get_shape() {
     uint16_t raw_shape_cv = mux.read(mux_sigs[S_CV_IDX]);
     shp_read.update(CLIP(half_adc - raw_shape_pot + raw_shape_cv, 0, max_adc));
     return shp_read.getValue() >> 1;
-    // minus on shape pot because it's wired the other way around
-    // shp_read.update(CLIP(max_adc - raw_shape_pot + raw_shape_cv - configs.shape_offset, 0, max_adc));
-    // return shp_read.getValue() >> 1;  // we use 11b values internally, so shift it down 1
-    // return CLIP((max_adc - raw_shape_pot + raw_shape_cv - configs.shape_offset) >> 1, 0, max_adc) >> 1;
 }
 
 uint16_t Waveformer::get_ratio() {
@@ -84,13 +81,10 @@ uint16_t Waveformer::get_ratio() {
     uint16_t raw_ratio_cv = mux.read(mux_sigs[R_CV_IDX]);
     rat_read.update(CLIP(half_adc - raw_ratio_pot + raw_ratio_cv, 0, max_adc));
     return rat_read.getValue() >> 1;
-    // minus on ratio pot because it's wired the other way around
-    // rat_read.update(CLIP(max_adc - raw_ratio_pot + raw_ratio_cv - configs.ratio_offset, 0, max_adc));
-    // return rat_read.getValue() >> 1; // we use 11b values internally, so shift it down 1
 }
 
 uint32_t Waveformer::get_phasor() {
-    // if (!is_A && follow) return other.pha;
+    if (!is_a && follow) return _other->pha;
 
     uint16_t raw_exp_time = mux.read(mux_sigs[VO_IDX]);
     time_read.update(raw_exp_time);

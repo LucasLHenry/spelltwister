@@ -35,7 +35,9 @@ class Waveformer {
     Mode get_mode();
     ConfigData configs;
     uint32_t acc_by_val[2048];  // for envelope retriggering
+    Waveformer* _other;
     public:
+        bool follow;
         Mode mode;
         bool running;
         uint16_t rat, shp;
@@ -43,7 +45,7 @@ class Waveformer {
         uint16_t s_acc, prev_s_acc;
         uint16_t val;
         Waveformer(bool is_A, int mux_pin, int time_pin);
-        void init();
+        void init(Waveformer* other);
         void update();
         void generate();
         void read();

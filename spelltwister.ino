@@ -34,25 +34,38 @@ int8_t led_pins[8] = LED_DATA;
 Adafruit_NeoPXL8 leds(NUM_LEDS, led_pins, NEO_GRB);  // led strip controller
 LedRing ring(ALGO_ENC_1, ALGO_ENC_2, ALGO_BTN);  // algorithm ring controller
 LedRing* _LEDRING = &ring; // used for internal ISR stuff
+OneButton follow_btn(FLW_BTN, false, false);  // button in center
 
 Waveformer a(true,  MUX_A, LIN_TIME_A);
 Waveformer b(false, MUX_B, LIN_TIME_B);
 
+// called when the follow button is pressed
+void follow_ISR() {
+    b.follow = !b.follow;
+    if (b.follow) {
+        b.acc = a.acc;
+        b.s_acc = a.s_acc;
+        b.prev_s_acc = a.prev_s_acc;
+    }
+}
+
 void setup() {
     // initialize objects
-    a.init();
-    b.init();
+    a.init(&b);
+    b.init(&a);
     leds.begin();
     ring.begin();
 
     Serial.begin(9600);
     analogReadResolution(BITS_ADC);
+    follow_btn.attachClick(follow_ISR);
 }
 
 void loop() {
     // read inputs
     a.read();
     b.read();
+    follow_btn.tick();
 
     ring.update(0, 0);
     ring.write_leds(leds);
