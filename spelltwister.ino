@@ -33,7 +33,7 @@ called within loop1(), it is called based on a hardware timer. Therefore, loop1(
 
 algo_f_ptr algo_arr[16] = {
     rectify,
-    half_freq,
+    analog_pulse_pm,
     double_freq,
     invert,
     exculsive_or,

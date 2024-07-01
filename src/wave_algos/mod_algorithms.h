@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "../classes/Waveformer/waveformer.h"
 #include "generator.h"
-// #include "../tables/transfer_functions/sinusoid_fold.h"
+#include "../tables/transfer_functions/analog_pulse.h"
 #include "../constants.h"
 
 #ifndef MODULATION_ALGORITHMS_H
@@ -26,5 +26,6 @@ uint16_t gate                (Waveformer& main, Waveformer& aux);
 uint16_t amplitude_mod       (Waveformer& main, Waveformer& aux);
 uint16_t frequency_mod       (Waveformer& main, Waveformer& aux);
 uint16_t ring_modulate       (Waveformer& main, Waveformer& aux);
+uint16_t analog_pulse_pm     (Waveformer& main, Waveformer& aux);
 
 #endif

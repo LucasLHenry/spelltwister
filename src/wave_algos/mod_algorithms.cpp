@@ -18,6 +18,10 @@ uint16_t invert(Waveformer& main, Waveformer& aux) {
     return max_y - main.val;
 }
 
+uint16_t analog_pulse_pm(Waveformer& main, Waveformer& aux) {
+    return pgm_read_word_near(analog_pulse_table + (main.val >> 5));
+}
+
 uint16_t double_freq(Waveformer& main, Waveformer& aux) {
     return waveform_generator((main.acc >> 20) % max_x, main.shp, main.rat, main.uslp, main.dslp);
 }
