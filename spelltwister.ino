@@ -38,27 +38,6 @@ LedRing* _LEDRING = &ring; // used for internal ISR stuff
 Waveformer a(true,  MUX_A, LIN_TIME_A);
 Waveformer b(false, MUX_B, LIN_TIME_B);
 
-void setup() {
-    // initialize objects
-    a.init();
-    b.init();
-    leds.begin();
-    ring.begin();
-
-    Serial.begin(9600);
-    analogReadResolution(BITS_ADC);
-}
-
-void loop() {
-    // read inputs
-    a.read();
-    b.read();
-
-    ring.update(0, 0);
-    ring.write_leds(leds);
-    leds.show();
-}
-
 repeating_timer_t pwm_timer;
 bool PwmTimerHandler(repeating_timer_t* rt);
 
@@ -72,7 +51,16 @@ void b_sync_ISR() {
     b.running = true;
 }
 
-void setup1() {
+void setup() {
+    // initialize objects
+    a.init();
+    b.init();
+    leds.begin();
+    ring.begin();
+
+    Serial.begin(9600);
+    analogReadResolution(BITS_ADC);
+
     // setup outputs!
     constexpr uint16_t max_val = (1 << BIT_DEPTH) - 1;
     constexpr uint32_t pwm_freq = CLOCK_FREQ / max_val;
@@ -101,7 +89,15 @@ void setup1() {
     attachInterrupt(digitalPinToInterrupt(SIG_IN_B), b_sync_ISR, FALLING);
 }
 
-void loop1() {}  // nothing handled here, core 1 only does the interrupt
+void loop() {
+    // read inputs
+    a.read();
+    b.read();
+
+    ring.update(0, 0);
+    ring.write_leds(leds);
+    leds.show();
+}
 
 bool PwmTimerHandler(repeating_timer_t* rt) {
     a.update();
