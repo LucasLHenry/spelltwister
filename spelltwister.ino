@@ -81,7 +81,7 @@ void setup() {
 
     // timer setup
     int64_t timer_period_us = - (1000 / PWM_FREQ_kHz);
-    alarm_pool_t* pool = alarm_pool_create(1, 2);
+    alarm_pool_t* pool = alarm_pool_create(0, 1);
     alarm_pool_add_repeating_timer_us(pool, timer_period_us, PwmTimerHandler, NULL, &pwm_timer);
 
     // interrupt setup
