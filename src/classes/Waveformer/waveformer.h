@@ -34,6 +34,7 @@ class Waveformer {
     uint32_t get_phasor();
     Mode get_mode();
     ConfigData configs;
+    uint32_t acc_by_val[2048];  // for envelope retriggering
     public:
         Mode mode;
         bool running;

@@ -51,6 +51,7 @@ void Waveformer::update() {
 void Waveformer::generate() {
     val = (running)? waveform_generator(s_acc, shp, rat, uslp, dslp) : 0;
     if (mode == ENV) val = (val >> 1) + half_y;
+    if (s_acc < rat && running) acc_by_val[val >> 5] = acc;  // for retriggering of envelopes
 }
 
 void Waveformer::read() {
@@ -114,6 +115,13 @@ Mode Waveformer::get_mode() {
 }
 
 void Waveformer::reset() {
-    acc = 0;
-    s_acc = 0;
+    if (mode == ENV && s_acc >= rat) {
+        acc = acc_by_val[val >> 5];
+        s_acc = acc >> 22;
+        prev_s_acc = s_acc;
+    } else {
+        acc = 0;
+        s_acc = 0;
+        prev_s_acc = 0;
+    }
 }
