@@ -35,15 +35,22 @@ void Waveformer::init() {
     algo_read.setAnalogResolution(1 << BITS_ADC);
     time_read.setAnalogResolution(1 << BITS_ADC);
     mode = VCO;
+    running = true;
 }
 
 void Waveformer::update() {
+    prev_s_acc = s_acc;
     acc += pha;
     s_acc = acc >> 21;  // acc is 32b, 32-21 = 11b → 0-2047 range
+
+    if (prev_s_acc > s_acc && running) {
+        if (mode == ENV) running = false;
+    }
 }
 
 void Waveformer::generate() {
-    val = waveform_generator(s_acc, shp, rat, uslp, dslp);
+    val = (running)? waveform_generator(s_acc, shp, rat, uslp, dslp) : max_adc;
+    if (mode == ENV) val = (val >> 1) + half_adc;
 }
 
 void Waveformer::read() {
@@ -55,10 +62,9 @@ void Waveformer::read() {
     }
 
     shp = get_shape();
-
     pha = get_phasor();
-
     mode = get_mode();
+    if (mode != ENV) running = true;
 }
 
 uint16_t Waveformer::get_shape() {
@@ -90,7 +96,7 @@ uint32_t Waveformer::get_phasor() {
     int16_t fm_val = (analogRead(lin_time_pin) - configs.fm_offset) / FM_ATTENUATION;
 
     uint16_t processed_val = CLIP(max_adc - ((time_read.getValue() * configs.vo_scale) >> 8) + configs.vo_offset + fm_val, 0, max_adc);
-    return pgm_read_dword(phasor_table + processed_val);
+    return pgm_read_dword(((mode == VCO)? phasor_table : slow_phasor_table) + processed_val);
 }
 
 Mode Waveformer::get_mode() {
@@ -105,5 +111,9 @@ Mode Waveformer::get_mode() {
         else if (!val1 && val2) return ENV;
         else return LFO;
     }
-    if (mode != ENV) running = true;
+}
+
+void Waveformer::reset() {
+    acc = 0;
+    s_acc = 0;
 }

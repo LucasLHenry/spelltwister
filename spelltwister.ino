@@ -60,8 +60,18 @@ void loop() {
     leds.show();
 }
 
-repeating_timer_t timer;
-bool TimerHandler(repeating_timer_t* rt);
+repeating_timer_t pwm_timer;
+bool PwmTimerHandler(repeating_timer_t* rt);
+
+void a_sync_ISR() {
+    a.reset();
+    a.running = true;
+}
+
+void b_sync_ISR() {
+    b.reset();
+    b.running = true;
+}
 
 void setup1() {
     // setup outputs!
@@ -83,20 +93,24 @@ void setup1() {
     pwm_set_enabled(slice_num, true);
 
     // timer setup
-    int64_t timer_period_us = - (1000 / OUTPUT_FREQ_kHz);
-    alarm_pool_t* pool = alarm_pool_create(0, 1);
-    alarm_pool_add_repeating_timer_us(pool, timer_period_us, TimerHandler, NULL, &timer);
+    int64_t timer_period_us = - (1000 / PWM_FREQ_kHz);
+    alarm_pool_t* pool = alarm_pool_create(1, 2);
+    alarm_pool_add_repeating_timer_us(pool, timer_period_us, PwmTimerHandler, NULL, &pwm_timer);
+
+    // interrupt setup
+    attachInterrupt(digitalPinToInterrupt(SIG_IN_A), a_sync_ISR, FALLING);
+    attachInterrupt(digitalPinToInterrupt(SIG_IN_B), b_sync_ISR, FALLING);
 }
 
 void loop1() {}  // nothing handled here, core 1 only does the interrupt
 
-bool TimerHandler(repeating_timer_t* rt) {
+bool PwmTimerHandler(repeating_timer_t* rt) {
     a.update();
     b.update();
 
     a.generate();
     b.generate();
-
+    // Serial.println((a.val >> bit_diff));
     pwm_set_gpio_level(PRI_OUT_A, a.val >> bit_diff);
     pwm_set_gpio_level(PRI_OUT_B, b.val >> bit_diff);
     return true;

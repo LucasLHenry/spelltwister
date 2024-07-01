@@ -6,6 +6,7 @@
 #include "../../hardware/pins.h"
 #include "../../hardware/settings.h"
 #include "../../tables/phasors.h"
+#include "../../tables/slow_phasors.h"
 
 #ifndef WAVEFORMER_H
 #define WAVEFORMER_H
@@ -38,13 +39,14 @@ class Waveformer {
         bool running;
         uint16_t rat, shp;
         uint32_t acc, pha;
-        uint16_t s_acc;
+        uint16_t s_acc, prev_s_acc;
         uint16_t val;
         Waveformer(bool is_A, int mux_pin, int time_pin);
         void init();
         void update();
         void generate();
         void read();
+        void reset();
 };
 
 // order for mux_assignemnts is ratio cv, ratio pot, shape cv, shape pot, algo cv, switch 1, switch 2, exp time cv
