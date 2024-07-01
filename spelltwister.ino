@@ -105,7 +105,7 @@ bool PwmTimerHandler(repeating_timer_t* rt) {
 
     a.generate();
     b.generate();
-    pwm_set_gpio_level(PRI_OUT_A, a.val >> bit_diff);
-    pwm_set_gpio_level(PRI_OUT_B, b.val >> bit_diff);
+    pwm_set_gpio_level(PRI_OUT_A, max_x - (a.val >> bit_diff));
+    pwm_set_gpio_level(PRI_OUT_B, max_x - (b.val >> bit_diff));
     return true;
 }

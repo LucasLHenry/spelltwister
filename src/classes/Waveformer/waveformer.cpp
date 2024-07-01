@@ -49,8 +49,8 @@ void Waveformer::update() {
 }
 
 void Waveformer::generate() {
-    val = (running)? waveform_generator(s_acc, shp, rat, uslp, dslp) : max_adc;
-    if (mode == ENV) val = (val >> 1) + half_adc;
+    val = (running)? waveform_generator(s_acc, shp, rat, uslp, dslp) : 0;
+    if (mode == ENV) val = (val >> 1) + half_y;
 }
 
 void Waveformer::read() {
