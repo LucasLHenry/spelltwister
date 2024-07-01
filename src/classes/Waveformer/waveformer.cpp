@@ -70,7 +70,7 @@ void Waveformer::read() {
 uint16_t Waveformer::get_shape() {
     uint16_t raw_shape_pot = mux.read(mux_sigs[S_PT_IDX]);
     uint16_t raw_shape_cv = mux.read(mux_sigs[S_CV_IDX]);
-    shp_read.update(max_adc - raw_shape_pot);
+    shp_read.update(CLIP(half_adc - raw_shape_pot + raw_shape_cv, 0, max_adc));
     return shp_read.getValue() >> 1;
     // minus on shape pot because it's wired the other way around
     // shp_read.update(CLIP(max_adc - raw_shape_pot + raw_shape_cv - configs.shape_offset, 0, max_adc));
@@ -81,7 +81,7 @@ uint16_t Waveformer::get_shape() {
 uint16_t Waveformer::get_ratio() {
     uint16_t raw_ratio_pot = mux.read(mux_sigs[R_PT_IDX]);
     uint16_t raw_ratio_cv = mux.read(mux_sigs[R_CV_IDX]);
-    rat_read.update(max_adc - raw_ratio_pot);
+    rat_read.update(CLIP(half_adc - raw_ratio_pot + raw_ratio_cv, 0, max_adc));
     return rat_read.getValue() >> 1;
     // minus on ratio pot because it's wired the other way around
     // rat_read.update(CLIP(max_adc - raw_ratio_pot + raw_ratio_cv - configs.ratio_offset, 0, max_adc));

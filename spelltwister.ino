@@ -8,7 +8,6 @@ project is within the src directory, so dig into that to do your hacking.
 #include <Arduino.h>
 #include <Adafruit_NeoPXL8.h>
 #include <hardware/pwm.h>
-// #include <iloveannabelle>
 
 #include "src/classes/Waveformer/waveformer.h"
 #include "src/classes/LedRing/led_ring.h"
@@ -110,7 +109,6 @@ bool PwmTimerHandler(repeating_timer_t* rt) {
 
     a.generate();
     b.generate();
-    // Serial.println((a.val >> bit_diff));
     pwm_set_gpio_level(PRI_OUT_A, a.val >> bit_diff);
     pwm_set_gpio_level(PRI_OUT_B, b.val >> bit_diff);
     return true;
