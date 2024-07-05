@@ -1,18 +1,15 @@
 #include "modulator.h"
 
-Modulator::Modulator(Waveformer& A, Waveformer& B, LedRing& ring, algo_f_ptr* algo_arr):
-    a(A),
-    b(B),
+Modulator::Modulator(Waveformer& main, Waveformer& aux, LedRing& ring, algo_f_ptr* algo_arr):
+    _main(main),
+    _aux(aux),
     algo_ring(ring),
     ring_algos(algo_arr)
-{}
-
-void Modulator::generate_a() {
-    a_val = (a.running)? ring_algos[algo_ring.a_idx](a, b) : 0;
-    if (a.mode == ENV) a_val = (a_val >> 1) + half_y;
+{
+    is_a = main.is_a;
 }
 
-void Modulator::generate_b() {
-    b_val = (b.running)? ring_algos[algo_ring.b_idx](b, a) : 0;
-    if (b.mode == ENV) b_val = (b_val >> 1) + half_y;
+void Modulator::generate() {
+    val = (_main.running)? ring_algos[(is_a)? algo_ring.a_idx : algo_ring.b_idx](_main, _aux, *this) : 0;
+    if (_main.mode == ENV) val = (val >> 1) + half_y;
 }

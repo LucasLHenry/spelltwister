@@ -25,7 +25,6 @@ enum Mode {VCO, LFO, ENV};
 class Waveformer {
     int lin_time_pin, mux_pin;
     ResponsiveAnalogRead rat_read, shp_read, time_read, algo_read;
-    bool is_a;
     uint16_t* mux_sigs;
     admux::Mux mux;
     uint16_t get_ratio();
@@ -36,6 +35,7 @@ class Waveformer {
     uint32_t acc_by_val[2048];  // for envelope retriggering
     Waveformer* _other;
     public:
+        bool is_a;
         uint16_t uslp, dslp;
         bool follow;
         Mode mode;

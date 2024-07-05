@@ -59,9 +59,8 @@ OneButton follow_btn(FLW_BTN, false, false);  // button in center
 
 Waveformer a(true,  MUX_A, LIN_TIME_A);
 Waveformer b(false, MUX_B, LIN_TIME_B);
-Modulator modulator(a, b, ring, algo_arr);  // handles modulation algorithms
-// Waveformer c(true,  MUX_A, LIN_TIME_A);
-// Waveformer d(false, MUX_B, LIN_TIME_B);
+Modulator mod_a(a, b, ring, algo_arr);
+Modulator mod_b(b, a, ring, algo_arr);
 
 // called when the follow button is pressed
 void follow_ISR() {
@@ -77,8 +76,6 @@ void setup() {
     // initialize objects
     a.init(&b);
     b.init(&a);
-    // c.init(&d);
-    // d.init(&c);
     leds.begin();
     ring.begin();
 
@@ -91,8 +88,6 @@ void loop() {
     // read inputs
     a.read();
     b.read();
-    // c.read();
-    // d.read();
     follow_btn.tick();
 
     ring.update(0, 0);
@@ -147,18 +142,14 @@ void loop1() {}  // nothing handled here, core 1 only does the interrupt
 bool PwmTimerHandler(repeating_timer_t* rt) {
     a.update();
     b.update();
-    // c.update();
-    // d.update();
 
     a.generate();
     b.generate();
-    modulator.generate_a();
-    modulator.generate_b();
-    // c.generate();
-    // d.generate();
+    mod_a.generate();
+    mod_b.generate();
     pwm_set_gpio_level(PRI_OUT_A, max_x - (a.val >> bit_diff));
     pwm_set_gpio_level(PRI_OUT_B, max_x - (b.val >> bit_diff));
-    pwm_set_gpio_level(SEC_OUT_A, max_x - (modulator.a_val >> bit_diff));
-    pwm_set_gpio_level(SEC_OUT_B, max_x - (modulator.b_val >> bit_diff));
+    pwm_set_gpio_level(SEC_OUT_A, max_x - (mod_a.val >> bit_diff));
+    pwm_set_gpio_level(SEC_OUT_B, max_x - (mod_b.val >> bit_diff));
     return true;
 }
