@@ -44,9 +44,9 @@ algo_f_ptr algo_arr[16] = {
     gate,
     shape_mod,
     ratio_mod,
-    wavefold,
+    sine_pm,
     sample_rate_reduce,
-    noisify,
+    analog_pulse_pm,
     bitcrush
 };
 

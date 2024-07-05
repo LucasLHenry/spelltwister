@@ -2,8 +2,10 @@
 #include "../classes/Waveformer/waveformer.h"
 #include "../classes/Modulator/modulator.h"
 #include "generator.h"
-#include "../tables/transfer_functions/analog_pulse.h"
 #include "../constants.h"
+
+#include "../tables/transfer_functions/analog_pulse.h"
+#include "../tables/transfer_functions/sine.h"
 
 #ifndef MODULATION_ALGORITHMS_H
 #define MODULATION_ALGORITHMS_H
@@ -18,7 +20,7 @@ uint16_t rectify             (Waveformer& main, Waveformer& aux, Modulator& mod)
 uint16_t bitcrush            (Waveformer& main, Waveformer& aux, Modulator& mod);
 uint16_t noisify             (Waveformer& main, Waveformer& aux, Modulator& mod);
 uint16_t sample_rate_reduce  (Waveformer& main, Waveformer& aux, Modulator& mod);
-uint16_t wavefold            (Waveformer& main, Waveformer& aux, Modulator& mod);
+uint16_t sine_pm             (Waveformer& main, Waveformer& aux, Modulator& mod);
 uint16_t ratio_mod           (Waveformer& main, Waveformer& aux, Modulator& mod);
 uint16_t shape_mod           (Waveformer& main, Waveformer& aux, Modulator& mod);
 uint16_t gate                (Waveformer& main, Waveformer& aux, Modulator& mod);

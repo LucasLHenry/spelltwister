@@ -57,8 +57,8 @@ uint16_t sample_rate_reduce(Waveformer& main, Waveformer& aux, Modulator& mod) {
     return waveform_generator((main.s_acc >> SRR_AMT) << SRR_AMT, main.shp, main.rat, main.uslp, main.dslp);
 }
 
-uint16_t wavefold(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return main.val; //pgm_read_word_near(sine_fold + (main.val >> 6));
+uint16_t sine_pm(Waveformer& main, Waveformer& aux, Modulator& mod) {
+    return pgm_read_word_near(sine_table + (main.val >> 5));
 }
 
 uint16_t ratio_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
@@ -71,7 +71,7 @@ uint16_t shape_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t gate(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    if (aux.val <= half_y) return 0;
+    if (aux.val <= half_y) return (main.mode == ENV)? 0 : half_y;
     return main.val;
 }
 
