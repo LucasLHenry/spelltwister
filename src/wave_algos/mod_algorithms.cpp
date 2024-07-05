@@ -54,12 +54,11 @@ uint16_t noisify(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t sample_rate_reduce(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    #define SRR_AMT 1
     return waveform_generator((main.s_acc >> SRR_AMT) << SRR_AMT, main.shp, main.rat, main.uslp, main.dslp);
 }
 
 uint16_t wavefold(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return 0; //pgm_read_word_near(sine_fold + (main.val >> 6));
+    return main.val; //pgm_read_word_near(sine_fold + (main.val >> 6));
 }
 
 uint16_t ratio_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
@@ -81,7 +80,9 @@ uint16_t amplitude_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t frequency_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return 0;
+    mod.acc += main.pha + ((static_cast<int32_t>(aux.val) - max_y) << FM_ALGO_AMT);
+    mod.s_acc = mod.acc >> 21;
+    return waveform_generator(mod.s_acc, main.shp, main.rat, main.uslp, main.dslp);
 }
 
 uint16_t ring_modulate(Waveformer& main, Waveformer& aux, Modulator& mod) {
