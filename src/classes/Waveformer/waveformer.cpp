@@ -66,6 +66,7 @@ void Waveformer::read() {
     shp = get_shape();
     pha = get_phasor();
     mode = get_mode();
+    mod_idx_change = get_mod_idx_change();
     if (mode != ENV) running = true;
 }
 
@@ -106,6 +107,15 @@ Mode Waveformer::get_mode() {
         else if (!val1 && val2) return ENV;
         else return LFO;
     }
+}
+
+int8_t Waveformer::get_mod_idx_change() {
+    prev_mod_idx = mod_idx;
+
+    algo_read.update(mux.read(mux_sigs[M_CV_IDX]));
+    raw_mod = algo_read.getValue();
+    mod_idx = static_cast<int8_t>((raw_mod - configs.mod_offset) >> 7);
+    return mod_idx - prev_mod_idx;
 }
 
 void Waveformer::reset() {

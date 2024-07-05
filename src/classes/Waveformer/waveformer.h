@@ -23,6 +23,7 @@ typedef struct ConfigData {
 enum Mode {VCO, LFO, ENV};
 
 class Waveformer {
+    uint16_t raw_mod;
     int lin_time_pin, mux_pin;
     ResponsiveAnalogRead rat_read, shp_read, time_read, algo_read;
     uint16_t* mux_sigs;
@@ -30,11 +31,14 @@ class Waveformer {
     uint16_t get_ratio();
     uint16_t get_shape();
     uint32_t get_phasor();
+    int8_t get_mod_idx_change();
     Mode get_mode();
     ConfigData configs;
     uint32_t acc_by_val[2048];  // for envelope retriggering
     Waveformer* _other;
+    int8_t mod_idx, prev_mod_idx;
     public:
+        int8_t mod_idx_change;
         bool is_a;
         uint16_t uslp, dslp;
         bool follow;

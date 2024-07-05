@@ -90,7 +90,7 @@ void loop() {
     b.read();
     follow_btn.tick();
 
-    ring.update(0, 0);
+    ring.update(a.mod_idx_change, b.mod_idx_change);
     ring.write_leds(leds);
     leds.show();
 }

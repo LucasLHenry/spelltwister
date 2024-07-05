@@ -22,20 +22,6 @@ void LedRing::write_leds(Adafruit_NeoPXL8 &leds) {
         }
     }
 }
-// void LedRing::write_leds(CRGB leds[]) {
-//     if (a_idx == b_idx) {
-//         for (int i = 0; i < NUM_RING_LEDS; i++) {
-//             if (i == a_idx) leds[i] = PURPLE;
-//             else leds[i] = BLACK;
-//         }
-//     } else {
-//         for (int i = 0; i < NUM_RING_LEDS; i++) {
-//             if (i == a_idx) leds[i] = RED;
-//             else if (i == b_idx) leds[i] = BLUE;
-//             else leds[i] = BLACK;
-//         }
-//     }
-// }
 
 void LedRing::begin() {
     btn.attachClick(button_handler);
