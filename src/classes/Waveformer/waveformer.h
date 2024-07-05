@@ -11,6 +11,10 @@
 #ifndef WAVEFORMER_H
 #define WAVEFORMER_H
 
+// ms * 1s/1000ms * 44100 updates/s
+constexpr uint64_t trig_length_in_updates = static_cast<uint64_t>(TRIG_LENGTH_MS * 44.1);
+constexpr uint64_t trig_led_length_in_updates = static_cast<uint64_t>(TRIG_LED_LENGTH_MS * 44.1);
+
 typedef struct ConfigData {
     uint16_t vo_offset;
     uint16_t vo_scale;
@@ -37,8 +41,8 @@ class Waveformer {
     uint32_t acc_by_val[2048];  // for envelope retriggering
     Waveformer* _other;
     int8_t mod_idx, prev_mod_idx;
+    uint64_t update_counter, EOS_start_time;
     public:
-        int8_t mod_idx_change;
         bool is_a;
         uint16_t uslp, dslp;
         bool follow;
@@ -54,6 +58,9 @@ class Waveformer {
         void generate();
         void read();
         void reset();
+        bool end_of_cycle, prev_eos;
+        bool eos_led;
+        int8_t mod_idx_change;
 };
 
 // order for mux_assignemnts is ratio cv, ratio pot, shape cv, shape pot, algo cv, switch 1, switch 2, exp time cv

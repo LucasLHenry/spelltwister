@@ -84,6 +84,8 @@ void setup() {
     follow_btn.attachClick(follow_ISR);
 }
 
+void write_signal_indicator_leds();
+
 void loop() {
     // read inputs
     a.read();
@@ -92,6 +94,7 @@ void loop() {
 
     ring.update(a.mod_idx_change, b.mod_idx_change);
     ring.write_leds(leds);
+    write_signal_indicator_leds();
     leds.show();
 }
 
@@ -152,4 +155,31 @@ bool PwmTimerHandler(repeating_timer_t* rt) {
     pwm_set_gpio_level(SEC_OUT_A, max_x - (mod_a.val >> bit_diff));
     pwm_set_gpio_level(SEC_OUT_B, max_x - (mod_b.val >> bit_diff));
     return true;
+}
+
+void write_signal_indicator_leds() {
+    // a is red (value, 0, 0)
+    if (a.mode == ENV) {
+        leds.setPixelColor(PRI_A_LED, (a.val - half_y) >> 7, 0, 0);
+        leds.setPixelColor(SEC_A_LED, (mod_a.val - half_y) >> 7, 0, 0);
+    } else {
+        leds.setPixelColor(PRI_A_LED, a.val >> 8, 0, 0);
+        leds.setPixelColor(SEC_A_LED, mod_a.val >> 8, 0, 0); 
+    }
+
+    // B is blue (0, 0, value)
+    if (b.mode == ENV) {
+        leds.setPixelColor(PRI_B_LED, 0, 0, (b.val - half_y) >> 7);
+        leds.setPixelColor(SEC_B_LED, 0, 0, (mod_b.val - half_y) >> 7);
+    } else {
+        leds.setPixelColor(PRI_B_LED, 0, 0, b.val >> 8);
+        leds.setPixelColor(SEC_B_LED, 0, 0, mod_b.val >> 8);
+    }
+
+    // write trig LEDs
+    leds.setPixelColor(TRIG_A_LED, (a.eos_led)? RED : BLACK);
+    leds.setPixelColor(TRIG_B_LED, (b.eos_led)? BLUE : BLACK);
+
+    // write follow LED
+    leds.setPixelColor(FLW_LED, (b.follow)? PURPLE : BLACK);
 }

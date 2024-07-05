@@ -40,13 +40,22 @@ void Waveformer::init(Waveformer* other) {
 }
 
 void Waveformer::update() {
+    prev_eos = end_of_cycle;
     prev_s_acc = s_acc;
     acc += pha;
     s_acc = acc >> 21;  // acc is 32b, 32-21 = 11b → 0-2047 range
 
     if (prev_s_acc > s_acc && running) {
+        end_of_cycle = true;
+        eos_led = true;
+        EOS_start_time = update_counter;
         if (mode == ENV) running = false;
     }
+
+    if (update_counter == EOS_start_time + trig_length_in_updates) end_of_cycle = false;
+    if (update_counter == EOS_start_time + trig_led_length_in_updates) eos_led = false;
+
+    update_counter++;
 }
 
 void Waveformer::generate() {
