@@ -15,13 +15,13 @@ class Modulator {
     LedRing& algo_ring;
     algo_f_ptr* ring_algos;
     bool is_a;
-    uint16_t s_acc;
     public:
         Modulator(Waveformer& main, Waveformer& aux, LedRing& ring, algo_f_ptr* algo_arr);
         void generate();
         uint16_t val;
         uint32_t acc;
         uint32_t pha;
+        uint16_t s_acc;
 };
 
 #endif

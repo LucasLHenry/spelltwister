@@ -52,7 +52,7 @@ void Waveformer::update() {
 void Waveformer::generate() {
     val = (running)? waveform_generator(s_acc, shp, rat, uslp, dslp) : 0;
     if (mode == ENV) val = (val >> 1) + half_y;
-    if (s_acc < rat && running) acc_by_val[val >> 5] = acc;  // for retriggering of envelopes
+    if (s_acc < rat && running) acc_by_val[val >> bit_diff] = acc;  // for retriggering of envelopes
 }
 
 void Waveformer::read() {
