@@ -62,11 +62,11 @@ uint16_t sine_pm(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t ratio_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return waveform_generator(main.s_acc, main.shp, aux.val >> 6, main.uslp, main.dslp);
+    return waveform_generator(main.s_acc, main.shp, aux.val >> bit_diff, main.uslp, main.dslp);
 }
 
 uint16_t shape_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    uint16_t shape_val = aux.val >> 6;
+    uint16_t shape_val = aux.val >> bit_diff;
     return waveform_generator(main.s_acc, shape_val, main.rat, calc_upslope(shape_val), calc_downslope(shape_val));
 }
 

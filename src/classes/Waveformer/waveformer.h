@@ -7,6 +7,7 @@
 #include "../../constants.h"
 #include "../../tables/phasors.h"
 #include "../../tables/slow_phasors.h"
+#include "../NVMWrapper/nvm_wrapper.h"
 
 #ifndef WAVEFORMER_H
 #define WAVEFORMER_H
@@ -14,15 +15,6 @@
 // ms * 1s/1000ms * 44100 updates/s
 constexpr uint64_t trig_length_in_updates = static_cast<uint64_t>(TRIG_LENGTH_MS * 44.1);
 constexpr uint64_t trig_led_length_in_updates = static_cast<uint64_t>(TRIG_LED_LENGTH_MS * 44.1);
-
-typedef struct ConfigData {
-    uint16_t vo_offset;
-    uint16_t vo_scale;
-    uint16_t fm_offset;
-    uint16_t mod_offset;
-    uint16_t shape_offset;
-    uint16_t ratio_offset;
-} ConfigData;
 
 enum Mode {VCO, LFO, ENV};
 

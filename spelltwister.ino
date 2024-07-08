@@ -130,6 +130,9 @@ void setup1() {
     pwm_set_wrap(slice_num, max_val);
     pwm_set_enabled(slice_num, true);
 
+    pinMode(TRIG_OUT_A, OUTPUT);
+    pinMode(TRIG_OUT_B, OUTPUT);
+
     // timer setup
     int64_t timer_period_us = - (1000 / PWM_FREQ_kHz);
     alarm_pool_t* pool = alarm_pool_create(0, 1);
@@ -154,6 +157,8 @@ bool PwmTimerHandler(repeating_timer_t* rt) {
     pwm_set_gpio_level(PRI_OUT_B, max_x - (b.val >> bit_diff));
     pwm_set_gpio_level(SEC_OUT_A, max_x - (mod_a.val >> bit_diff));
     pwm_set_gpio_level(SEC_OUT_B, max_x - (mod_b.val >> bit_diff));
+    digitalWrite(TRIG_OUT_A, a.end_of_cycle);
+    digitalWrite(TRIG_OUT_B, b.end_of_cycle);
     return true;
 }
 
