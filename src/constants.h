@@ -26,7 +26,7 @@ constexpr uint16_t half_adc = (1 << (BITS_ADC - 1)) - 1;
 #define TRIG_LED_LENGTH_MS 75
 
 // modulation algorithm settings
-#define CRUSH_AMT 9
+#define CRUSH_AMT 12
 #define FM_ALGO_AMT 10
 #define SRR_AMT 1
 
