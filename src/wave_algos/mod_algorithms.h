@@ -28,5 +28,6 @@ uint16_t amplitude_mod       (Waveformer& main, Waveformer& aux, Modulator& mod)
 uint16_t frequency_mod       (Waveformer& main, Waveformer& aux, Modulator& mod);
 uint16_t ring_modulate       (Waveformer& main, Waveformer& aux, Modulator& mod);
 uint16_t analog_pulse_pm     (Waveformer& main, Waveformer& aux, Modulator& mod);
+uint16_t three_voice_chorus  (Waveformer& main, Waveformer& aux, Modulator& mod);
 
 #endif
