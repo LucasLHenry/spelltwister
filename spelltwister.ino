@@ -12,6 +12,7 @@ project is within the src directory, so dig into that to do your hacking.
 #include "src/classes/Waveformer/waveformer.h"
 #include "src/classes/LedRing/led_ring.h"
 #include "src/classes/Modulator/modulator.h"
+#include "src/classes/NVMWrapper/nvm_wrapper.h"
 #include "src/hardware/pins.h"
 #include "src/constants.h"
 #include "src/wave_algos/generator.h"
@@ -61,6 +62,8 @@ Waveformer a(true,  MUX_A, LIN_TIME_A);
 Waveformer b(false, MUX_B, LIN_TIME_B);
 Modulator mod_a(a, b, ring, algo_arr);
 Modulator mod_b(b, a, ring, algo_arr);
+
+NVMWrapper nvm();
 
 // called when the follow button is pressed
 void follow_ISR() {
@@ -130,12 +133,6 @@ void setup1() {
     pwm_set_wrap(slice_num, max_val);
     pwm_set_enabled(slice_num, true);
 
-    // gpio_set_function(TRIG_OUT_A, GPIO_FUNC_SIO);
-    // gpio_set_slew_rate(TRIG_OUT_A, GPIO_SLEW_RATE_FAST);
-    // gpio_init(TRIG_OUT_A);
-    // gpio_set_function(TRIG_OUT_B, GPIO_FUNC_SIO);
-    // gpio_set_slew_rate(TRIG_OUT_B, GPIO_SLEW_RATE_FAST);
-    // gpio_init(TRIG_OUT_B);
     pinMode(TRIG_OUT_A, OUTPUT);
     pinMode(TRIG_OUT_B, OUTPUT);
     // timer setup
@@ -163,8 +160,6 @@ bool PwmTimerHandler(repeating_timer_t* rt) {
     pwm_set_gpio_level(PRI_OUT_B, max_x - (b.val >> bit_diff));
     pwm_set_gpio_level(SEC_OUT_A, max_x - (mod_a.val >> bit_diff));
     pwm_set_gpio_level(SEC_OUT_B, max_x - (mod_b.val >> bit_diff));
-    // gpio_put(TRIG_OUT_A, !a.end_of_cycle);
-    // gpio_put(TRIG_OUT_B, !b.end_of_cycle);
     digitalWrite(TRIG_OUT_A, !a.end_of_cycle);
     digitalWrite(TRIG_OUT_B, !b.end_of_cycle);
     return true;

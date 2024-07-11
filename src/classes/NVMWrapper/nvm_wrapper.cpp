@@ -1,6 +1,40 @@
 #include "nvm_wrapper.h"
 
-NVMWrapper::NVMWrapper() {}
+bool config_data_eq(ConfigData l, ConfigData r) {
+    if (l.vo_offset != r.vo_offset)       return false;
+    if (l.vo_scale != r.vo_scale)         return false;
+    if (l.fm_offset != r.fm_offset)       return false;
+    if (l.mod_offset != r.mod_offset)     return false;
+    if (l.shape_offset != r.shape_offset) return false;
+    if (l.ratio_offset != r.ratio_offset) return false;
+    return true;
+}
+
+NVMWrapper::NVMWrapper() {
+    EEPROM.begin(sizeof(MemoryLayout));
+    mem = EEPROM.get(0, mem);
+    data_in_eeprom = mem.data_exists == 'Y';
+}
+
+ConfigData NVMWrapper::get_config_data(bool is_a) {
+    if (!data_in_eeprom) {
+        return (is_a)? a_default_config_data : b_default_config_data;
+    }
+
+    return (is_a)? mem.a_data : mem.b_data;
+}
+
+ConfigData NVMWrapper::write_config_data(bool is_a, ConfigData& conf) {
+    ConfigData* existing_data = (is_a)? &mem.a_data : &mem.b_data;
+    if (!config_data_eq(conf, *existing_data)) {
+        *existing_data = conf;
+    }
+}
+
+void NVMWrapper::save_data() {
+    EEPROM.commit();
+}
+
 
 // void update_values_from_config(LedRing& ring, Module& A, Module& B) {
 //     char c_buf;
