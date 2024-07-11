@@ -138,3 +138,29 @@ void Waveformer::reset() {
         prev_s_acc = 0;
     }
 }
+
+AllInputs Waveformer::read_all(uint16_t repeats) {
+    // repeat reads 10 times to get good averaging
+    uint16_t all_vals_sums[7];
+    for (int i = 0; i < repeats; i++) {
+        all_vals_sums[0] += mux.read(mux_sigs[VO_IDX]);   // pitch
+        all_vals_sums[1] += analogRead(lin_time_pin);     // fm
+        all_vals_sums[2] += mux.read(mux_sigs[S_PT_IDX]); // shape pot
+        all_vals_sums[3] += mux.read(mux_sigs[S_CV_IDX]); // shape cv
+        all_vals_sums[4] += mux.read(mux_sigs[R_PT_IDX]); // ratio pot
+        all_vals_sums[5] += mux.read(mux_sigs[R_CV_IDX]); // ratio cv
+        all_vals_sums[6] += mux.read(mux_sigs[M_CV_IDX]); // algo mod
+    }
+
+    AllInputs reads = {
+        static_cast<uint16_t>(all_vals_sums[0] / repeats),
+        static_cast<uint16_t>(all_vals_sums[1] / repeats),
+        static_cast<uint16_t>(all_vals_sums[2] / repeats),
+        static_cast<uint16_t>(all_vals_sums[3] / repeats),
+        static_cast<uint16_t>(all_vals_sums[4] / repeats),
+        static_cast<uint16_t>(all_vals_sums[5] / repeats),
+        static_cast<uint16_t>(all_vals_sums[6] / repeats)
+    };
+
+    return reads;
+}

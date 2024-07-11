@@ -18,6 +18,16 @@ constexpr uint64_t trig_led_length_in_updates = static_cast<uint64_t>(TRIG_LED_L
 
 enum Mode {VCO, LFO, ENV};
 
+typedef struct AllInputs {
+    uint16_t pitch;
+    uint16_t fm;
+    uint16_t shape_pot;
+    uint16_t shape_cv;
+    uint16_t ratio_pot;
+    uint16_t ratio_cv;
+    uint16_t algo_mod;
+} AllInputs;
+
 class Waveformer {
     uint16_t raw_mod;
     int lin_time_pin, mux_pin;
@@ -50,6 +60,7 @@ class Waveformer {
         void generate();
         void read();
         void reset();
+        AllInputs read_all(uint16_t repeats);
         bool end_of_cycle, prev_eos;
         bool eos_led;
         int8_t mod_idx_change;

@@ -14,6 +14,8 @@ project is within the src directory, so dig into that to do your hacking.
 #include "src/classes/Modulator/modulator.h"
 #include "src/classes/NVMWrapper/nvm_wrapper.h"
 #include "src/hardware/pins.h"
+#include "src/hardware/misc_functions.h"
+#include "src/hardware/calibration.h"
 #include "src/constants.h"
 #include "src/wave_algos/generator.h"
 #include "src/wave_algos/mod_algorithms.h"
@@ -63,7 +65,7 @@ Waveformer b(false, MUX_B, LIN_TIME_B);
 Modulator mod_a(a, b, ring, algo_arr);
 Modulator mod_b(b, a, ring, algo_arr);
 
-NVMWrapper nvm();
+NVMWrapper nvm;;
 
 // called when the follow button is pressed
 void follow_ISR() {
@@ -81,10 +83,19 @@ void setup() {
     b.init(&a);
     leds.begin();
     ring.begin();
+    nvm = NVMWrapper();
 
     Serial.begin(9600);
     analogReadResolution(BITS_ADC);
     follow_btn.attachClick(follow_ISR);
+
+
+    // calibration mode
+    if (digitalRead(FLW_BTN) == HIGH) {
+        rp2040.idleOtherCore();
+        run_calibration(a, b, leds, nvm);
+        rp2040.resumeOtherCore();
+    }
 }
 
 void write_signal_indicator_leds();
@@ -119,22 +130,12 @@ void setup1() {
     constexpr uint16_t max_val = (1 << BIT_DEPTH) - 1;
     constexpr uint32_t pwm_freq = CLOCK_FREQ / max_val;
 
-    // A side pwm output setup
-    gpio_set_function(PRI_OUT_A, GPIO_FUNC_PWM);
-    gpio_set_function(SEC_OUT_A, GPIO_FUNC_PWM);
-    uint16_t slice_num = pwm_gpio_to_slice_num(PRI_OUT_A);
-    pwm_set_wrap(slice_num, max_val);
-    pwm_set_enabled(slice_num, true);
-
-    // B side pwm output setup
-    gpio_set_function(PRI_OUT_B, GPIO_FUNC_PWM);
-    gpio_set_function(SEC_OUT_B, GPIO_FUNC_PWM);
-    slice_num = pwm_gpio_to_slice_num(PRI_OUT_B);
-    pwm_set_wrap(slice_num, max_val);
-    pwm_set_enabled(slice_num, true);
+    setup_pwm_pins(PRI_OUT_A, SEC_OUT_A, max_val);
+    setup_pwm_pins(PRI_OUT_B, SEC_OUT_B, max_val);
 
     pinMode(TRIG_OUT_A, OUTPUT);
     pinMode(TRIG_OUT_B, OUTPUT);
+
     // timer setup
     int64_t timer_period_us = - (1000 / PWM_FREQ_kHz);
     alarm_pool_t* pool = alarm_pool_create(0, 1);
