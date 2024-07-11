@@ -47,7 +47,7 @@ algo_f_ptr algo_arr[16] = {
     sine_pm,
     sample_rate_reduce,
     analog_pulse_pm,
-    bitcrush
+    three_voice_chorus
 };
 
 
@@ -158,6 +158,7 @@ bool PwmTimerHandler(repeating_timer_t* rt) {
     b.generate();
     mod_a.generate();
     mod_b.generate();
+    // subtract max_x to account for output filter inversion
     pwm_set_gpio_level(PRI_OUT_A, max_x - (a.val >> bit_diff));
     pwm_set_gpio_level(PRI_OUT_B, max_x - (b.val >> bit_diff));
     pwm_set_gpio_level(SEC_OUT_A, max_x - (mod_a.val >> bit_diff));

@@ -90,7 +90,7 @@ uint16_t ring_modulate(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t three_voice_chorus(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    uint16_t offset = (main.pha / 3) >> 21;
+    uint16_t offset = (main.pha / 6) >> 21;
     uint32_t voice_1 = main.val;
     uint32_t voice_2 = waveform_generator(main.s_acc - offset, main.shp, main.rat, main.uslp, main.dslp);
     uint32_t voice_3 = waveform_generator(main.s_acc + offset, main.shp, main.rat, main.uslp, main.dslp);

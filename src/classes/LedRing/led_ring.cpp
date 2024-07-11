@@ -2,7 +2,8 @@
 
 LedRing::LedRing(int enc_pin_1, int enc_pin_2, int btn_pin):
     enc(enc_pin_1, enc_pin_2),
-    btn(btn_pin, true, true)
+    btn(btn_pin, true, true),
+    a_is_active(true)
 {
     pinMode(enc_pin_1, INPUT_PULLUP);
     pinMode(enc_pin_2, INPUT_PULLUP);
