@@ -24,7 +24,7 @@ ConfigData NVMWrapper::get_config_data(bool is_a) {
     return (is_a)? mem.a_data : mem.b_data;
 }
 
-ConfigData NVMWrapper::write_config_data(bool is_a, ConfigData& conf) {
+void NVMWrapper::write_config_data(bool is_a, ConfigData& conf) {
     ConfigData* existing_data = (is_a)? &mem.a_data : &mem.b_data;
     if (!config_data_eq(conf, *existing_data)) {
         *existing_data = conf;
@@ -32,6 +32,7 @@ ConfigData NVMWrapper::write_config_data(bool is_a, ConfigData& conf) {
 }
 
 void NVMWrapper::save_data() {
+    EEPROM.put(0, mem);
     EEPROM.commit();
 }
 

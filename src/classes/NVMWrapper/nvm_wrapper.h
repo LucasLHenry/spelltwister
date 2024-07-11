@@ -13,8 +13,8 @@ typedef struct ConfigData {
     uint16_t ratio_offset;
 } ConfigData;
 
-ConfigData a_default_config_data = {264, 322, 570, 567, 570, 570};
-ConfigData b_default_config_data = {264, 322, 570, 570, 570, 574};
+const ConfigData a_default_config_data = {264, 322, 570, 567, 570, 570};
+const ConfigData b_default_config_data = {264, 322, 570, 570, 570, 574};
 
 bool config_data_eq(ConfigData l, ConfigData r);
 
@@ -24,15 +24,13 @@ typedef struct MemoryLayout {
     ConfigData b_data;
 } MemoryLayout;
 
-MemoryLayout* _MEM;
-
 class NVMWrapper {
     MemoryLayout mem;
     char data_in_eeprom;
     public:
         NVMWrapper();
         ConfigData get_config_data(bool is_a);
-        ConfigData write_config_data(bool is_a, ConfigData* conf);
+        void write_config_data(bool is_a, ConfigData& conf);
         void save_data();
 };
 
