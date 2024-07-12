@@ -8,7 +8,16 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, NVMWr
 }
 
 void _calibration_display_startup_leds(Adafruit_NeoPXL8& leds) {
- 
+    for (int repeat = 0; repeat < 2) {
+        for (int i = 0; i < NUM_RING_LEDS; i++) {
+            for (int j = 0; j < NUM_RING_LEDS; j++) {
+                uint8_t colour = (i==j)? RED : ((i==(j+1)%NUM_RING_LEDS)? BLUE : BLACK);
+                leds.setPixelColour(j, colour);
+            }
+            leds.show();
+            delay(100);
+        }
+    }
 }
 
 void _calibration_do_scale_calibration(Waveformer& wf, ConfigData& conf) {

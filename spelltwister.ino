@@ -19,6 +19,8 @@ project is within the src directory, so dig into that to do your hacking.
 #include "src/constants.h"
 #include "src/wave_algos/generator.h"
 #include "src/wave_algos/mod_algorithms.h"
+
+
 /*
 RP2040 is a dual core processor. These cores are referred to as c0 and c1. c0 calls setup() and loop(),
 while c1 calls setup1() and loop1(). In this implementation, the two cores are configured to perform 
@@ -82,6 +84,7 @@ void setup() {
     a.init(&b);
     b.init(&a);
     leds.begin();
+    leds.setBrightness(0x9F);
     ring.begin();
     nvm = NVMWrapper();
 
