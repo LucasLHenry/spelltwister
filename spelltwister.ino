@@ -80,18 +80,15 @@ void follow_ISR() {
 }
 
 void setup() {
+    analogReadResolution(BITS_ADC);
+
     // initialize objects
     a.init(&b);
     b.init(&a);
-    leds.begin();
-    leds.setBrightness(0x9F);
     ring.begin();
     nvm = NVMWrapper();
-
-    Serial.begin(9600);
-    analogReadResolution(BITS_ADC);
-    follow_btn.attachClick(follow_ISR);
-
+    leds.begin();
+    leds.setBrightness(0x9F);
 
     // calibration mode
     if (digitalRead(FLW_BTN) == HIGH) {
@@ -99,6 +96,9 @@ void setup() {
         run_calibration(a, b, leds, nvm);
         rp2040.resumeOtherCore();
     }
+
+    Serial.begin(9600);
+    follow_btn.attachClick(follow_ISR);
 }
 
 void write_signal_indicator_leds();

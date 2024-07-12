@@ -34,9 +34,13 @@
 //      Step 2: plug in 1V at v/o input, read to get value 1 for v/o scale
 //      Step 3: plug in 3V at v/o input, read to get value 2 for v/o scale
 
+typedef enum _Step {ONE, TWO, THREE} _Step;
 
 void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, NVMWrapper& nvm);
 void _calibration_display_startup_leds(Adafruit_NeoPXL8& leds);
-void _calibration_do_scale_calibration(Waveformer& wf, ConfigData& conf);
+void _calibration_display_module_leds(Adafruit_NeoPixel& leds, bool is_a, _Step step);
+void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf);
+uint16_t _calibration_do_scale_calibration(Waveformer& wf);
+uint16_t _calibration_calc_vo_scale(uint16_t one_volt, uint16_t three_volts);
 
 #endif
