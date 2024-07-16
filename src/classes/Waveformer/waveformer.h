@@ -44,6 +44,7 @@ class Waveformer {
     Waveformer* _other;
     int8_t mod_idx, prev_mod_idx;
     uint64_t update_counter, EOS_start_time;
+    AllInputs raw_vals;
     public:
         bool is_a;
         uint16_t uslp, dslp;
@@ -60,7 +61,9 @@ class Waveformer {
         void generate();
         void read();
         void reset();
-        AllInputs read_all(uint16_t repeats);
+        void read_all();
+        AllInputs get_all(uint16_t repeats);
+        void print_info(bool verbose);
         bool end_of_cycle, prev_eos;
         bool eos_led;
         int8_t mod_idx_change;

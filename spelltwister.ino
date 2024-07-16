@@ -88,7 +88,8 @@ void setup() {
     ring.begin();
     nvm = NVMWrapper();
     leds.begin();
-    leds.setBrightness(0x9F);
+    // leds.setBrightness(0x9F);
+    Serial.begin(9600);
 
     // calibration mode
     if (digitalRead(FLW_BTN) == HIGH) {
@@ -97,7 +98,6 @@ void setup() {
         rp2040.resumeOtherCore();
     }
 
-    Serial.begin(9600);
     follow_btn.attachClick(follow_ISR);
 }
 

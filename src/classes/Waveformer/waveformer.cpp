@@ -65,6 +65,7 @@ void Waveformer::generate() {
 }
 
 void Waveformer::read() {
+    read_all();
     uint16_t rat_buf = get_ratio();
     if (rat_buf != rat) {
         rat = rat_buf;
@@ -80,25 +81,20 @@ void Waveformer::read() {
 }
 
 uint16_t Waveformer::get_shape() {
-    uint16_t raw_shape_pot = mux.read(mux_sigs[S_PT_IDX]);
-    uint16_t raw_shape_cv = mux.read(mux_sigs[S_CV_IDX]);
-    shp_read.update(CLIP(half_adc - raw_shape_pot + raw_shape_cv, 0, max_adc));
+    shp_read.update(CLIP(half_adc - raw_vals.shape_pot + raw_vals.shape_cv, 0, max_adc));
     return shp_read.getValue() >> 1;
 }
 
 uint16_t Waveformer::get_ratio() {
-    uint16_t raw_ratio_pot = mux.read(mux_sigs[R_PT_IDX]);
-    uint16_t raw_ratio_cv = mux.read(mux_sigs[R_CV_IDX]);
-    rat_read.update(CLIP(half_adc - raw_ratio_pot + raw_ratio_cv, 0, max_adc));
+    rat_read.update(CLIP(half_adc - raw_vals.ratio_pot + raw_vals.ratio_cv, 0, max_adc));
     return rat_read.getValue() >> 1;
 }
 
 uint32_t Waveformer::get_phasor() {
     if (!is_a && follow) return _other->pha;
 
-    uint16_t raw_exp_time = mux.read(mux_sigs[VO_IDX]);
-    time_read.update(raw_exp_time);
-    int16_t fm_val = (analogRead(lin_time_pin) - configs.fm_offset) / FM_ATTENUATION;
+    time_read.update(raw_vals.pitch);
+    int16_t fm_val = (raw_vals.fm - configs.fm_offset) / FM_ATTENUATION;
 
     uint16_t processed_val = CLIP(max_adc - ((time_read.getValue() * configs.vo_scale) >> 8) + configs.vo_offset + fm_val, 0, max_adc);
     return pgm_read_dword(((mode == VCO)? phasor_table : slow_phasor_table) + processed_val);
@@ -121,9 +117,8 @@ Mode Waveformer::get_mode() {
 int8_t Waveformer::get_mod_idx_change() {
     prev_mod_idx = mod_idx;
 
-    algo_read.update(mux.read(mux_sigs[M_CV_IDX]));
-    raw_mod = algo_read.getValue();
-    mod_idx = static_cast<int8_t>((raw_mod - configs.mod_offset) >> 7);
+    algo_read.update(raw_vals.algo_mod);
+    mod_idx = static_cast<int8_t>((algo_read.getValue() - configs.mod_offset) >> 7);
     return mod_idx - prev_mod_idx;
 }
 
@@ -139,19 +134,29 @@ void Waveformer::reset() {
     }
 }
 
-AllInputs Waveformer::read_all(uint16_t repeats) {
-    // repeat reads 10 times to get good averaging
+void Waveformer::read_all() {
+    raw_vals.pitch     = mux.read(mux_sigs[VO_IDX]);   // pitch
+    raw_vals.fm        = analogRead(lin_time_pin);     // fm
+    raw_vals.shape_pot = mux.read(mux_sigs[S_PT_IDX]); // shape pot
+    raw_vals.shape_cv  = mux.read(mux_sigs[S_CV_IDX]); // shape cv
+    raw_vals.ratio_pot = mux.read(mux_sigs[R_PT_IDX]); // ratio pot
+    raw_vals.ratio_cv  = mux.read(mux_sigs[R_CV_IDX]); // ratio cv
+    raw_vals.algo_mod  = mux.read(mux_sigs[M_CV_IDX]); // algo mod
+}
+
+AllInputs Waveformer::get_all(uint16_t repeats) {
     uint16_t all_vals_sums[7];
     for (int i = 0; i < repeats; i++) {
-        all_vals_sums[0] += mux.read(mux_sigs[VO_IDX]);   // pitch
-        all_vals_sums[1] += analogRead(lin_time_pin);     // fm
-        all_vals_sums[2] += mux.read(mux_sigs[S_PT_IDX]); // shape pot
-        all_vals_sums[3] += mux.read(mux_sigs[S_CV_IDX]); // shape cv
-        all_vals_sums[4] += mux.read(mux_sigs[R_PT_IDX]); // ratio pot
-        all_vals_sums[5] += mux.read(mux_sigs[R_CV_IDX]); // ratio cv
-        all_vals_sums[6] += mux.read(mux_sigs[M_CV_IDX]); // algo mod
+        read_all();
+        all_vals_sums[0] += raw_vals.pitch;    
+        all_vals_sums[1] += raw_vals.fm;
+        all_vals_sums[2] += raw_vals.shape_pot;
+        all_vals_sums[3] += raw_vals.shape_cv;
+        all_vals_sums[4] += raw_vals.ratio_pot;
+        all_vals_sums[5] += raw_vals.ratio_cv;
+        all_vals_sums[6] += raw_vals.algo_mod;
     }
-
+    
     AllInputs reads = {
         static_cast<uint16_t>(all_vals_sums[0] / repeats),
         static_cast<uint16_t>(all_vals_sums[1] / repeats),
@@ -163,4 +168,39 @@ AllInputs Waveformer::read_all(uint16_t repeats) {
     };
 
     return reads;
+}
+
+void Waveformer::print_info(bool verbose) {
+    Serial.println((is_a)? "A" : "B");
+
+    Serial.print("mode: ");
+    if (mode == ENV) Serial.println("ENV");
+    else if (mode == VCO) Serial.println("VCO");
+    else Serial.println("LFO");
+
+    Serial.print("phasor: ");
+    Serial.println(pha);
+
+    if (verbose) {
+        Serial.print("mod val: ");
+        Serial.println(raw_vals.algo_mod);
+
+        Serial.print("rat pot: ");
+        Serial.println(raw_vals.ratio_pot);
+
+        Serial.print("rat cv: ");
+        Serial.println(raw_vals.ratio_cv);
+
+        Serial.print("shp pot: ");
+        Serial.println(raw_vals.shape_pot);
+
+        Serial.print("shp cv: ");
+        Serial.println(raw_vals.shape_cv);
+
+        Serial.print("pitch: ");
+        Serial.println(raw_vals.pitch);
+
+        Serial.print("fm: ");
+        Serial.println(raw_vals.fm);
+    }
 }

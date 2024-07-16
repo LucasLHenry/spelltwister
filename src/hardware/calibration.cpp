@@ -67,14 +67,14 @@ void _calibration_display_module_leds(Adafruit_NeoPixel& leds, bool is_a, _Step 
         leds.setPixelColor(PRI_A_LED,  RED);
         leds.setPixelColor(SEC_A_LED,  RED);
         leds.setPixelColor(TRIG_A_LED, RED);
-        for (int i = 0; i < amt_ring_leds) {
+        for (int i = 0; i < amt_ring_leds; i++) {
             leds.setPixelColor(i, RED);
         }
     } else {
         leds.setPixelColor(PRI_B_LED,  BLUE);
         leds.setPixelColor(SEC_B_LED,  BLUE);
         leds.setPixelColor(TRIG_B_LED, BLUE);
-        for (int i = 0; i < amt_ring_leds) {
+        for (int i = 0; i < amt_ring_leds; i++) {
             leds.setPixelColor(NUM_LEDS-1 - i, BLUE);
         }
     }
@@ -83,7 +83,7 @@ void _calibration_display_module_leds(Adafruit_NeoPixel& leds, bool is_a, _Step 
 
 void _calibration_display_startup_leds(Adafruit_NeoPXL8& leds) {
     leds.fill(BLACK);
-    for (int repeat = 0; repeat < 2) {
+    for (int repeat = 0; repeat < 2; repeat++) {
         for (int i = 0; i < NUM_RING_LEDS; i++) {
             for (int j = 0; j < NUM_RING_LEDS; j++) {
                 uint8_t colour = (i==j)? RED : ((i==(j+1)%NUM_RING_LEDS)? BLUE : BLACK);
@@ -96,7 +96,7 @@ void _calibration_display_startup_leds(Adafruit_NeoPXL8& leds) {
 }
 
 void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf) {
-    AllInputs zero_vals = wf.read_all(16);
+    AllInputs zero_vals = wf.get_all(16);
     conf.vo_offset = zero_vals.pitch;
     conf.fm_offset = zero_vals.fm;
     conf.shape_offset = zero_vals.shape_cv;
@@ -104,7 +104,7 @@ void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf) {
 }
 
 uint16_t _calibration_do_scale_calibration(Waveformer& wf) {
-    Allinputs vals = wf.read_all(16);
+    AllInputs vals = wf.get_all(16);
     return vals.pitch;
 }
 
