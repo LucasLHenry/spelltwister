@@ -67,7 +67,9 @@ Waveformer b(false, MUX_B, LIN_TIME_B);
 Modulator mod_a(a, b, ring, algo_arr);
 Modulator mod_b(b, a, ring, algo_arr);
 
-NVMWrapper nvm;;
+NVMWrapper nvm;
+
+bool print_flag = false;
 
 // called when the follow button is pressed
 void follow_ISR() {
@@ -77,6 +79,7 @@ void follow_ISR() {
         b.s_acc = a.s_acc;
         b.prev_s_acc = a.prev_s_acc;
     }
+    print_flag = true;
 }
 
 void setup() {
@@ -113,6 +116,12 @@ void loop() {
     ring.write_leds(leds);
     write_signal_indicator_leds();
     leds.show();
+
+    if (print_flag) {
+        a.print_info(true);
+        b.print_info(true);
+        print_flag = false;
+    }
 }
 
 repeating_timer_t pwm_timer;

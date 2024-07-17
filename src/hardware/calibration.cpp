@@ -99,8 +99,10 @@ void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf) {
     AllInputs zero_vals = wf.get_all(16);
     conf.vo_offset = zero_vals.pitch;
     conf.fm_offset = zero_vals.fm;
-    conf.shape_offset = zero_vals.shape_cv;
-    conf.ratio_offset = zero_vals.ratio_cv;
+    conf.shp_cv_offset = zero_vals.shape_cv;
+    conf.rat_cv_offset = zero_vals.ratio_cv;
+    conf.shp_pot_offset = zero_vals.shape_pot;
+    conf.rat_pot_offset = zero_vals.ratio_pot;
 }
 
 uint16_t _calibration_do_scale_calibration(Waveformer& wf) {
