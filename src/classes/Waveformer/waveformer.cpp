@@ -150,6 +150,8 @@ void Waveformer::read_all() {
 }
 
 AllInputs Waveformer::get_all(uint16_t repeats) {
+    if (repeats == 1) return read_all();
+    
     uint16_t all_vals_sums[7];
     for (int i = 0; i < repeats; i++) {
         read_all();
@@ -183,10 +185,8 @@ void Waveformer::print_info(bool verbose) {
     else if (mode == VCO) Serial.println("VCO");
     else Serial.println("LFO");
 
-    Serial.print("phasor: ");
-    Serial.println(pha);
-
     if (verbose) {
+        Serial.println("RAW VALS");
         Serial.print("mod val: ");
         Serial.println(raw_vals.algo_mod);
 
@@ -207,5 +207,15 @@ void Waveformer::print_info(bool verbose) {
 
         Serial.print("fm: ");
         Serial.println(raw_vals.fm);
+
+        Serial.println("PARAMS");
+        Serial.print("ratio: ");
+        Serial.println(rat);
+
+        Serial.print("shape: ");
+        Serial.println(shp);
+
+        Serial.print("phasor: ");
+        Serial.println(pha);
     }
 }

@@ -102,6 +102,12 @@ void setup() {
     }
 
     follow_btn.attachClick(follow_ISR);
+
+    while (!Serial) {}
+    a.read_all();
+    a.print_info(true);
+    b.read_all();
+    b.print_info(true);
 }
 
 void write_signal_indicator_leds();
