@@ -81,14 +81,14 @@ void Waveformer::read() {
 }
 
 uint16_t Waveformer::get_shape() {
-    uint16_t calibrated_pot = configs.shp_pot_offset - raw_vals.shape_pot;
+    int32_t calibrated_pot = configs.shp_pot_offset - raw_vals.shape_pot;
     int16_t calibrated_cv = configs.shp_cv_offset - raw_vals.shape_cv;
     shp_read.update(CLIP(calibrated_pot + calibrated_cv, 0, max_adc));
     return shp_read.getValue() >> 1;
 }
 
 uint16_t Waveformer::get_ratio() {
-    uint16_t calibrated_pot = configs.rat_pot_offset - raw_vals.ratio_pot;
+    int32_t calibrated_pot = configs.rat_pot_offset - raw_vals.ratio_pot;
     int16_t calibrated_cv = configs.rat_cv_offset - raw_vals.ratio_cv;
     rat_read.update(CLIP(calibrated_pot + calibrated_cv, 0, max_adc));
     return rat_read.getValue() >> 1;
@@ -98,9 +98,8 @@ uint32_t Waveformer::get_phasor() {
     if (!is_a && follow) return _other->pha;
 
     time_read.update(raw_vals.pitch);
-    uint16_t calibrated_exp = configs.vo_offset - ((time_read.getValue() * configs.vo_scale) >> 8);
+    int32_t calibrated_exp = configs.vo_offset - ((time_read.getValue() * configs.vo_scale) >> 8);
     int16_t calibrated_lin = (raw_vals.fm - configs.fm_offset) / FM_ATTENUATION;
-
     uint16_t processed_val = CLIP(calibrated_exp + calibrated_lin, 0, max_adc);
     return pgm_read_dword(((mode == VCO)? phasor_table : slow_phasor_table) + processed_val);
 }
@@ -150,8 +149,10 @@ void Waveformer::read_all() {
 }
 
 AllInputs Waveformer::get_all(uint16_t repeats) {
-    if (repeats == 1) return read_all();
-    
+    if (repeats == 1) {
+        read_all();
+        return raw_vals;
+    }
     uint16_t all_vals_sums[7];
     for (int i = 0; i < repeats; i++) {
         read_all();

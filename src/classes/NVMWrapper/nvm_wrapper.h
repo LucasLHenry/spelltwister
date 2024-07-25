@@ -15,8 +15,8 @@ typedef struct ConfigData {
     uint16_t rat_cv_offset;
 } ConfigData;
 
-const ConfigData a_default_config_data = {4064, 300, 2261, 2269, 4081, 4082, 2280, 2281};
-const ConfigData b_default_config_data = {4074, 300, 2268, 2281, 4081, 4080, 2284, 2272};
+const ConfigData a_default_config_data = {4759, 300, 2261, 2269, 4081, 4082, 2280, 2281};
+const ConfigData b_default_config_data = {4774, 300, 2268, 2281, 4081, 4080, 2284, 2272};
 
 bool config_data_eq(ConfigData l, ConfigData r);
 
