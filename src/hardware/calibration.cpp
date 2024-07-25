@@ -34,8 +34,10 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, NVMWr
     _calibration_wait_for_click();
     b_val_3v = _calibration_do_scale_calibration(b);
 
-    a_configs.vo_scale = _calibration_calc_vo_scale(a_val_1v, a_val_3v);
-    b_configs.vo_scale = _calibration_calc_vo_scale(b_val_1v, b_val_3v);
+    a_configs.vo_scale  = _calibration_calc_vo_scale(a_val_1v, a_val_3v);
+    a_configs.vo_offset = _calibration_calc_vo_offset(a_configs.vo_scale, a_configs.vo_offset);
+    b_configs.vo_scale  = _calibration_calc_vo_scale(b_val_1v, b_val_3v);
+    b_configs.vo_offset = _calibration_calc_vo_offset(b_configs.vo_scale, b_configs.vo_offset);
 
     nvm.write_config_data(true,  a_configs);
     nvm.write_config_data(false, b_configs);
@@ -112,4 +114,8 @@ uint16_t _calibration_do_scale_calibration(Waveformer& wf) {
 
 uint16_t _calibration_calc_vo_scale(uint16_t one_volt, uint16_t three_volts) {
     return static_cast<uint16_t>((1 << 18) / (one_volt - three_volts));
+}
+
+uint16_t _calibration_calc_vo_offset(uint16_t vo_scale, uint16_t zero_volts) {
+    return (zero_volts * vo_scale) >> 8;
 }

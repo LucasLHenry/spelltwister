@@ -34,10 +34,10 @@ class Waveformer {
     ResponsiveAnalogRead rat_read, shp_read, time_read, algo_read;
     uint16_t* mux_sigs;
     admux::Mux mux;
-    uint16_t get_ratio();
-    uint16_t get_shape();
-    uint32_t get_phasor();
-    int8_t get_mod_idx_change();
+    uint16_t calc_ratio();
+    uint16_t calc_shape();
+    uint32_t calc_phasor();
+    int8_t calc_mod_idx_change();
     Mode get_mode();
     ConfigData configs;
     uint32_t acc_by_val[2048];  // for envelope retriggering
