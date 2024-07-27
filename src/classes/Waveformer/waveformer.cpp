@@ -102,6 +102,16 @@ uint32_t Waveformer::calc_phasor() {
     int16_t calibrated_lin = (raw_vals.fm - configs.fm_offset) / FM_ATTENUATION;
     uint16_t processed_val = CLIP(calibrated_exp + calibrated_lin, 0, max_adc);
     return pgm_read_dword(((mode == VCO)? phasor_table : slow_phasor_table) + processed_val);
+
+    // calibrated_exp = CLIP(calibrated_exp, 0, max_adc);
+    // uint16_t new_phasor = pgm_read_dword(((mode == VCO)? phasor_table : slow_phasor_table) + calibrated_exp);
+    // int64_t calibrated_lin = (raw_vals.fm - configs.fm_offset) << FM_CV_AMT;
+    
+    // if (mode == VCO) {
+    //     return CLIP(new_phasor + calibrated_lin, min_pha, max_pha);
+    // } else {
+    //     return CLIP(new_phasor + calibrated_lin, min_slow_pha, max_slow_pha);
+    // }
 }
 
 Mode Waveformer::get_mode() {
