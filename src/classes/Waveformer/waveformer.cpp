@@ -15,10 +15,10 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
 {
     if (is_a) {
         mux_sigs = A_mux_sigs;
-        configs = {264, 322, 570, 567, 570, 570};
+        configs = a_default_config_data;
     } else {
         mux_sigs = B_mux_sigs;
-        configs = {264, 322, 570, 570, 570, 574};
+        configs = b_default_config_data;
     }
 }
 
@@ -66,38 +66,52 @@ void Waveformer::generate() {
 
 void Waveformer::read() {
     read_all();
-    uint16_t rat_buf = get_ratio();
+    uint16_t rat_buf = calc_ratio();
     if (rat_buf != rat) {
         rat = rat_buf;
         uslp = calc_upslope(rat);
         dslp = calc_downslope(rat);
     }
 
-    shp = get_shape();
-    pha = get_phasor();
+    shp = calc_shape();
+    pha = calc_phasor();
     mode = get_mode();
-    mod_idx_change = get_mod_idx_change();
+    mod_idx_change = calc_mod_idx_change();
     if (mode != ENV) running = true;
 }
 
-uint16_t Waveformer::get_shape() {
-    shp_read.update(CLIP(half_adc - raw_vals.shape_pot + raw_vals.shape_cv, 0, max_adc));
+uint16_t Waveformer::calc_shape() {
+    int32_t calibrated_pot = configs.shp_pot_offset - raw_vals.shape_pot;
+    int16_t calibrated_cv = configs.shp_cv_offset - raw_vals.shape_cv;
+    shp_read.update(CLIP(calibrated_pot + calibrated_cv, 0, max_adc));
     return shp_read.getValue() >> 1;
 }
 
-uint16_t Waveformer::get_ratio() {
-    rat_read.update(CLIP(half_adc - raw_vals.ratio_pot + raw_vals.ratio_cv, 0, max_adc));
+uint16_t Waveformer::calc_ratio() {
+    int32_t calibrated_pot = configs.rat_pot_offset - raw_vals.ratio_pot;
+    int16_t calibrated_cv = configs.rat_cv_offset - raw_vals.ratio_cv;
+    rat_read.update(CLIP(calibrated_pot + calibrated_cv, 0, max_adc));
     return rat_read.getValue() >> 1;
 }
 
-uint32_t Waveformer::get_phasor() {
+uint32_t Waveformer::calc_phasor() {
     if (!is_a && follow) return _other->pha;
 
     time_read.update(raw_vals.pitch);
-    int16_t fm_val = (raw_vals.fm - configs.fm_offset) / FM_ATTENUATION;
-
-    uint16_t processed_val = CLIP(max_adc - ((time_read.getValue() * configs.vo_scale) >> 8) + configs.vo_offset + fm_val, 0, max_adc);
+    int32_t calibrated_exp = configs.vo_offset - ((time_read.getValue() * configs.vo_scale) >> 8);
+    int16_t calibrated_lin = (raw_vals.fm - configs.fm_offset) / FM_ATTENUATION;
+    uint16_t processed_val = CLIP(calibrated_exp + calibrated_lin, 0, max_adc);
     return pgm_read_dword(((mode == VCO)? phasor_table : slow_phasor_table) + processed_val);
+
+    // calibrated_exp = CLIP(calibrated_exp, 0, max_adc);
+    // uint16_t new_phasor = pgm_read_dword(((mode == VCO)? phasor_table : slow_phasor_table) + calibrated_exp);
+    // int64_t calibrated_lin = (raw_vals.fm - configs.fm_offset) << FM_CV_AMT;
+    
+    // if (mode == VCO) {
+    //     return CLIP(new_phasor + calibrated_lin, min_pha, max_pha);
+    // } else {
+    //     return CLIP(new_phasor + calibrated_lin, min_slow_pha, max_slow_pha);
+    // }
 }
 
 Mode Waveformer::get_mode() {
@@ -114,11 +128,11 @@ Mode Waveformer::get_mode() {
     }
 }
 
-int8_t Waveformer::get_mod_idx_change() {
+int8_t Waveformer::calc_mod_idx_change() {
     prev_mod_idx = mod_idx;
-
     algo_read.update(raw_vals.algo_mod);
-    mod_idx = static_cast<int8_t>((algo_read.getValue() - configs.mod_offset) >> 7);
+    int16_t calibrated_cv = algo_read.getValue() - configs.mod_offset;
+    mod_idx = static_cast<int8_t>(calibrated_cv >> 8);
     return mod_idx - prev_mod_idx;
 }
 
@@ -145,6 +159,10 @@ void Waveformer::read_all() {
 }
 
 AllInputs Waveformer::get_all(uint16_t repeats) {
+    if (repeats == 1) {
+        read_all();
+        return raw_vals;
+    }
     uint16_t all_vals_sums[7];
     for (int i = 0; i < repeats; i++) {
         read_all();
@@ -178,10 +196,8 @@ void Waveformer::print_info(bool verbose) {
     else if (mode == VCO) Serial.println("VCO");
     else Serial.println("LFO");
 
-    Serial.print("phasor: ");
-    Serial.println(pha);
-
     if (verbose) {
+        Serial.println("RAW VALS");
         Serial.print("mod val: ");
         Serial.println(raw_vals.algo_mod);
 
@@ -202,5 +218,15 @@ void Waveformer::print_info(bool verbose) {
 
         Serial.print("fm: ");
         Serial.println(raw_vals.fm);
+
+        Serial.println("PARAMS");
+        Serial.print("ratio: ");
+        Serial.println(rat);
+
+        Serial.print("shape: ");
+        Serial.println(shp);
+
+        Serial.print("phasor: ");
+        Serial.println(pha);
     }
 }

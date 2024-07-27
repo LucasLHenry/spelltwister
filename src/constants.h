@@ -21,6 +21,7 @@ constexpr uint16_t half_adc = (1 << (BITS_ADC - 1)) - 1;
 #define CLOCK_FREQ 125000000
 
 #define FM_ATTENUATION 8
+#define FM_CV_AMT 6
 
 #define TRIG_LENGTH_MS 0.25
 #define TRIG_LED_LENGTH_MS 75
@@ -29,5 +30,10 @@ constexpr uint16_t half_adc = (1 << (BITS_ADC - 1)) - 1;
 #define CRUSH_AMT 12
 #define FM_ALGO_AMT 10
 #define SRR_AMT 1
+
+const uint32_t min_pha = 2834160;
+const uint32_t max_pha = 725544960;
+const uint32_t min_slow_pha = 9447;
+const uint32_t max_slow_pha = 3778880;
 
 #endif

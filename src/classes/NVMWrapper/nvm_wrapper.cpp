@@ -1,12 +1,14 @@
 #include "nvm_wrapper.h"
 
 bool config_data_eq(ConfigData l, ConfigData r) {
-    if (l.vo_offset != r.vo_offset)       return false;
-    if (l.vo_scale != r.vo_scale)         return false;
-    if (l.fm_offset != r.fm_offset)       return false;
-    if (l.mod_offset != r.mod_offset)     return false;
-    if (l.shape_offset != r.shape_offset) return false;
-    if (l.ratio_offset != r.ratio_offset) return false;
+    if (l.vo_offset != r.vo_offset)           return false;
+    if (l.vo_scale != r.vo_scale)             return false;
+    if (l.fm_offset != r.fm_offset)           return false;
+    if (l.mod_offset != r.mod_offset)         return false;
+    if (l.shp_pot_offset != r.shp_pot_offset) return false;
+    if (l.shp_cv_offset != r.shp_cv_offset)   return false;
+    if (l.rat_pot_offset != r.rat_pot_offset) return false;
+    if (l.rat_cv_offset != r.rat_cv_offset)   return false;
     return true;
 }
 
