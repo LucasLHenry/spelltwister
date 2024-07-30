@@ -37,12 +37,11 @@ class Waveformer {
     uint16_t calc_ratio();
     uint16_t calc_shape();
     uint32_t calc_phasor();
-    int8_t calc_mod_idx_change();
+    int8_t calc_mod_idx();
     Mode get_mode();
     ConfigData configs;
     uint32_t acc_by_val[2048];  // for envelope retriggering
     Waveformer* _other;
-    int8_t mod_idx, prev_mod_idx;
     uint64_t update_counter, EOS_start_time;
     AllInputs raw_vals;
     public:
@@ -66,7 +65,7 @@ class Waveformer {
         void print_info(bool verbose);
         bool end_of_cycle, prev_eos;
         bool eos_led;
-        int8_t mod_idx_change;
+        int8_t mod_idx;
 };
 
 // order for mux_assignemnts is ratio cv, ratio pot, shape cv, shape pot, algo cv, switch 1, switch 2, exp time cv

@@ -76,7 +76,7 @@ void Waveformer::read() {
     shp = calc_shape();
     pha = calc_phasor();
     mode = get_mode();
-    mod_idx_change = calc_mod_idx_change();
+    mod_idx = calc_mod_idx();
     if (mode != ENV) running = true;
 }
 
@@ -128,12 +128,12 @@ Mode Waveformer::get_mode() {
     }
 }
 
-int8_t Waveformer::calc_mod_idx_change() {
-    prev_mod_idx = mod_idx;
+int8_t Waveformer::calc_mod_idx() {
     algo_read.update(raw_vals.algo_mod);
-    int16_t calibrated_cv = algo_read.getValue() - configs.mod_offset;
-    mod_idx = static_cast<int8_t>(calibrated_cv >> 8);
-    return mod_idx - prev_mod_idx;
+    uint16_t _cv = algo_read.getValue() >> 8;
+    uint16_t _offset = configs.mod_offset >> 8;
+    int16_t calibrated_cv = static_cast<int16_t>(_cv) - static_cast<int16_t>(_offset);
+    return static_cast<int8_t>(-calibrated_cv);
 }
 
 void Waveformer::reset() {

@@ -32,10 +32,6 @@ void LedRing::update(int8_t a_change, int8_t b_change) {
     // handle button
     btn.tick();
 
-    // handle cv
-    a_pos_raw += a_change << ENC_DIV;
-    b_pos_raw += b_change << ENC_DIV;
-
     // handle encoder
     new_enc_pos = enc.read();
     enc_change = new_enc_pos - enc_pos;
@@ -49,6 +45,11 @@ void LedRing::update(int8_t a_change, int8_t b_change) {
 
     a_idx = (a_pos_raw >> ENC_DIV) % NUM_RING_LEDS;
     b_idx = (b_pos_raw >> ENC_DIV) % NUM_RING_LEDS;
+
+    if (a_change + a_idx < 0) a_change += 16;
+    a_idx += a_change;
+    if (b_change + b_idx < 0) b_change += 16;
+    b_idx += b_change;
 }
 
 void button_handler() {
