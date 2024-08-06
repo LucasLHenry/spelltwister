@@ -3,7 +3,7 @@
 #ifndef SLOW_PHASORS_TABLE_H
 #define SLOW_PHASORS_TABLE_H
 
-const PROGMEM uint32_t slow_phasor_table[4096] { 
+const  uint32_t slow_phasor_table[4096] { 
     9447,
     10368,
     11288,

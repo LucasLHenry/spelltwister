@@ -3,7 +3,7 @@
 #ifndef PHASORS_TABLE_H
 #define PHASORS_TABLE_H
 
-const PROGMEM uint32_t phasor_table[4096] {
+const  uint32_t phasor_table[4096] {
     2834160,
     2838000,
     2841846,

@@ -3,7 +3,7 @@
 #ifndef LOGTABLE_H
 #define LOGTABLE_H
 
-const PROGMEM uint16_t logtable[2048] {
+const  uint16_t logtable[2048] {
     0,
     244,
     487,

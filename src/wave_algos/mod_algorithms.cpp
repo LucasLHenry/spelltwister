@@ -19,7 +19,7 @@ uint16_t invert(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t analog_pulse_pm(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return pgm_read_word_near(analog_pulse_table + (main.val >> 5));
+    return analog_pulse_table[main.val >> 5]; // (analog_pulse_table + (main.val >> 5));
 }
 
 uint16_t double_freq(Waveformer& main, Waveformer& aux, Modulator& mod) {
@@ -58,7 +58,7 @@ uint16_t sample_rate_reduce(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t sine_pm(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return pgm_read_word_near(sine_table + (main.val >> 5));
+    return sine_table[main.val >> 5]; // pgm_read_word_near(sine_table + (main.val >> 5));
 }
 
 uint16_t ratio_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
