@@ -6,7 +6,7 @@
 
 #include "../../hardware/pins.h"
 #include "../../constants.h"
-#include "../../colours.h"
+#include "../../tables/colours.h"
 
 #ifndef LED_RING_H
 #define LED_RING_H

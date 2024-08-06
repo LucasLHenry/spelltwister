@@ -19,6 +19,7 @@ project is within the src directory, so dig into that to do your hacking.
 #include "src/constants.h"
 #include "src/wave_algos/generator.h"
 #include "src/wave_algos/mod_algorithms.h"
+#include "src/tables/colours.h"
 
 
 /*
@@ -68,9 +69,6 @@ Modulator mod_a(a, b, ring, algo_arr);
 Modulator mod_b(b, a, ring, algo_arr);
 
 NVMWrapper nvm;
-
-uint32_t a_side_brightness_table[BRIGHTNESS_TABLE_LEN];
-uint32_t b_side_brightness_table[BRIGHTNESS_TABLE_LEN];
 
 bool print_flag = false;
 
@@ -182,28 +180,32 @@ bool PwmTimerHandler(repeating_timer_t* rt) {
 }
 
 void write_signal_indicator_leds() {
+    uint8_t a_brightness, a_mod_brightness, b_brightness, b_mod_brightness;
     // a is red (value, 0, 0)
     if (a.mode == ENV) {
-        leds.setPixelColor(PRI_A_LED, (a.val - half_y) >> 7, 0, 0);
-        leds.setPixelColor(SEC_A_LED, (mod_a.val - half_y) >> 7, 0, 0);
+        a_brightness = (a.val - half_y);
+        a_mod_brightness = (mod_a.val - half_y);
     } else {
-        leds.setPixelColor(PRI_A_LED, a.val >> 8, 0, 0);
-        leds.setPixelColor(SEC_A_LED, mod_a.val >> 8, 0, 0); 
+        a_brightness = a.val >> 8;
+        a_mod_brightness = mod_a.val >> 8;
+    }
+    if (b.mode == ENV) {
+        b_brightness = (b.val - half_y);
+        b_mod_brightness = (mod_b.val - half_y);
+    } else {
+        b_brightness = b.val >> 8;
+        b_mod_brightness = mod_b.val >> 8;
     }
 
-    // B is blue (0, 0, value)
-    if (b.mode == ENV) {
-        leds.setPixelColor(PRI_B_LED, 0, 0, (b.val - half_y) >> 7);
-        leds.setPixelColor(SEC_B_LED, 0, 0, (mod_b.val - half_y) >> 7);
-    } else {
-        leds.setPixelColor(PRI_B_LED, 0, 0, b.val >> 8);
-        leds.setPixelColor(SEC_B_LED, 0, 0, mod_b.val >> 8);
-    }
+    leds.setPixelColor(PRI_A_LED, a_brightness_table[a_brightness]);
+    leds.setPixelColor(SEC_A_LED, a_brightness_table[a_mod_brightness]);
+    leds.setPixelColor(PRI_A_LED, b_brightness_table[b_brightness]);
+    leds.setPixelColor(SEC_A_LED, b_brightness_table[b_mod_brightness]);
 
     // write trig LEDs
-    leds.setPixelColor(TRIG_A_LED, (a.eos_led)? RED : BLACK);
-    leds.setPixelColor(TRIG_B_LED, (b.eos_led)? BLUE : BLACK);
+    leds.setPixelColor(TRIG_A_LED, (a.eos_led)? a_colour : black);
+    leds.setPixelColor(TRIG_B_LED, (b.eos_led)? b_colour : black);
 
     // write follow LED
-    leds.setPixelColor(FLW_LED, (b.follow)? PURPLE : BLACK);
+    leds.setPixelColor(FLW_LED, (b.follow)? mix_colour : black);
 }

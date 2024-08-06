@@ -12,14 +12,14 @@ LedRing::LedRing(int enc_pin_1, int enc_pin_2, int btn_pin):
 void LedRing::write_leds(Adafruit_NeoPXL8 &leds) {
     if (a_idx == b_idx) {
         for (int i = 0; i < NUM_RING_LEDS; i++) {
-            if (i == a_idx) leds.setPixelColor(i,  PURPLE);
-            else leds.setPixelColor(i, BLACK);
+            if (i == a_idx) leds.setPixelColor(i, mix_colour);
+            else leds.setPixelColor(i, black);
         }
     } else {
         for (int i = 0; i < NUM_RING_LEDS; i++) {
-            if (i == a_idx) leds.setPixelColor(i, RED);
-            else if (i == b_idx) leds.setPixelColor(i, BLUE);
-            else leds.setPixelColor(i, BLACK);
+            if (i == a_idx) leds.setPixelColor(i, a_colour);
+            else if (i == b_idx) leds.setPixelColor(i, b_colour);
+            else leds.setPixelColor(i, black);
         }
     }
 }

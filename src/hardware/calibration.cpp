@@ -51,7 +51,7 @@ void _calibration_wait_for_click() {
 }
 
 void _calibration_display_module_leds(Adafruit_NeoPixel& leds, bool is_a, _Step step) {
-    leds.fill(BLACK);
+    leds.fill(black);
     uint8_t amt_ring_leds = 0;
     switch (step) {
         case ONE:
@@ -66,29 +66,29 @@ void _calibration_display_module_leds(Adafruit_NeoPixel& leds, bool is_a, _Step 
     }
 
     if (is_a) {
-        leds.setPixelColor(PRI_A_LED,  RED);
-        leds.setPixelColor(SEC_A_LED,  RED);
-        leds.setPixelColor(TRIG_A_LED, RED);
+        leds.setPixelColor(PRI_A_LED,  a_colour);
+        leds.setPixelColor(SEC_A_LED,  a_colour);
+        leds.setPixelColor(TRIG_A_LED, a_colour);
         for (int i = 0; i < amt_ring_leds; i++) {
-            leds.setPixelColor(i, RED);
+            leds.setPixelColor(i, a_colour);
         }
     } else {
-        leds.setPixelColor(PRI_B_LED,  BLUE);
-        leds.setPixelColor(SEC_B_LED,  BLUE);
-        leds.setPixelColor(TRIG_B_LED, BLUE);
+        leds.setPixelColor(PRI_B_LED,  b_colour);
+        leds.setPixelColor(SEC_B_LED,  b_colour);
+        leds.setPixelColor(TRIG_B_LED, b_colour);
         for (int i = 0; i < amt_ring_leds; i++) {
-            leds.setPixelColor(NUM_LEDS-1 - i, BLUE);
+            leds.setPixelColor(NUM_LEDS-1 - i, b_colour);
         }
     }
     leds.show();
 }
 
 void _calibration_display_startup_leds(Adafruit_NeoPXL8& leds) {
-    leds.fill(BLACK);
+    leds.fill(black);
     for (int repeat = 0; repeat < 2; repeat++) {
         for (int i = 0; i < NUM_RING_LEDS; i++) {
             for (int j = 0; j < NUM_RING_LEDS; j++) {
-                uint8_t colour = (i==j)? RED : ((i==(j+1)%NUM_RING_LEDS)? BLUE : BLACK);
+                uint8_t colour = (i==j)? a_colour : ((i==(j+1)%NUM_RING_LEDS)? b_colour : black);
                 leds.setPixelColor(j, colour);
             }
             leds.show();

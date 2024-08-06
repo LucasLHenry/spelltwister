@@ -4,7 +4,7 @@
 #include "../classes/Waveformer/waveformer.h"
 #include "../classes/NVMWrapper/nvm_wrapper.h"
 #include "pins.h"
-#include "../colours.h"
+#include "../tables/colours.h"
 
 #ifndef CALIBRATION_H
 #define CALIBRATION_H
