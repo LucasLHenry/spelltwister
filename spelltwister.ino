@@ -101,13 +101,7 @@ void setup() {
         rp2040.resumeOtherCore();
     }
 
-    follow_btn.attachClick(follow_ISR);
-
-    while (!Serial) {}
-    a.read_all();
-    a.print_info(true);
-    b.read_all();
-    b.print_info(true);
+    follow_btn.attachClick(follow_ISR);`
 }
 
 void write_signal_indicator_leds();
