@@ -69,6 +69,9 @@ Modulator mod_b(b, a, ring, algo_arr);
 
 NVMWrapper nvm;
 
+uint32_t a_side_brightness_table[BRIGHTNESS_TABLE_LEN];
+uint32_t b_side_brightness_table[BRIGHTNESS_TABLE_LEN];
+
 bool print_flag = false;
 
 // called when the follow button is pressed
@@ -101,7 +104,7 @@ void setup() {
         rp2040.resumeOtherCore();
     }
 
-    follow_btn.attachClick(follow_ISR);`
+    follow_btn.attachClick(follow_ISR);
 }
 
 void write_signal_indicator_leds();
