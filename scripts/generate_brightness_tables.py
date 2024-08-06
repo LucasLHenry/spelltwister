@@ -37,7 +37,7 @@ def write_array(f: TextIO, is_a: bool):
         f.write(header)
         for c in colour.range_to(black, table_length):
             color_val = int(c.get_hex_l()[1:], 16)
-            f.write(f"\t{color_val}")
+            f.write(f"    {color_val}")
             if c != black:
                 f.write(",\n")
             else:
