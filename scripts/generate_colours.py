@@ -4,8 +4,9 @@
 import os
 from colour import Color
 from typing import TextIO
+import matplotlib.pyplot as plt
 
-a_side_colour = Color("red")
+a_side_colour = Color("orange")
 b_side_colour = Color("blue")
 table_length = 256
 
@@ -26,17 +27,24 @@ mix_colour_name = "mix_colour"
 array_name = "brightness_table"
 
 def main():
-    cwd = os.getcwd()
-    with open(f"{cwd}{path_to_tables}{file_name}", 'w') as f:
+    file_path = f"{os.getcwd()}{path_to_tables}{file_name}"
+    with open(file_path, 'w') as f:
         f.write(file_header)
         f.write("const uint32_t black = 0;\n")
         f.write(f"const uint32_t a_{colour_name} = {colour_to_int(a_side_colour)};\n")
         f.write(f"const uint32_t b_{colour_name} = {colour_to_int(b_side_colour)};\n")
-        mix_colour = list(a_side_colour.range_to(b_side_colour, 3))[1]
+        mix_colour = Color(rgb=(
+            (a_side_colour.get_red()   + b_side_colour.get_red())   / 2,
+            (a_side_colour.get_green() + b_side_colour.get_green()) / 2,
+            (a_side_colour.get_blue()  + b_side_colour.get_blue())  / 2,
+        ))
         f.write(f"const uint32_t {mix_colour_name} = {colour_to_int(mix_colour)};\n")
         write_array(f, is_a=True)
         write_array(f, is_a=False)
         f.write(file_footer)
+        
+    with open(file_path, 'r') as f:
+        display_colours(f)
 
 def colour_to_int(c: Color):
     return int(c.get_hex_l()[1:], 16)
@@ -45,17 +53,56 @@ def write_array(f: TextIO, is_a: bool):
         side_str = 'a' if is_a else 'b' 
         header = f"const uint32_t {side_str}_brightness_table[{table_length}] {{\n"
         colour = a_side_colour if is_a else b_side_colour
-        black = Color("black")
+        starting_l = colour.get_luminance()
+        l_increment = starting_l / table_length
         
         f.write(header)
-        for c in colour.range_to(black, table_length):
-            color_val = colour_to_int(c)
-            f.write(f"    {color_val}")
-            if c != black:
+        for i in range(table_length):
+            colour.set_luminance(l_increment * (table_length - i))
+            colour_val = colour_to_int(colour)
+            f.write(f"    {colour_val}")
+            if colour_val != 0:
                 f.write(",\n")
             else:
                 f.write("\n")
         f.write(array_footer)
+        
+        
+def display_colours(fp: TextIO):
+    import re
+    a_vals = []
+    b_vals = []
+    file_lines = fp.readlines()
+    # 0 means preamble, 1 means inside a, 2 means between a and b, 3 means inside b
+    file_section = 0
+    for line in file_lines:
+        if file_section in (1, 3):
+            stripped_line = re.sub(r"\D", "", line)
+            if stripped_line.isnumeric():
+                if file_section == 1:
+                    a_vals.append(parse_colour(int(stripped_line)))
+                else:
+                    b_vals.append(parse_colour(int(stripped_line)))
+        if '{' in line or '}' in line: file_section += 1
+    im_height = 256
+    a_image = [[colour_to_list(c)] * im_height for c in a_vals]
+    b_image = [[colour_to_list(c)] * im_height for c in b_vals]
+    plt.imshow(a_image)
+    plt.show()
+    plt.imshow(b_image)
+    plt.show()
+    
+def colour_to_list(c: Color) -> list[int]:
+    return [c.get_red(), c.get_green(), c.get_blue()]
+    
+
+def parse_colour(colour_val: int) -> Color:
+    hex_str = hex(colour_val)[2:].rjust(6, '0')
+    c = Color()
+    c.set_red(  int(hex_str[:2],  16) / 255.0)
+    c.set_green(int(hex_str[2:4], 16) / 255.0)
+    c.set_blue( int(hex_str[4:],  16) / 255.0)
+    return c
     
 if __name__ == "__main__":
     main()

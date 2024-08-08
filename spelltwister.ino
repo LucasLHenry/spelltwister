@@ -174,8 +174,8 @@ bool PwmTimerHandler(repeating_timer_t* rt) {
     pwm_set_gpio_level(PRI_OUT_B, max_x - (b.val >> bit_diff));
     pwm_set_gpio_level(SEC_OUT_A, max_x - (mod_a.val >> bit_diff));
     pwm_set_gpio_level(SEC_OUT_B, max_x - (mod_b.val >> bit_diff));
-    digitalWrite(TRIG_OUT_A, !a.end_of_cycle);
-    digitalWrite(TRIG_OUT_B, !b.end_of_cycle);
+    gpio_put(TRIG_OUT_A, !a.end_of_cycle);
+    gpio_put(TRIG_OUT_B, !b.end_of_cycle);
     return true;
 }
 
