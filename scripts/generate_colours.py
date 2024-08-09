@@ -6,8 +6,15 @@ from colour import Color
 from typing import TextIO
 import matplotlib.pyplot as plt
 
-a_side_colour = Color("orange")
-b_side_colour = Color("blue")
+
+# TO TRY OUT DIFFERENT COLOURS, CHANGE ONLY THESE TWO LINES
+a_side_colour = Color("purple")
+b_side_colour = Color("green")
+# EVERYTHING ELSE IS GENERATED BASED ON THESE TWO COLOURS
+
+
+
+
 table_length = 256
 
 path_to_tables = "/src/tables/"

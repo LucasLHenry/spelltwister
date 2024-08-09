@@ -12,6 +12,25 @@ bool config_data_eq(ConfigData l, ConfigData r) {
     return true;
 }
 
+void print_config_data(ConfigData& conf) {
+    Serial.print("vo_offset: ");
+    Serial.println(conf.vo_offset);
+    Serial.print("vo_scale: ");
+    Serial.println(conf.vo_scale);
+    Serial.print("fm_offset: ");
+    Serial.println(conf.fm_offset);
+    Serial.print("mod_offset: ");
+    Serial.println(conf.mod_offset);
+    Serial.print("shp_pot_offset: ");
+    Serial.println(conf.shp_pot_offset);
+    Serial.print("shp_cv_offset: ");
+    Serial.println(conf.shp_cv_offset);
+    Serial.print("rat_pot_offset: ");
+    Serial.println(conf.rat_pot_offset);
+    Serial.print("rat_cv_offset: ");
+    Serial.println(conf.rat_cv_offset);
+}
+
 NVMWrapper::NVMWrapper() {
     EEPROM.begin(sizeof(MemoryLayout));
     mem = EEPROM.get(0, mem);

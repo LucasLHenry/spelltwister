@@ -20,6 +20,8 @@ const ConfigData b_default_config_data = {4774, 300, 2268, 2281, 4081, 4080, 228
 
 bool config_data_eq(ConfigData l, ConfigData r);
 
+void print_config_data(ConfigData& conf);
+
 typedef struct MemoryLayout {
     bool data_exists;
     ConfigData a_data;

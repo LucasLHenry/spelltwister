@@ -7,31 +7,31 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, NVMWr
 
     /****************STEP ONE************************/
     _calibration_display_module_leds(leds, true, ONE);
-    _calibration_wait_for_click();
+    _calibration_wait_for_click(leds);
     _calibration_do_offset_calibration(a, a_configs);
 
     _calibration_display_module_leds(leds, false, ONE);
-    _calibration_wait_for_click();
+    _calibration_wait_for_click(leds);
     _calibration_do_offset_calibration(b, b_configs);
 
     /*****************STEP TWO**********************/
     uint16_t a_val_1v, b_val_1v, a_val_3v, b_val_3v;
     _calibration_display_module_leds(leds, true, TWO);
-    _calibration_wait_for_click();
+    _calibration_wait_for_click(leds);
     a_val_1v = _calibration_do_scale_calibration(a);
 
     _calibration_display_module_leds(leds, false, TWO);
-    _calibration_wait_for_click();
+    _calibration_wait_for_click(leds);
     b_val_1v = _calibration_do_scale_calibration(b);
 
 
     /*******************STEP THREE*******************/
     _calibration_display_module_leds(leds, true, THREE);
-    _calibration_wait_for_click();
+    _calibration_wait_for_click(leds);
     a_val_3v = _calibration_do_scale_calibration(a);
 
     _calibration_display_module_leds(leds, false, THREE);
-    _calibration_wait_for_click();
+    _calibration_wait_for_click(leds);
     b_val_3v = _calibration_do_scale_calibration(b);
 
     a_configs.vo_scale  = _calibration_calc_vo_scale(a_val_1v, a_val_3v);
@@ -39,15 +39,21 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, NVMWr
     b_configs.vo_scale  = _calibration_calc_vo_scale(b_val_1v, b_val_3v);
     b_configs.vo_offset = _calibration_calc_vo_offset(b_configs.vo_scale, b_configs.vo_offset);
 
-    nvm.write_config_data(true,  a_configs);
-    nvm.write_config_data(false, b_configs);
-    nvm.save_data();
+    Serial.println("A CONFIGS");
+    print_config_data(a_configs);
+    Serial.println("B CONFIGS");
+    print_config_data(a_configs);
+    // nvm.write_config_data(true,  a_configs);
+    // nvm.write_config_data(false, b_configs);
+    // nvm.save_data();
 }
 
-void _calibration_wait_for_click() {
+void _calibration_wait_for_click(Adafruit_NeoPXL8& leds) {
     while(true) {
-        if (digitalRead(FLW_BTN) == HIGH) return;
+        if (digitalRead(FLW_BTN) == HIGH) break;
+        _blink_led_non_blocking(leds, FLW_LED, mix_colour, 500);
     }
+    delay(500);
 }
 
 void _calibration_display_module_leds(Adafruit_NeoPXL8& leds, bool is_a, _Step step) {
@@ -115,6 +121,7 @@ void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf) {
     conf.rat_cv_offset = zero_vals.ratio_cv;
     conf.shp_pot_offset = zero_vals.shape_pot;
     conf.rat_pot_offset = zero_vals.ratio_pot;
+    conf.mod_offset = zero_vals.algo_mod;
 }
 
 uint16_t _calibration_do_scale_calibration(Waveformer& wf) {
@@ -128,4 +135,17 @@ uint16_t _calibration_calc_vo_scale(uint16_t one_volt, uint16_t three_volts) {
 
 uint16_t _calibration_calc_vo_offset(uint16_t vo_scale, uint16_t zero_volts) {
     return (zero_volts * vo_scale) >> 8;
+}
+
+
+void _blink_led_non_blocking(Adafruit_NeoPXL8& leds, int led_num, uint32_t colour, uint64_t interval_ms) {
+    static uint64_t _previous_ms, _current_ms;
+    static bool _led_state;
+    _current_ms = millis();
+    if (_current_ms - _previous_ms >= interval_ms) {
+        _led_state = !_led_state;
+        _previous_ms = _current_ms;
+        leds.setPixelColor(led_num, (_led_state)? colour : black);
+        leds.show();
+    }
 }
