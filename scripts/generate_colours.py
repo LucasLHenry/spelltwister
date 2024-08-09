@@ -46,8 +46,6 @@ def main():
     with open(file_path, 'r') as f:
         display_colours(f)
 
-def colour_to_int(c: Color):
-    return int(c.get_hex_l()[1:], 16)
 
 def write_array(f: TextIO, is_a: bool):
         side_str = 'a' if is_a else 'b' 
@@ -95,6 +93,8 @@ def display_colours(fp: TextIO):
 def colour_to_list(c: Color) -> list[int]:
     return [c.get_red(), c.get_green(), c.get_blue()]
     
+def colour_to_int(c: Color):
+    return int(c.get_hex_l()[1:], 16)
 
 def parse_colour(colour_val: int) -> Color:
     hex_str = hex(colour_val)[2:].rjust(6, '0')
