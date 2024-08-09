@@ -105,7 +105,7 @@ void setup() {
     follow_btn.attachClick(follow_ISR);
 }
 
-void write_signal_indicator_leds();
+void write_other_leds();
 
 void loop() {
     // read inputs
@@ -115,7 +115,7 @@ void loop() {
 
     ring.update(a.mod_idx, b.mod_idx);
     ring.write_leds(leds);
-    write_signal_indicator_leds();
+    write_other_leds();
     leds.show();
 
     if (print_flag) {
@@ -179,28 +179,30 @@ bool PwmTimerHandler(repeating_timer_t* rt) {
     return true;
 }
 
-void write_signal_indicator_leds() {
+void write_other_leds() {
     uint8_t a_brightness, a_mod_brightness, b_brightness, b_mod_brightness;
-    // a is red (value, 0, 0)
+
     if (a.mode == ENV) {
-        a_brightness = (a.val - half_y);
-        a_mod_brightness = (mod_a.val - half_y);
+        a_brightness = (a.val - half_y) >> 7;
+        a_mod_brightness = (mod_a.val - half_y) >> 7;
     } else {
         a_brightness = a.val >> 8;
         a_mod_brightness = mod_a.val >> 8;
     }
+
     if (b.mode == ENV) {
-        b_brightness = (b.val - half_y);
-        b_mod_brightness = (mod_b.val - half_y);
+        b_brightness = (b.val - half_y) >> 7;
+        b_mod_brightness = (mod_b.val - half_y) >> 7;
     } else {
         b_brightness = b.val >> 8;
         b_mod_brightness = mod_b.val >> 8;
     }
 
+    // write signal indicators
     leds.setPixelColor(PRI_A_LED, a_brightness_table[a_brightness]);
     leds.setPixelColor(SEC_A_LED, a_brightness_table[a_mod_brightness]);
-    leds.setPixelColor(PRI_A_LED, b_brightness_table[b_brightness]);
-    leds.setPixelColor(SEC_A_LED, b_brightness_table[b_mod_brightness]);
+    leds.setPixelColor(PRI_B_LED, b_brightness_table[b_brightness]);
+    leds.setPixelColor(SEC_B_LED, b_brightness_table[b_mod_brightness]);
 
     // write trig LEDs
     leds.setPixelColor(TRIG_A_LED, (a.eos_led)? a_colour : black);
