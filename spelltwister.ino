@@ -80,7 +80,6 @@ void follow_ISR() {
         b.s_acc = a.s_acc;
         b.prev_s_acc = a.prev_s_acc;
     }
-    print_flag = true;
 }
 
 void setup() {
@@ -98,7 +97,19 @@ void setup() {
     // calibration mode
     if (digitalRead(FLW_BTN) == HIGH) {
         rp2040.idleOtherCore();
-        run_calibration(a, b, leds, nvm);
+        _calibration_display_module_leds(leds, true, ONE);
+        delay(500);
+        _calibration_display_module_leds(leds, true, TWO);
+        delay(500);
+        _calibration_display_module_leds(leds, true, THREE);
+        delay(500);
+        _calibration_display_module_leds(leds, false, ONE);
+        delay(500);
+        _calibration_display_module_leds(leds, false, TWO);
+        delay(500);
+        _calibration_display_module_leds(leds, false, THREE);
+        delay(500);
+        // run_calibration(a, b, leds, nvm);
         rp2040.resumeOtherCore();
     }
 
@@ -117,12 +128,6 @@ void loop() {
     ring.write_leds(leds);
     write_other_leds();
     leds.show();
-
-    if (print_flag) {
-        a.print_info(true);
-        b.print_info(true);
-        print_flag = false;
-    }
 }
 
 repeating_timer_t pwm_timer;
