@@ -43,9 +43,12 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, NVMWr
     print_config_data(a_configs);
     Serial.println("B CONFIGS");
     print_config_data(a_configs);
-    // nvm.write_config_data(true,  a_configs);
-    // nvm.write_config_data(false, b_configs);
-    // nvm.save_data();
+
+    nvm.set_config_data(true,  a_configs);
+    a.configs = a_configs;
+    nvm.set_config_data(false, b_configs);
+    b.config_data = b_configs;
+    nvm.save_data();
 }
 
 void _calibration_wait_for_click(Adafruit_NeoPXL8& leds) {

@@ -23,18 +23,18 @@ bool config_data_eq(ConfigData l, ConfigData r);
 void print_config_data(ConfigData& conf);
 
 typedef struct MemoryLayout {
-    bool data_exists;
+    char data_exists;
     ConfigData a_data;
     ConfigData b_data;
 } MemoryLayout;
 
 class NVMWrapper {
     MemoryLayout mem;
-    char data_in_eeprom;
+    bool data_in_eeprom;
     public:
         NVMWrapper();
         ConfigData get_config_data(bool is_a);
-        void write_config_data(bool is_a, ConfigData& conf);
+        void set_config_data(bool is_a, ConfigData& conf);
         void save_data();
 };
 

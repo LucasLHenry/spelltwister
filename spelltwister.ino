@@ -90,6 +90,8 @@ void setup() {
     b.init(&a);
     ring.begin();
     nvm = NVMWrapper();
+    a.configs = nvm.get_config_data(true);
+    b.configs = nvm.get_config_data(false);
     leds.begin();
     // leds.setBrightness(0x9F);
     Serial.begin(9600);
@@ -116,12 +118,6 @@ void loop() {
     ring.write_leds(leds);
     write_other_leds();
     leds.show();
-
-    if (digitalRead(FLW_BTN) == HIGH) {
-        rp2040.idleOtherCore();
-        run_calibration(a, b, leds, nvm);
-        rp2040.resumeOtherCore();
-    }
 }
 
 repeating_timer_t pwm_timer;

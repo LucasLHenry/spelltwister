@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 
 
 # TO TRY OUT DIFFERENT COLOURS, CHANGE ONLY THESE TWO LINES
-a_side_colour = Color("purple")
-b_side_colour = Color("green")
+a_side_colour = Color("orange")
+b_side_colour = Color("blue")
 # EVERYTHING ELSE IS GENERATED BASED ON THESE TWO COLOURS
 
 
@@ -63,7 +63,7 @@ def write_array(f: TextIO, is_a: bool):
         
         f.write(header)
         for i in range(table_length):
-            colour.set_luminance(l_increment * (table_length - i))
+            colour.set_luminance(l_increment * i)
             colour_val = colour_to_int(colour)
             f.write(f"    {colour_val}")
             if colour_val != 0:
