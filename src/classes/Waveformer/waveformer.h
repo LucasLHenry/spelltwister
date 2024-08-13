@@ -39,12 +39,12 @@ class Waveformer {
     uint32_t calc_phasor();
     int8_t calc_mod_idx();
     Mode get_mode();
-    ConfigData configs;
     uint32_t acc_by_val[2048];  // for envelope retriggering
     Waveformer* _other;
     uint64_t update_counter, EOS_start_time;
     AllInputs raw_vals;
     public:
+        ConfigData configs;
         bool is_a;
         uint16_t uslp, dslp;
         bool follow;

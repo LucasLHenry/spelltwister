@@ -8,7 +8,7 @@ const uint32_t a_colour = 16753920;
 const uint32_t b_colour = 255;
 const uint32_t mix_colour = 8344191;
 const uint32_t a_brightness_table[256] {
-    0
+    0,
     65792,
     131328,
     197120,
@@ -263,10 +263,10 @@ const uint32_t a_brightness_table[256] {
     16491008,
     16556800,
     16622592,
-    16688128,
+    16688128
 };
 const uint32_t b_brightness_table[256] {
-    0
+    0,
     1,
     2,
     3,
@@ -521,6 +521,6 @@ const uint32_t b_brightness_table[256] {
     251,
     252,
     253,
-    254,
+    254
 };
 #endif

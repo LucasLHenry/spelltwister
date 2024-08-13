@@ -66,7 +66,7 @@ def write_array(f: TextIO, is_a: bool):
             colour.set_luminance(l_increment * i)
             colour_val = colour_to_int(colour)
             f.write(f"    {colour_val}")
-            if colour_val != 0:
+            if i != table_length - 1:
                 f.write(",\n")
             else:
                 f.write("\n")
