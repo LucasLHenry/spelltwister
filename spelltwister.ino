@@ -42,7 +42,7 @@ algo_f_ptr algo_arr[16] = {
     half_freq,
     double_freq,
     invert,
-    exculsive_or,
+    exclusive_or,
     difference,
     sum,
     frequency_mod,
@@ -69,8 +69,6 @@ Modulator mod_a(a, b, ring, algo_arr);
 Modulator mod_b(b, a, ring, algo_arr);
 
 NVMWrapper nvm;
-
-bool print_flag = false;
 
 // called when the follow button is pressed
 void follow_ISR() {
@@ -104,6 +102,13 @@ void setup() {
     }
 
     follow_btn.attachClick(follow_ISR);
+
+    while(!Serial){}
+    if (nvm.data_in_eeprom) {
+        Serial.println("saved data in machine");
+    } else {
+        Serial.println("no saved data");
+    }
 }
 
 void write_other_leds();

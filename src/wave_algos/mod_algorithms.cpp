@@ -8,7 +8,7 @@ uint16_t difference(Waveformer& main, Waveformer& aux, Modulator& mod) {
     return (main.val - aux.val + max_y) >> 1;
 }
 
-uint16_t exculsive_or(Waveformer& main, Waveformer& aux, Modulator& mod) {
+uint16_t exclusive_or(Waveformer& main, Waveformer& aux, Modulator& mod) {
     uint16_t top = main.val & 0xE000;
     uint16_t bottom = (main.val & 0x1FFF) ^ (aux.val & 0x1FFF);
     return top | bottom;

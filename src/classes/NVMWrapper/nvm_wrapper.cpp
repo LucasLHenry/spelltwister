@@ -34,7 +34,7 @@ void print_config_data(ConfigData& conf) {
 NVMWrapper::NVMWrapper() {
     EEPROM.begin(sizeof(MemoryLayout));
     mem = EEPROM.get(0, mem);
-    data_in_eeprom = mem.data_exists == 'Y';
+    data_in_eeprom = (mem.data_exists == 'Y');
 }
 
 ConfigData NVMWrapper::get_config_data(bool is_a) {
@@ -46,9 +46,10 @@ ConfigData NVMWrapper::get_config_data(bool is_a) {
 }
 
 void NVMWrapper::set_config_data(bool is_a, ConfigData& conf) {
-    ConfigData* existing_data = (is_a)? &mem.a_data : &mem.b_data;
-    if (!config_data_eq(conf, *existing_data)) {
-        *existing_data = conf;
+    if (is_a) {
+        mem.a_data = conf;
+    } else {
+        mem.b_data = conf;
     }
 }
 

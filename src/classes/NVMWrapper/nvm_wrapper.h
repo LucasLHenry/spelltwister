@@ -30,8 +30,8 @@ typedef struct MemoryLayout {
 
 class NVMWrapper {
     MemoryLayout mem;
-    bool data_in_eeprom;
     public:
+        bool data_in_eeprom;
         NVMWrapper();
         ConfigData get_config_data(bool is_a);
         void set_config_data(bool is_a, ConfigData& conf);
