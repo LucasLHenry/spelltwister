@@ -12,7 +12,7 @@
 
 uint16_t sum                 (Waveformer& main, Waveformer& aux, Modulator& mod);
 uint16_t difference          (Waveformer& main, Waveformer& aux, Modulator& mod);
-uint16_t exculsive_or        (Waveformer& main, Waveformer& aux, Modulator& mod);
+uint16_t exclusive_or        (Waveformer& main, Waveformer& aux, Modulator& mod);
 uint16_t invert              (Waveformer& main, Waveformer& aux, Modulator& mod);
 uint16_t double_freq         (Waveformer& main, Waveformer& aux, Modulator& mod);
 uint16_t half_freq           (Waveformer& main, Waveformer& aux, Modulator& mod);
