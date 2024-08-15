@@ -103,12 +103,12 @@ void setup() {
 
     follow_btn.attachClick(follow_ISR);
 
-    while(!Serial){}
-    if (nvm.data_in_eeprom) {
-        Serial.println("saved data in machine");
-    } else {
-        Serial.println("no saved data");
-    }
+    // while(!Serial){}
+    // if (nvm.data_in_eeprom) {
+    //     Serial.println("saved data in machine");
+    // } else {
+    //     Serial.println("no saved data");
+    // }
 }
 
 void write_other_leds();

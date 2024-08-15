@@ -23,16 +23,16 @@
 //
 // these can be calibrated in the following ways:
 //    1. set both course and fine time knobs to 0 with no cv input, then read the pitch value
-//    2. input 1V, read value, input 3V, read value, do math
+//    2. input 1V, read value, input 5V, read value, do math
 //    3, 4, 5, 6. all of these have their own cv inputs so its simply a matter of reading from these
 //        while there isn't anything plugged in.
 //
 //
 // this can be achieved in 3 steps:
-//      Step 1: with nothing plugged in and all knobs set to full couterclockwise, read cv inputs
+//      Step 1: with nothing plugged in and all knobs set to full counterclockwise, read cv inputs
 //              for v/o, fm, mod, shape, and ratio. These give the offsets for these values
 //      Step 2: plug in 1V at v/o input, read to get value 1 for v/o scale
-//      Step 3: plug in 3V at v/o input, read to get value 2 for v/o scale
+//      Step 3: plug in 5V at v/o input, read to get value 2 for v/o scale
 
 typedef enum _Step {ONE, TWO, THREE} _Step;
 
