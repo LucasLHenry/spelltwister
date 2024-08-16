@@ -72,4 +72,6 @@ void NVMWrapper::save_mod_pos() {
     if (saved_a == mod_mem.a_idx && saved_b == mod_mem.b_idx) return;
     EEPROM.put(sizeof(ConfigMemoryLayout) + 1, mod_mem);
     EEPROM.commit();
+    saved_a = mod_mem.a_idx;
+    saved_b = mod_mem.b_idx;
 }
