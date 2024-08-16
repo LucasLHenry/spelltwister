@@ -2,7 +2,7 @@
 #include "../classes/Waveformer/waveformer.h"
 #include "../classes/Modulator/modulator.h"
 #include "generator.h"
-#include "../constants.h"
+#include "../constants.hpp"
 
 #include "../tables/transfer_functions/analog_pulse.h"
 #include "../tables/transfer_functions/sine.h"

@@ -4,7 +4,7 @@
 
 #include "../../wave_algos/generator.h"
 #include "../../hardware/pins.h"
-#include "../../constants.h"
+#include "../../constants.hpp"
 #include "../../tables/phasors.h"
 #include "../../tables/slow_phasors.h"
 #include "../NVMWrapper/nvm_wrapper.h"

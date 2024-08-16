@@ -16,7 +16,7 @@ project is within the src directory, so dig into that to do your hacking.
 #include "src/hardware/pins.h"
 #include "src/hardware/misc_functions.h"
 #include "src/hardware/calibration.h"
-#include "src/constants.h"
+#include "src/constants.hpp"
 #include "src/wave_algos/generator.h"
 #include "src/wave_algos/mod_algorithms.h"
 #include "src/tables/colours.h"

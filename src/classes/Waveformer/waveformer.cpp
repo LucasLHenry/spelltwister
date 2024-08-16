@@ -28,12 +28,12 @@ void Waveformer::init(Waveformer* other) {
     shp = 511;
     uslp = calc_upslope(1023);
     dslp = calc_downslope(1023);
-    rat_read.setAnalogResolution(1 << BITS_ADC);
+    rat_read.setAnalogResolution(max_adc + 1);
     rat_read.enableEdgeSnap();
-    shp_read.setAnalogResolution(1 << BITS_ADC);
+    shp_read.setAnalogResolution(max_adc + 1);
     shp_read.enableEdgeSnap();
-    algo_read.setAnalogResolution(1 << BITS_ADC);
-    time_read.setAnalogResolution(1 << BITS_ADC);
+    algo_read.setAnalogResolution(max_adc + 1);
+    time_read.setAnalogResolution(max_adc + 1);
     mode = VCO;
     running = true;
     _other = other;
@@ -96,27 +96,27 @@ uint16_t Waveformer::calc_ratio() {
 
 uint32_t Waveformer::calc_phasor() {
     if (!is_a && follow) return _other->pha;
-
     time_read.update(raw_vals.pitch);
-    int32_t calibrated_exp = configs.vo_offset - ((time_read.getValue() * configs.vo_scale) >> 8);
     int16_t calibrated_lin = (raw_vals.fm - configs.fm_offset) / FM_ATTENUATION;
-    uint16_t processed_val = CLIP(calibrated_exp + calibrated_lin, 0, max_adc);
-    return pgm_read_dword(((mode == VCO)? phasor_table : slow_phasor_table) + processed_val);
 
-    // calibrated_exp = CLIP(calibrated_exp, 0, max_adc);
-    // uint16_t new_phasor = pgm_read_dword(((mode == VCO)? phasor_table : slow_phasor_table) + calibrated_exp);
-    // int64_t calibrated_lin = (raw_vals.fm - configs.fm_offset) << FM_CV_AMT;
-    
-    // if (mode == VCO) {
-    //     return CLIP(new_phasor + calibrated_lin, min_pha, max_pha);
-    // } else {
-    //     return CLIP(new_phasor + calibrated_lin, min_slow_pha, max_slow_pha);
-    // }
+    if (mode == ENV) {
+        uint64_t calibrated_pots_and_vo = time_read.getValue() * env_mapping_scale + env_mapping_offset;
+        uint64_t new_pha = CLIP(calibrated_pots_and_vo + calibrated_lin * FM_AMT_TO_PHA, min_slow_pha, max_slow_pha);
+        return new_pha;
+    }
+
+    int32_t calibrated_exp = configs.vo_offset - ((time_read.getValue() * configs.vo_scale) >> 8);
+    uint16_t processed_val = CLIP(calibrated_exp + calibrated_lin, 0, max_adc);
+
+    if (mode == VCO) return phasor_table[processed_val];
+    else return slow_phasor_table[processed_val];
 }
 
 Mode Waveformer::get_mode() {
     bool val1 = (mux.read(mux_sigs[SW_1_IDX]) > half_adc)? true : false;
     bool val2 = (mux.read(mux_sigs[SW_2_IDX]) > half_adc)? true : false;
+
+    // different wiring for a vs b side
     if (is_a) {
         if (val1 && !val2) return ENV;
         else if (!val1 && val2) return VCO;

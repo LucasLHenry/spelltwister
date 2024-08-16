@@ -5,7 +5,7 @@
 #include <Adafruit_NeoPXL8.h>
 
 #include "../../hardware/pins.h"
-#include "../../constants.h"
+#include "../../constants.hpp"
 #include "../../tables/colours.h"
 
 #ifndef LED_RING_H

@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <avr/pgmspace.h>
-#include "../constants.h"
+#include "../constants.hpp"
 #include "../tables/exptable.h"
 #include "../tables/logtable.h"
 
