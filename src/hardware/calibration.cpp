@@ -28,15 +28,15 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, NVMWr
     /*******************STEP THREE*******************/
     _calibration_display_module_leds(leds, true, THREE);
     _calibration_wait_for_click(leds);
-    a_val_5v = _calibration_do_scale_calibration(a);
+    a_val_3v = _calibration_do_scale_calibration(a);
 
     _calibration_display_module_leds(leds, false, THREE);
     _calibration_wait_for_click(leds);
-    b_val_5v = _calibration_do_scale_calibration(b);
+    b_val_3v = _calibration_do_scale_calibration(b);
 
-    a_configs.vo_scale  = _calibration_calc_vo_scale(a_val_1v, a_val_5v);
+    a_configs.vo_scale  = _calibration_calc_vo_scale(a_val_1v, a_val_3v);
     a_configs.vo_offset = _calibration_calc_vo_offset(a_configs.vo_scale, a_configs.vo_offset);
-    b_configs.vo_scale  = _calibration_calc_vo_scale(b_val_1v, b_val_5v);
+    b_configs.vo_scale  = _calibration_calc_vo_scale(b_val_1v, b_val_3v);
     b_configs.vo_offset = _calibration_calc_vo_offset(b_configs.vo_scale, b_configs.vo_offset);
 
     // Serial.println("A CONFIGS");
@@ -70,7 +70,7 @@ void _calibration_display_module_leds(Adafruit_NeoPXL8& leds, bool is_a, _Step s
             amt_ring_leds = 1;
             break;
         case THREE:
-            amt_ring_leds = 5;
+            amt_ring_leds = 3;
             break;
     }
 
@@ -132,8 +132,8 @@ uint16_t _calibration_do_scale_calibration(Waveformer& wf) {
     return vals.pitch;
 }
 
-uint16_t _calibration_calc_vo_scale(uint16_t one_volt, uint16_t five_volts) {
-    return static_cast<uint16_t>((1 << 19) / static_cast<uint32_t>(one_volt - five_volts));
+uint16_t _calibration_calc_vo_scale(uint16_t one_volt, uint16_t three_volts) {
+    return static_cast<uint16_t>((1 << 18) / static_cast<uint32_t>(one_volt - three_volts));
 }
 
 uint16_t _calibration_calc_vo_offset(uint16_t vo_scale, uint16_t zero_volts) {
