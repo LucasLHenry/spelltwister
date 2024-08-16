@@ -88,8 +88,8 @@ void setup() {
     // initialize objects
     a.init(&b);
     b.init(&a);
-    ring.begin();
     nvm = NVMWrapper();
+    ring.begin(nvm.get_mod_pos(true), nvm.get_mod_pos(false));
     a.configs = nvm.get_config_data(true);
     b.configs = nvm.get_config_data(false);
     leds.begin();
@@ -107,6 +107,9 @@ void setup() {
 
 void write_other_leds();
 
+
+uint64_t loop_counter, runtime_s;
+bool save_mod_pos_flag;
 void loop() {
     // read inputs
     a.read();
@@ -117,6 +120,18 @@ void loop() {
     ring.write_leds(leds);
     write_other_leds();
     leds.show();
+
+    loop_counter++;
+    #define LOOPS_PER_SEC 1000 // this is wrong, actually measure this
+    if (loop_counter % LOOPS_PER_SEC == 0) {
+        runtime_s++;
+        if (runtime_s % 10 == 0) {
+            // make it so that these values don't include the effect of modulation
+            nvm.set_mod_pos(true, ring.a_idx);
+            nvm.set_mod_pos(false, ring.b_idx);
+            save_mod_pos_flag = true;
+        }
+    }
 }
 
 repeating_timer_t pwm_timer;
@@ -153,7 +168,13 @@ void setup1() {
     attachInterrupt(digitalPinToInterrupt(SIG_IN_B), b_sync_ISR, FALLING);
 }
 
-void loop1() {}  // nothing handled here, core 1 only does the interrupt
+void loop1() {
+    // have to do this from core 1 so that the outputs don't drop out
+    if (save_mod_pos_flag) {
+        nvm.save_mod_pos();
+        save_mod_pos_flag = false;
+    }
+}
 
 bool PwmTimerHandler(repeating_timer_t* rt) {
     if (calibrating) return true;

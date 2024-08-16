@@ -24,8 +24,12 @@ void LedRing::write_leds(Adafruit_NeoPXL8 &leds) {
     }
 }
 
-void LedRing::begin() {
+void LedRing::begin(uint8_t saved_a, uint8_t saved_b) {
     btn.attachClick(button_handler);
+    a_pos_raw = static_cast<uint16_t>(saved_a) << ENC_DIV;
+    b_pos_raw = static_cast<uint16_t>(saved_b) << ENC_DIV;
+    a_idx = saved_a;
+    b_idx = saved_b;
 }
 
 void LedRing::update(int8_t a_change, int8_t b_change) {

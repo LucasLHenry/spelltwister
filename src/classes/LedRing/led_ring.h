@@ -23,7 +23,7 @@ class LedRing {
         int64_t a_pos_raw, b_pos_raw;
         bool a_is_active;
         void write_leds(Adafruit_NeoPXL8 &leds);
-        void begin();
+        void begin(uint8_t saved_a, uint8_t saved_b);
         void update(int8_t a_change, int8_t b_change);
         LedRing(int enc_pin_1, int enc_pin_2, int btn_pin);
 

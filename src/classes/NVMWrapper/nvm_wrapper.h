@@ -22,20 +22,33 @@ bool config_data_eq(ConfigData l, ConfigData r);
 
 void print_config_data(ConfigData& conf);
 
-typedef struct MemoryLayout {
+typedef struct {
     char data_exists;
     ConfigData a_data;
     ConfigData b_data;
-} MemoryLayout;
+} ConfigMemoryLayout;
+
+typedef struct {
+    char data_exists;
+    uint8_t a_idx;
+    uint8_t b_idx;
+} ModPosMemoryLayout;
 
 class NVMWrapper {
-    MemoryLayout mem;
+    ConfigMemoryLayout conf_mem;
+    ModPosMemoryLayout mod_mem;
+    uint8_t saved_a, saved_b;
     public:
-        bool data_in_eeprom;
+        bool conf_data_stored;
+        bool mod_data_stored;
         NVMWrapper();
         ConfigData get_config_data(bool is_a);
         void set_config_data(bool is_a, ConfigData& conf);
-        void save_data();
-};
+        void save_config_data();
+
+        uint8_t get_mod_pos(bool is_a);
+        void set_mod_pos(bool is_a, uint8_t mod_pos);
+        void save_mod_pos();
+}; 
 
 #endif

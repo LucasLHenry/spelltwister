@@ -15,7 +15,7 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, NVMWr
     _calibration_do_offset_calibration(b, b_configs);
 
     /*****************STEP TWO**********************/
-    uint16_t a_val_1v, b_val_1v, a_val_5v, b_val_5v;
+    uint16_t a_val_1v, b_val_1v, a_val_3v, b_val_3v;
     _calibration_display_module_leds(leds, true, TWO);
     _calibration_wait_for_click(leds);
     a_val_1v = _calibration_do_scale_calibration(a);
@@ -48,7 +48,7 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, NVMWr
     b.configs = b_configs;
     nvm.set_config_data(true, a_configs);
     nvm.set_config_data(false, b_configs);
-    nvm.save_data();
+    nvm.save_config_data();
 }
 
 void _calibration_wait_for_click(Adafruit_NeoPXL8& leds) {
