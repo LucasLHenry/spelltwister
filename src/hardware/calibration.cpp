@@ -46,9 +46,9 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, NVMWr
 
     a.configs = a_configs;
     b.configs = b_configs;
-    // nvm.set_config_data(true, a_configs);
-    // nvm.set_config_data(false, b_configs);
-    // nvm.save_data();
+    nvm.set_config_data(true, a_configs);
+    nvm.set_config_data(false, b_configs);
+    nvm.save_data();
 }
 
 void _calibration_wait_for_click(Adafruit_NeoPXL8& leds) {

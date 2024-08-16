@@ -41,7 +41,6 @@ ConfigData NVMWrapper::get_config_data(bool is_a) {
     if (!data_in_eeprom) {
         return (is_a)? a_default_config_data : b_default_config_data;
     }
-
     return (is_a)? mem.a_data : mem.b_data;
 }
 
@@ -54,7 +53,7 @@ void NVMWrapper::set_config_data(bool is_a, ConfigData& conf) {
 }
 
 void NVMWrapper::save_data() {
-    mem.data_exists == 'Y';
+    mem.data_exists = 'Y';
     EEPROM.put(0, mem);
     EEPROM.commit();
 }

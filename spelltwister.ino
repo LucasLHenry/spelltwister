@@ -80,9 +80,11 @@ void follow_ISR() {
     }
 }
 
+bool calibrating = false;
+
 void setup() {
     analogReadResolution(BITS_ADC);
-
+    Serial.begin(9600);
     // initialize objects
     a.init(&b);
     b.init(&a);
@@ -92,23 +94,15 @@ void setup() {
     b.configs = nvm.get_config_data(false);
     leds.begin();
     // leds.setBrightness(0x9F);
-    Serial.begin(9600);
 
     // calibration mode
     if (digitalRead(FLW_BTN) == HIGH) {
-        rp2040.idleOtherCore();
+        calibrating = true;
         run_calibration(a, b, leds, nvm);
-        rp2040.resumeOtherCore();
+        calibrating = false;
     }
 
     follow_btn.attachClick(follow_ISR);
-
-    // while(!Serial){}
-    // if (nvm.data_in_eeprom) {
-    //     Serial.println("saved data in machine");
-    // } else {
-    //     Serial.println("no saved data");
-    // }
 }
 
 void write_other_leds();
@@ -162,6 +156,8 @@ void setup1() {
 void loop1() {}  // nothing handled here, core 1 only does the interrupt
 
 bool PwmTimerHandler(repeating_timer_t* rt) {
+    if (calibrating) return true;
+
     a.update();
     b.update();
 
