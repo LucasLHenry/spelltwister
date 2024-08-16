@@ -20,6 +20,7 @@ class LedRing {
     OneButton btn;
     public:
         int16_t a_idx, b_idx;
+        int16_t a_idx_wo_cv, b_idx_wo_cv;
         int64_t a_pos_raw, b_pos_raw;
         bool a_is_active;
         void write_leds(Adafruit_NeoPXL8 &leds);
