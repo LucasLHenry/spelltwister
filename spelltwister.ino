@@ -81,10 +81,10 @@ void follow_ISR() {
 }
 
 bool calibrating = false;
-
 void setup() {
     analogReadResolution(BITS_ADC);
     Serial.begin(9600);
+
     // initialize objects
     a.init(&b);
     b.init(&a);
@@ -93,7 +93,7 @@ void setup() {
     a.configs = nvm.get_config_data(true);
     b.configs = nvm.get_config_data(false);
     leds.begin();
-    // leds.setBrightness(0x9F);
+    leds.setBrightness(0x70);
 
     // calibration mode
     if (digitalRead(FLW_BTN) == HIGH) {
@@ -122,10 +122,9 @@ void loop() {
     leds.show();
 
     loop_counter++;
-    #define LOOPS_PER_SEC 1000 // this is wrong, actually measure this
     if (loop_counter % LOOPS_PER_SEC == 0) {
         runtime_s++;
-        if (runtime_s % 10 == 0) {
+        if (runtime_s % 20 == 0) {
             // make it so that these values don't include the effect of modulation
             nvm.set_mod_pos(true, ring.a_idx_wo_cv);
             nvm.set_mod_pos(false, ring.b_idx_wo_cv);

@@ -20,6 +20,7 @@ static_assert(max_adc == 4095);
 #define PWM_FREQ_kHz 44.1
 #define BIT_DEPTH 11
 #define CLOCK_FREQ 125000000
+#define LOOPS_PER_SEC 1018
 
 #define FM_ATTENUATION 8
 #define FM_AMT_TO_PHA 9811300
