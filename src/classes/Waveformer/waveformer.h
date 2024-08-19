@@ -8,6 +8,7 @@
 #include "../../tables/phasors.h"
 #include "../../tables/slow_phasors.h"
 #include "../NVMWrapper/nvm_wrapper.h"
+#include "../../hardware/adc_filter.h"
 
 #ifndef WAVEFORMER_H
 #define WAVEFORMER_H
@@ -32,6 +33,7 @@ class Waveformer {
     uint16_t raw_mod;
     int lin_time_pin, mux_pin;
     ResponsiveAnalogRead rat_read, shp_read, time_read, algo_read;
+    ADC_Filter pitch_filter;
     uint16_t* mux_sigs;
     admux::Mux mux;
     uint16_t calc_ratio();
