@@ -11,7 +11,7 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
     rat_read(0, true, 0.001),
     shp_read(0, true),
     algo_read(0, true),
-    time_read(0, false, 0.001)
+    pitch_filter(45, 200)
 {
     if (is_a) {
         mux_sigs = A_mux_sigs;

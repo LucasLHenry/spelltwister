@@ -32,7 +32,7 @@ typedef struct AllInputs {
 class Waveformer {
     uint16_t raw_mod;
     int lin_time_pin, mux_pin;
-    ResponsiveAnalogRead rat_read, shp_read, time_read, algo_read;
+    ResponsiveAnalogRead rat_read, shp_read, algo_read;
     ADC_Filter pitch_filter;
     uint16_t* mux_sigs;
     admux::Mux mux;
