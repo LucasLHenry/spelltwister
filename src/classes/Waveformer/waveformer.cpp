@@ -29,6 +29,7 @@ void Waveformer::init(Waveformer* other) {
     shp = 511;
     uslp = calc_upslope(1023);
     dslp = calc_downslope(1023);
+    algo_read.setAnalogResolution(max_adc + 1);
     mode = VCO;
     running = true;
     _other = other;
