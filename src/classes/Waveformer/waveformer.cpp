@@ -8,13 +8,11 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
     is_a {is_A},
     mux(admux::Pin(mux_pin, INPUT, admux::PinType::Analog), admux::Pinset(MUX_S0, MUX_S1, MUX_S2)),
     lin_time_pin(time_pin),
-    rat_read(0, true, 0.001),
-    shp_read(0, true),
     algo_read(0, true),
-    pitch_filter(),//45, 200),
-    rat_filter  (),//45, 200),
-    shp_filter  (),//45, 200),
-    algo_filter ()//45, 200)
+    pitch_filter(45, 200),
+    rat_filter  (45, 200),
+    shp_filter  (45, 200),
+    algo_filter (45, 200)
 {
     if (is_a) {
         mux_sigs = A_mux_sigs;

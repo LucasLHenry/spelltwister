@@ -1,9 +1,9 @@
 #include "adc_filter.h"
 
-ADC_Filter::ADC_Filter(){//uint16_t low, uint16_t high) {
+ADC_Filter::ADC_Filter(uint16_t low, uint16_t high) {
         upsample_amt = 8;
-        low_margin = 45 << upsample_amt;
-        high_margin = 200 << upsample_amt;
+        low_margin = low << upsample_amt;
+        high_margin = high << upsample_amt;
         smth_lo = 0;
         smth_mid = 1;
         smth_hi = 4;
@@ -23,7 +23,7 @@ uint16_t ADC_Filter::get_next(uint64_t input) {
     } else {
         smooth_amt = smth_lo;
     }
-    if ((diff >> (upsample_amt + smooth_amt)) != 0) Serial.println(diff >> (upsample_amt + smooth_amt));
+
     filtered_value += (upsampled_input - filtered_value) >> smooth_amt;
     return static_cast<uint16_t>(filtered_value >> upsample_amt);
 }

@@ -12,7 +12,7 @@ class ADC_Filter {
     uint16_t upsample_amt;
     uint16_t smth_lo, smth_mid, smth_hi;
     public:
-        ADC_Filter();//uint16_t low, uint16_t high);
+        ADC_Filter(uint16_t low, uint16_t high);
         uint16_t get_next(uint64_t input);
 };
 
