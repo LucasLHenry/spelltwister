@@ -10,6 +10,14 @@
 #include "../NVMWrapper/nvm_wrapper.h"
 #include "../../hardware/adc_filter.h"
 
+/*
+This is the core signal generator class, there is one for the left side and one for the right (A and B). I called it a waveformer
+because it's not technically an oscillator (it does envelopes). There are four main controls: time, shape, ratio, and mode. The
+first three are continuous, with knobs and cv inputs (time has two cv inputs, FM (with an attenuator) and V/O). Mode is a 3 way
+switch, which goes between VCO, LFO, and ENV. The time control goes from 0 to 4095, while the shape and ratio controls goes from
+0 to 2047.
+*/
+
 #ifndef WAVEFORMER_H
 #define WAVEFORMER_H
 
@@ -33,7 +41,7 @@ class Waveformer {
     uint16_t raw_mod;
     int lin_time_pin, mux_pin;
     ResponsiveAnalogRead rat_read, shp_read, algo_read;
-    ADC_Filter pitch_filter;
+    ADC_Filter pitch_filter, rat_filter, shp_filter, algo_filter;
     uint16_t* mux_sigs;
     admux::Mux mux;
     uint16_t calc_ratio();

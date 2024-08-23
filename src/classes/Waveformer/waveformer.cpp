@@ -11,7 +11,10 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
     rat_read(0, true, 0.001),
     shp_read(0, true),
     algo_read(0, true),
-    pitch_filter(45, 200)
+    pitch_filter(45, 200),
+    rat_filter(45, 200),
+    shp_filter(45, 200),
+    algo_filter(45, 200)
 {
     if (is_a) {
         mux_sigs = A_mux_sigs;
@@ -33,7 +36,6 @@ void Waveformer::init(Waveformer* other) {
     shp_read.setAnalogResolution(max_adc + 1);
     shp_read.enableEdgeSnap();
     algo_read.setAnalogResolution(max_adc + 1);
-    time_read.setAnalogResolution(max_adc + 1);
     mode = VCO;
     running = true;
     _other = other;
@@ -83,15 +85,17 @@ void Waveformer::read() {
 uint16_t Waveformer::calc_shape() {
     int32_t calibrated_pot = configs.shp_pot_offset - raw_vals.shape_pot;
     int16_t calibrated_cv = configs.shp_cv_offset - raw_vals.shape_cv;
-    shp_read.update(CLIP(calibrated_pot + calibrated_cv, 0, max_adc));
-    return shp_read.getValue() >> 1;
+    return shp_filter.get_next(CLIP(calibrated_pot + calibrated_cv, 0, max_adc)) >> 1;
+    // shp_read.update(CLIP(calibrated_pot + calibrated_cv, 0, max_adc));
+    // return shp_read.getValue() >> 1;
 }
 
 uint16_t Waveformer::calc_ratio() {
     int32_t calibrated_pot = configs.rat_pot_offset - raw_vals.ratio_pot;
     int16_t calibrated_cv = configs.rat_cv_offset - raw_vals.ratio_cv;
-    rat_read.update(CLIP(calibrated_pot + calibrated_cv, 0, max_adc));
-    return rat_read.getValue() >> 1;
+    return rat_filter.get_next(CLIP(calibrated_pot + calibrated_cv, 0, max_adc)) >> 1;
+    // rat_read.update(CLIP(calibrated_pot + calibrated_cv, 0, max_adc));
+    // return rat_read.getValue() >> 1;
 }
 
 uint32_t Waveformer::calc_phasor() {
