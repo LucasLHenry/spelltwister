@@ -5,6 +5,7 @@ uint16_t sum(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t difference(Waveformer& main, Waveformer& aux, Modulator& mod) {
+    // FIXME if sum is here difference isn't really necessary
     return (main.val - aux.val + max_y) >> 1;
 }
 
@@ -15,11 +16,13 @@ uint16_t exclusive_or(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t invert(Waveformer& main, Waveformer& aux, Modulator& mod) {
+    // FIXME only useful for LFO and ENV
     return max_y - main.val;
 }
 
 uint16_t analog_pulse_pm(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return analog_pulse_table[main.val >> 5]; // (analog_pulse_table + (main.val >> 5));
+    // FIXME square wave lookup table isn't that interesting
+    return analog_pulse_table[main.val >> 5];
 }
 
 uint16_t double_freq(Waveformer& main, Waveformer& aux, Modulator& mod) {
@@ -35,6 +38,7 @@ uint16_t half_freq(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t rectify(Waveformer& main, Waveformer& aux, Modulator& mod) {
+    // FIXME maybe apply a litte saturation to this as well? Could be interesting
     uint32_t val = (main.val < half_y)? max_y - main.val : main.val;
     return static_cast<uint16_t>((val << 1) - max_y);
 }
@@ -58,7 +62,8 @@ uint16_t sample_rate_reduce(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t sine_pm(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return sine_table[main.val >> 5]; // pgm_read_word_near(sine_table + (main.val >> 5));
+    // FIXME this should do more, not be just a sine wave when the waveformer generates a saw
+    return sine_table[main.val >> 5];
 }
 
 uint16_t ratio_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
@@ -76,20 +81,24 @@ uint16_t gate(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t amplitude_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
+    // FIXME this should account for ENV vs LFO / VCO, respond differently
     return static_cast<uint16_t>((((static_cast<int64_t>(main.val) - half_y) * (static_cast<int64_t>(aux.val) - half_y)) >> 15) + half_y);
 }
 
 uint16_t frequency_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
+    // FIXME envelope set to off still creates offset
     mod.acc += main.pha + ((static_cast<int32_t>(aux.val) - max_y) << FM_ALGO_AMT);
     mod.s_acc = mod.acc >> 21;
     return waveform_generator(mod.s_acc, main.shp, main.rat, main.uslp, main.dslp);
 }
 
 uint16_t ring_modulate(Waveformer& main, Waveformer& aux, Modulator& mod) {
+    // FIXME ring mod and AM? might bump a little
     return static_cast<uint16_t>((main.val * static_cast<uint64_t>(aux.val)) >> 16);
 }
 
 uint16_t three_voice_chorus(Waveformer& main, Waveformer& aux, Modulator& mod) {
+    // FIXME not currently working
     uint16_t offset = (main.pha / 6) >> 21;
     uint32_t voice_1 = main.val;
     uint32_t voice_2 = waveform_generator(main.s_acc - offset, main.shp, main.rat, main.uslp, main.dslp);
