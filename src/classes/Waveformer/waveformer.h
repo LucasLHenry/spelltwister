@@ -36,6 +36,29 @@ typedef struct AllInputs {
     uint16_t algo_mod;
 } AllInputs;
 
+// DDS stands for Direct Digital Synthesis
+class DDS_Wrapper {
+    uint16_t _shift_amt;
+    public:
+    uint32_t acc, pha;
+    uint16_t s_acc, prev_s_acc;
+    bool overflow;
+    DDS_Wrapper(uint16_t shift_amt): _shift_amt{shift_amt} {}
+
+    void update() {
+        prev_s_acc = s_acc;
+        acc += pha;
+        s_acc = acc >> _shift_amt;
+        overflow = (prev_s_acc > s_acc);
+    }
+
+    void reset(uint32_t new_acc) {
+        acc = new_acc;
+        s_acc = acc >> _shift_amt;
+        prev_s_acc = s_acc;
+    }
+};
+
 class Waveformer {
     uint16_t raw_mod;
     int lin_time_pin, mux_pin;

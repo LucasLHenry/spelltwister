@@ -128,7 +128,7 @@ int8_t Waveformer::calc_mod_idx() {
 void Waveformer::reset() {
     if (mode == ENV && s_acc >= rat) {
         acc = acc_by_val[val >> 5];
-        s_acc = acc >> 22;
+        s_acc = acc >> 21;
         prev_s_acc = s_acc;
     } else {
         acc = 0;
