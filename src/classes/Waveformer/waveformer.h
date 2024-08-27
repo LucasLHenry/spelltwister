@@ -57,6 +57,12 @@ class DDS_Wrapper {
         s_acc = acc >> _shift_amt;
         prev_s_acc = s_acc;
     }
+
+    void set(DDS_Wrapper& other) {
+        acc = other.acc;
+        s_acc = other.s_acc;
+        prev_s_acc = other.prev_s_acc;
+    }
 };
 
 class Waveformer {
@@ -76,6 +82,7 @@ class Waveformer {
     uint64_t update_counter, EOS_start_time;
     AllInputs raw_vals;
     public:
+        DDS_Wrapper core;
         ConfigData configs;
         bool is_a;
         uint16_t uslp, dslp;
@@ -83,8 +90,6 @@ class Waveformer {
         Mode mode;
         bool running;
         uint16_t rat, shp;
-        uint32_t acc, pha;
-        uint16_t s_acc, prev_s_acc;
         uint16_t val;
         Waveformer(bool is_A, int mux_pin, int time_pin);
         void init(Waveformer* other);

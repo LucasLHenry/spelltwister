@@ -26,15 +26,15 @@ uint16_t analog_pulse_pm(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t double_freq(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    mod.acc += main.pha << 1;
-    mod.s_acc = mod.acc >> 21;
-    return waveform_generator(mod.s_acc, main.shp, main.rat, main.uslp, main.dslp);
+    mod.core.acc += main.core.pha << 1;
+    mod.core.s_acc = mod.core.acc >> 21;
+    return waveform_generator(mod.core.s_acc, main.shp, main.rat, main.uslp, main.dslp);
 }
 
 uint16_t half_freq(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    mod.acc += main.pha >> 1;
-    mod.s_acc = mod.acc >> 21;
-    return waveform_generator(mod.s_acc, main.shp, main.rat, main.uslp, main.dslp);
+    mod.core.acc += main.core.pha >> 1;
+    mod.core.s_acc = mod.core.acc >> 21;
+    return waveform_generator(mod.core.s_acc, main.shp, main.rat, main.uslp, main.dslp);
 }
 
 uint16_t rectify(Waveformer& main, Waveformer& aux, Modulator& mod) {
@@ -58,7 +58,7 @@ uint16_t noisify(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t sample_rate_reduce(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return waveform_generator((main.s_acc >> SRR_AMT) << SRR_AMT, main.shp, main.rat, main.uslp, main.dslp);
+    return waveform_generator((main.core.s_acc >> SRR_AMT) << SRR_AMT, main.shp, main.rat, main.uslp, main.dslp);
 }
 
 uint16_t sine_pm(Waveformer& main, Waveformer& aux, Modulator& mod) {
@@ -68,11 +68,11 @@ uint16_t sine_pm(Waveformer& main, Waveformer& aux, Modulator& mod) {
 
 uint16_t ratio_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
     uint16_t ratio_val = aux.val >> bit_diff;
-    return waveform_generator(main.s_acc, main.shp, ratio_val, calc_upslope(ratio_val), calc_downslope(ratio_val));
+    return waveform_generator(main.core.s_acc, main.shp, ratio_val, calc_upslope(ratio_val), calc_downslope(ratio_val));
 }
 
 uint16_t shape_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return waveform_generator(main.s_acc, aux.val >> bit_diff, main.rat, main.uslp, main.dslp);
+    return waveform_generator(main.core.s_acc, aux.val >> bit_diff, main.rat, main.uslp, main.dslp);
 }
 
 uint16_t gate(Waveformer& main, Waveformer& aux, Modulator& mod) {
@@ -87,9 +87,9 @@ uint16_t amplitude_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
 
 uint16_t frequency_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
     // FIXME envelope set to off still creates offset
-    mod.acc += main.pha + ((static_cast<int32_t>(aux.val) - max_y) << FM_ALGO_AMT);
-    mod.s_acc = mod.acc >> 21;
-    return waveform_generator(mod.s_acc, main.shp, main.rat, main.uslp, main.dslp);
+    mod.core.acc += main.core.pha + ((static_cast<int32_t>(aux.val) - max_y) << FM_ALGO_AMT);
+    mod.core.s_acc = mod.core.acc >> 21;
+    return waveform_generator(mod.core.s_acc, main.shp, main.rat, main.uslp, main.dslp);
 }
 
 uint16_t ring_modulate(Waveformer& main, Waveformer& aux, Modulator& mod) {
@@ -99,10 +99,10 @@ uint16_t ring_modulate(Waveformer& main, Waveformer& aux, Modulator& mod) {
 
 uint16_t three_voice_chorus(Waveformer& main, Waveformer& aux, Modulator& mod) {
     // FIXME not currently working
-    uint16_t offset = (main.pha / 6) >> 21;
+    uint16_t offset = (main.core.pha / 6) >> 21;
     uint32_t voice_1 = main.val;
-    uint32_t voice_2 = waveform_generator(main.s_acc - offset, main.shp, main.rat, main.uslp, main.dslp);
-    uint32_t voice_3 = waveform_generator(main.s_acc + offset, main.shp, main.rat, main.uslp, main.dslp);
+    uint32_t voice_2 = waveform_generator(main.core.s_acc - offset, main.shp, main.rat, main.uslp, main.dslp);
+    uint32_t voice_3 = waveform_generator(main.core.s_acc + offset, main.shp, main.rat, main.uslp, main.dslp);
     return static_cast<uint16_t>((voice_1 + voice_2 + voice_3) / 3);
 }
 

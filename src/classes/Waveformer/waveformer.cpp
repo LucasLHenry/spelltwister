@@ -12,7 +12,8 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
     pitch_filter(45, 200),
     rat_filter  (45, 200),
     shp_filter  (45, 200),
-    algo_filter (45, 200)
+    algo_filter (45, 200),
+    core(21) // acc is 32b, 32-21 = 11b → 0-2047 range
 {
     if (is_a) {
         mux_sigs = A_mux_sigs;
@@ -24,7 +25,7 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
 }
 
 void Waveformer::init(Waveformer* other) {
-    pha = 200 * HZPHASOR;
+    core.pha = 200 * HZPHASOR;
     rat = 1023;
     shp = 511;
     uslp = calc_upslope(1023);
@@ -37,11 +38,9 @@ void Waveformer::init(Waveformer* other) {
 
 void Waveformer::update() {
     prev_eos = end_of_cycle;
-    prev_s_acc = s_acc;
-    acc += pha;
-    s_acc = acc >> 21;  // acc is 32b, 32-21 = 11b → 0-2047 range
+    core.update();
 
-    if (prev_s_acc > s_acc && running) {
+    if (core.overflow && running) {
         end_of_cycle = true;
         eos_led = true;
         EOS_start_time = update_counter;
@@ -55,9 +54,9 @@ void Waveformer::update() {
 }
 
 void Waveformer::generate() {
-    val = (running)? waveform_generator(s_acc, shp, rat, uslp, dslp) : 0;
+    val = (running)? waveform_generator(core.s_acc, shp, rat, uslp, dslp) : 0;
     if (mode == ENV) val = (val >> 1) + half_y;
-    if (s_acc < rat && running) acc_by_val[val >> bit_diff] = acc;  // for retriggering of envelopes
+    if (core.s_acc < rat && running) acc_by_val[val >> bit_diff] = core.acc;  // for retriggering of envelopes
 }
 
 void Waveformer::read() {
@@ -70,7 +69,7 @@ void Waveformer::read() {
     }
 
     shp = calc_shape();
-    pha = calc_phasor();
+    core.pha = calc_phasor();
     mode = get_mode();
     mod_idx = calc_mod_idx();
     if (mode != ENV) running = true;
@@ -89,7 +88,7 @@ uint16_t Waveformer::calc_ratio() {
 }
 
 uint32_t Waveformer::calc_phasor() {
-    if (!is_a && follow) return _other->pha;
+    if (!is_a && follow) return _other->core.pha;
     int16_t calibrated_lin = (raw_vals.fm - configs.fm_offset) / FM_ATTENUATION;
     uint16_t filtered_val = pitch_filter.get_next(raw_vals.pitch);
 
@@ -126,14 +125,10 @@ int8_t Waveformer::calc_mod_idx() {
 }
 
 void Waveformer::reset() {
-    if (mode == ENV && s_acc >= rat) {
-        acc = acc_by_val[val >> 5];
-        s_acc = acc >> 21;
-        prev_s_acc = s_acc;
+    if (mode == ENV && core.s_acc >= rat) {
+        core.reset(acc_by_val[val >> 5]);
     } else {
-        acc = 0;
-        s_acc = 0;
-        prev_s_acc = 0;
+        core.reset(0);
     }
 }
 
@@ -216,6 +211,6 @@ void Waveformer::print_info(bool verbose) {
         Serial.println(shp);
 
         Serial.print("phasor: ");
-        Serial.println(pha);
+        Serial.println(core.pha);
     }
 }

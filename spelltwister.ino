@@ -74,9 +74,7 @@ NVMWrapper nvm;
 void follow_ISR() {
     b.follow = !b.follow;
     if (b.follow) {
-        b.acc = a.acc;
-        b.s_acc = a.s_acc;
-        b.prev_s_acc = a.prev_s_acc;
+        b.core.set(a.core);
     }
 }
 

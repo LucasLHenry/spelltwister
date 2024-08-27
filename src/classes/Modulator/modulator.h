@@ -19,9 +19,7 @@ class Modulator {
         Modulator(Waveformer& main, Waveformer& aux, LedRing& ring, algo_f_ptr* algo_arr);
         void generate();
         uint16_t val;
-        uint32_t acc;
-        uint32_t pha;
-        uint16_t s_acc;
+        DDS_Wrapper core;
 };
 
 #endif
