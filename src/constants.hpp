@@ -33,12 +33,4 @@ static_assert(max_adc == 4095);
 #define FM_ALGO_AMT 10
 #define SRR_AMT 1
 
-const uint32_t min_pha = 2834160;
-const uint32_t max_pha = 725544960;
-const uint32_t min_slow_pha = 9447;
-const uint32_t max_slow_pha = 3778880;
-constexpr int64_t env_mapping_scale = (min_slow_pha - static_cast<int64_t>(max_slow_pha)) / max_adc;
-constexpr uint64_t env_mapping_offset = max_slow_pha;
-static_assert(env_mapping_scale == -920);
-
 #endif

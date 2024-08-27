@@ -93,12 +93,6 @@ uint32_t Waveformer::calc_phasor() {
     int16_t calibrated_lin = (raw_vals.fm - configs.fm_offset) / FM_ATTENUATION;
     uint16_t filtered_val = pitch_filter.get_next(raw_vals.pitch);
 
-    if (mode == ENV) {
-        uint64_t calibrated_pots_and_vo = filtered_val * env_mapping_scale + env_mapping_offset;
-        uint64_t new_pha = CLIP(calibrated_pots_and_vo + calibrated_lin * FM_AMT_TO_PHA, min_slow_pha, max_slow_pha);
-        return new_pha;
-    }
-
     int32_t calibrated_exp = configs.vo_offset - ((filtered_val * configs.vo_scale) >> 8);
     uint16_t processed_val = CLIP(calibrated_exp + calibrated_lin, 0, max_adc);
 
