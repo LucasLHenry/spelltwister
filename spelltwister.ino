@@ -124,7 +124,6 @@ void loop() {
     if (loop_counter % LOOPS_PER_SEC == 0) {
         runtime_s++;
         if (runtime_s % 20 == 0) {
-            // make it so that these values don't include the effect of modulation
             nvm.set_mod_pos(true, ring.a_idx_wo_cv);
             nvm.set_mod_pos(false, ring.b_idx_wo_cv);
             save_mod_pos_flag = true;
