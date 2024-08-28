@@ -1,26 +1,28 @@
 #include "mod_algorithms.h"
 
 uint16_t sum(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return _sum(main.val, aux.val);
+    return (main.val + aux.val) >> 1;
 }
 
 uint16_t difference(Waveformer& main, Waveformer& aux, Modulator& mod) {
     // FIXME if sum is here difference isn't really necessary
-    return _difference(main.val, aux.val);
+    return (main.val - aux.val + max_y) >> 1;
 }
 
 uint16_t exclusive_or(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return _exclusive_or(main.val, aux.val);
+    uint16_t top = main.val & 0xE000;
+    uint16_t bottom = (main.val & 0x1FFF) ^ (aux.val & 0x1FFF);
+    return top | bottom;
 }
 
 uint16_t invert(Waveformer& main, Waveformer& aux, Modulator& mod) {
     // FIXME only useful for LFO and ENV
-    return _invert(main.val);
+    return max_y - main.val;
 }
 
 uint16_t analog_pulse_pm(Waveformer& main, Waveformer& aux, Modulator& mod) {
     // FIXME square wave lookup table isn't that interesting
-    return _analog_pulse_pm(main.val);
+    return analog_pulse_table[main.val >> 5];
 }
 
 uint16_t double_freq(Waveformer& main, Waveformer& aux, Modulator& mod) {
@@ -37,11 +39,12 @@ uint16_t half_freq(Waveformer& main, Waveformer& aux, Modulator& mod) {
 
 uint16_t rectify(Waveformer& main, Waveformer& aux, Modulator& mod) {
     // FIXME maybe apply a litte saturation to this as well? Could be interesting
-    return _rectify(main.val);
+    uint32_t val = (main.val < half_y)? max_y - main.val : main.val;
+    return static_cast<uint16_t>((val << 1) - max_y);
 }
 
 uint16_t bitcrush(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return _bitcrush(main.val);
+    return (main.val >> CRUSH_AMT) << CRUSH_AMT;
 }
 
 
@@ -60,7 +63,7 @@ uint16_t sample_rate_reduce(Waveformer& main, Waveformer& aux, Modulator& mod) {
 
 uint16_t sine_pm(Waveformer& main, Waveformer& aux, Modulator& mod) {
     // FIXME this should do more, not be just a sine wave when the waveformer generates a saw
-    return _sine_pm(main.val);
+    return sine_table[main.val >> 5];
 }
 
 uint16_t ratio_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
@@ -73,11 +76,13 @@ uint16_t shape_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t gate(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return _gate(main.val, aux.val);
+    if (aux.val <= half_y) return 0;
+    return main.val;
 }
 
 uint16_t amplitude_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return _amplitude_mod(main.val, aux.val);
+    // FIXME this should account for ENV vs LFO / VCO, respond differently
+    return static_cast<uint16_t>((((static_cast<int64_t>(main.val) - half_y) * (static_cast<int64_t>(aux.val) - half_y)) >> 15) + half_y);
 }
 
 uint16_t frequency_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
@@ -89,7 +94,7 @@ uint16_t frequency_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
 
 uint16_t ring_modulate(Waveformer& main, Waveformer& aux, Modulator& mod) {
     // FIXME ring mod and AM? might bump a little
-    return _ring_modulate(main.val, aux.val);
+    return static_cast<uint16_t>((main.val * static_cast<uint64_t>(aux.val)) >> 16);
 }
 
 uint16_t three_voice_chorus(Waveformer& main, Waveformer& aux, Modulator& mod) {

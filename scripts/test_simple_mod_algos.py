@@ -1,5 +1,5 @@
 import ctypes as ct
-import os
+import os, pathlib as p
 import matplotlib.pyplot as plt
 from math import cos, pi
 
@@ -11,22 +11,13 @@ def main():
     num_cycles = 4
     in_arr = generate_sample_wave(sample_rate_kHz, bits, test_freq_hz, num_cycles, "SINE")
     
-    out_file_name = "algos"
-    paths_to_files = ["../src/wave_algos/simple_mod_algos.cpp", 
-                      "../src/constants.hpp", 
-                      "../src/tables/transfer_functions/sine.h",
-                      "../src/tables/transfer_functions/analog_pulse.h"]
+    root_path = p.Path(os.path.dirname(__file__)) / '..'  # gets out of scripts directory
+    cpp_path = root_path / "src/wave_algos/ultra_simple_algos.cpp"
+    dll_path = root_path / "scripts/algos.dll"
+    os.system(f"gcc -fPIC -shared -o \"{dll_path}\" \"{cpp_path}\"")
     
-    # generate dll file
-    for i, path in enumerate(paths_to_files):
-        os.system(f"gcc -c {path} -o c{i}.o")
-        os.system(f"gcc -shared -o {out_file_name}.dll c{i}.o")
-        # os.system(f"rm c{i}.o")
-    
-    # os.system(f"gcc -fPIC -shared -o {out_file_name}.dll {path_to_cpp}")
-    
-    algos_c = ct.CDLL(f"{out_file_name}.dll")
-    pass
+    algos_c = ct.CDLL(dll_path)
+    # pass
 
 def generate_sample_wave(sr_kHz, bits, freq_hz, num_cycles, type) -> list[int]:
     max_val = (2 ** bits) - 1

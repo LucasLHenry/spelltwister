@@ -3,7 +3,8 @@
 #include "../classes/Modulator/modulator.h"
 #include "generator.h"
 #include "../constants.hpp"
-#include "simple_mod_algos.h"
+#include "../tables/transfer_functions/sine.h"
+#include "../tables/transfer_functions/analog_pulse.h"
 
 #ifndef MODULATION_ALGORITHMS_H
 #define MODULATION_ALGORITHMS_H
