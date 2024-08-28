@@ -3,7 +3,7 @@
 #ifndef ANALOG_PULSE_H
 #define ANALOG_PULSE_H
 
-const  uint16_t analog_pulse_table[2048] {
+const uint16_t analog_pulse_table[2048] = {
     0,
     10,
     20,

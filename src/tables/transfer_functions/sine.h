@@ -3,7 +3,7 @@
 #ifndef SINE_H
 #define SINE_H
 
-const  uint16_t sine_table[2048] {
+const uint16_t sine_table[2048] = {
     32768,
     32667,
     32566,

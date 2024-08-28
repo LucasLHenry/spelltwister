@@ -1,4 +1,4 @@
-#include <stdint.h>
+#include <Arduino.h>
 #include <Mux.h>
 #include <ResponsiveAnalogRead.h>
 

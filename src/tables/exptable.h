@@ -3,7 +3,7 @@
 #ifndef EXPTABLE_H
 #define EXPTABLE_H
 
-const  uint16_t exptable[2048] {
+const  uint16_t exptable[2048] = {
     0,
     0,
     0,

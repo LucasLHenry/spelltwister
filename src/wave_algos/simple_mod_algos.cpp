@@ -19,7 +19,6 @@ uint16_t _invert(uint16_t v1) {
     return max_y - v1;
 }
 
-#include "../tables/transfer_functions/analog_pulse.h"
 uint16_t _analog_pulse_pm(uint16_t v1) {
     // FIXME square wave lookup table isn't that interesting
     return analog_pulse_table[v1 >> 5];
@@ -35,7 +34,6 @@ uint16_t _bitcrush(uint16_t v1) {
     return (v1 >> CRUSH_AMT) << CRUSH_AMT;
 }
 
-#include "../tables/transfer_functions/sine.h"
 uint16_t _sine_pm(uint16_t v1) {
     // FIXME this should do more, not be just a sine wave when the waveformer generates a saw
     return sine_table[v1 >> 5];

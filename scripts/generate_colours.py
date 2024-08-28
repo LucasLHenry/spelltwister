@@ -56,7 +56,7 @@ def main():
 
 def write_array(f: TextIO, is_a: bool):
         side_str = 'a' if is_a else 'b' 
-        header = f"const uint32_t {side_str}_brightness_table[{table_length}] {{\n"
+        header = f"const uint32_t {side_str}_brightness_table[{table_length}] = {{\n"
         colour = a_side_colour if is_a else b_side_colour
         starting_l = colour.get_luminance()
         l_increment = starting_l / table_length
