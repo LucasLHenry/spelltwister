@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include <stdint.h>
 
 #ifndef SINE_H
 #define SINE_H

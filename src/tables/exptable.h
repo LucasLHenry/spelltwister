@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include <stdint.h>
 
 #ifndef EXPTABLE_H
 #define EXPTABLE_H

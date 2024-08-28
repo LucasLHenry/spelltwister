@@ -12,6 +12,11 @@ def main():
     in_arr = generate_sample_wave(sample_rate_kHz, bits, test_freq_hz, num_cycles, "SINE")
     plt.plot(in_arr)
     plt.show()
+    
+    dll_file_name = "algos.dll"
+    path_to_dll = f"/data/{dll_file_name}"
+    path_to_cpp = "../src/wave_algos/"
+    os.
 
 def generate_sample_wave(sr_kHz, bits, freq_hz, num_cycles, type) -> list[int]:
     max_val = (2 ** bits) - 1

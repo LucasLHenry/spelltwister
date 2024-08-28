@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include <stdint.h>
 
 #ifndef ADC_FILTER_H
 #define ADC_FILTER_H

@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include <stdint.h>
 
 #ifndef CONSTANTS_HPP
 #define CONSTANTS_HPP

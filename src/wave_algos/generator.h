@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include <stdint.h>
 #include <avr/pgmspace.h>
 #include "../constants.hpp"
 #include "../tables/exptable.h"

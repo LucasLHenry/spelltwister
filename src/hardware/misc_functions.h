@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include <stdint.h>
 
 #ifndef MISC_FUNCS
 #define MISC_FUNCS

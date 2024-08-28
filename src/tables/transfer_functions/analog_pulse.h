@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include <stdint.h>
 
 #ifndef ANALOG_PULSE_H
 #define ANALOG_PULSE_H

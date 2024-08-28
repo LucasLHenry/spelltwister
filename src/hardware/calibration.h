@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include <stdint.h>
 #include <Adafruit_NeoPXL8.h>
 #include "../classes/LedRing/led_ring.h"
 #include "../classes/Waveformer/waveformer.h"

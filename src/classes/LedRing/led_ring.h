@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include <stdint.h>
 #define ENCODER_DO_NOT_USE_INTERRUPTS
 #include <Encoder.h>
 #include <OneButton.h>

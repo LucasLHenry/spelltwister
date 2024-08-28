@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include <stdint.h>
 #include "../constants.hpp"
 #include "../tables/transfer_functions/sine.h"
 #include "../tables/transfer_functions/analog_pulse.h"

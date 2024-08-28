@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include <stdint.h>
 #include "../Waveformer/waveformer.h"
 #include "../LedRing/led_ring.h"
 #include "../../wave_algos/generator.h"
