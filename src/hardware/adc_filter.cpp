@@ -16,7 +16,11 @@ ADC_Filter::ADC_Filter(uint16_t low, uint16_t high, bool debug) {
 
 
 uint16_t ADC_Filter::get_next(uint64_t input) {
-    if (_debug) Serial.println(input);
+    static uint16_t counter;
+    if (_debug) {
+        counter++;
+        if (counter % 10 == 0) Serial.println(input);
+    }
     if (mode == AVG) {
         arr[idx] = input;
         avg += input;
