@@ -9,10 +9,10 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
     mux(admux::Pin(mux_pin, INPUT, admux::PinType::Analog), admux::Pinset(MUX_S0, MUX_S1, MUX_S2)),
     lin_time_pin(time_pin),
     algo_read(0, true),
-    pitch_filter(45, 200),
-    rat_filter  (45, 200),
-    shp_filter  (45, 200),
-    algo_filter (45, 200),
+    pitch_filter(45, 200, is_A),
+    rat_filter  (45, 200, false),
+    shp_filter  (45, 200, false),
+    algo_filter (45, 200, false),
     core(21) // acc is 32b, 32-21 = 11b → 0-2047 range
 {
     if (is_a) {

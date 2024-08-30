@@ -42,8 +42,9 @@ NVMWrapper::NVMWrapper() {
 }
 
 ConfigData NVMWrapper::get_config_data(bool is_a) {
-    if (!conf_data_stored) return (is_a)? a_default_config_data : b_default_config_data;
-    return (is_a)? conf_mem.a_data : conf_mem.b_data;
+    // FIXME just calibrate the module please
+    /*if (!conf_data_stored)*/ return (is_a)? a_default_config_data : b_default_config_data;
+    // return (is_a)? conf_mem.a_data : conf_mem.b_data;
 }
 
 void NVMWrapper::set_config_data(bool is_a, ConfigData& conf) {

@@ -1,4 +1,4 @@
-#include <stdint.h>
+#include <Arduino.h>
 
 #ifndef ADC_FILTER_H
 #define ADC_FILTER_H
@@ -15,6 +15,7 @@ enum FilterMode {
 };
 
 class ADC_Filter {
+    bool _debug;
     uint32_t filtered_value;
     uint16_t smooth_amt;
     uint64_t low_margin, high_margin;
@@ -25,7 +26,7 @@ class ADC_Filter {
     uint16_t idx, max_idx;
     FilterMode mode;
     public:
-        ADC_Filter(uint16_t low, uint16_t high);
+        ADC_Filter(uint16_t low, uint16_t high, bool debug);
         uint16_t get_next(uint64_t input);
 };
 
