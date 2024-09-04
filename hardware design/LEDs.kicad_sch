@@ -1,0 +1,6781 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "f6119bc8-6982-4bfb-a870-4dbb01589989")
+	(paper "A4")
+	(lib_symbols
+		(symbol "Device:C"
+			(pin_numbers hide)
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "C"
+				(at 0.635 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "C"
+				(at 0.635 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0.9652 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Unpolarized capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "cap capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "C_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "C_0_1"
+				(polyline
+					(pts
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.032 0.762) (xy 2.032 0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 2.794)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 2.794)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "LED:WS2812B"
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D"
+				(at 5.08 5.715 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify right bottom)
+				)
+			)
+			(property "Value" "WS2812B"
+				(at 1.27 -5.715 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm"
+				(at 1.27 -7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+				(at 2.54 -9.525 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Description" "RGB LED with integrated controller"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "RGB LED NeoPixel addressable"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "LED*WS2812*PLCC*5.0x5.0mm*P3.2mm*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "WS2812B_0_0"
+				(text "RGB"
+					(at 2.286 -4.191 0)
+					(effects
+						(font
+							(size 0.762 0.762)
+						)
+					)
+				)
+			)
+			(symbol "WS2812B_0_1"
+				(polyline
+					(pts
+						(xy 1.27 -3.556) (xy 1.778 -3.556)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -2.54) (xy 1.778 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 4.699 -3.556) (xy 2.667 -3.556)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.286 -2.54) (xy 1.27 -3.556) (xy 1.27 -3.048)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.286 -1.524) (xy 1.27 -2.54) (xy 1.27 -2.032)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.683 -1.016) (xy 3.683 -3.556) (xy 3.683 -4.064)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 4.699 -1.524) (xy 2.667 -1.524) (xy 3.683 -3.556) (xy 4.699 -1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start 5.08 5.08)
+					(end -5.08 -5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "WS2812B_1_1"
+				(pin power_in line
+					(at 0 7.62 270)
+					(length 2.54)
+					(name "VDD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name "DOUT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -7.62 90)
+					(length 2.54)
+					(name "VSS"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -7.62 0 0)
+					(length 2.54)
+					(name "DIN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "power:+5V"
+			(power)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "+5V"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+5V\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "power-flag"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "+5V_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+5V_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0) hide
+					(name "+5V"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "power:GND"
+			(power)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "GND"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "power-flag"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "GND_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0) hide
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+	)
+	(junction
+		(at 124.206 181.864)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0d78de60-bf86-4bea-92cc-fe2b0bc67014")
+	)
+	(junction
+		(at 148.844 181.864)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "19b818cc-67e0-46e1-9f01-37a9bc2b9a93")
+	)
+	(junction
+		(at 111.76 169.672)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1ab2f580-4c0e-4659-8272-c58995897a82")
+	)
+	(junction
+		(at 124.206 169.672)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1ae37ef7-10cc-4495-aac6-848898bd7a24")
+	)
+	(junction
+		(at 136.652 181.864)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "73f66d62-c9d8-4e54-a044-07c1c9a01004")
+	)
+	(junction
+		(at 136.652 169.672)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9e3d250d-eb42-4b60-875c-108c013578b9")
+	)
+	(no_connect
+		(at 207.518 139.954)
+		(uuid "92066082-ba88-40e7-9692-726ca7800469")
+	)
+	(wire
+		(pts
+			(xy 154.432 127.254) (xy 154.432 132.334)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0841e50f-3a15-44fc-8589-ff33dbaef570")
+	)
+	(wire
+		(pts
+			(xy 87.122 83.566) (xy 87.122 88.392)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "085cc4fe-7571-436c-b666-27f8437ddc5e")
+	)
+	(wire
+		(pts
+			(xy 177.038 147.574) (xy 177.038 150.368)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0a86f3ec-8649-49a0-91e3-5d2c12af9457")
+	)
+	(wire
+		(pts
+			(xy 199.898 127.254) (xy 199.898 132.334)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0e4a074c-77f9-4375-a9e5-cc88511ca26f")
+	)
+	(wire
+		(pts
+			(xy 65.532 40.64) (xy 65.532 45.466)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0f0eb63c-346c-4928-b3d5-dbfed410a731")
+	)
+	(wire
+		(pts
+			(xy 124.206 179.07) (xy 124.206 181.864)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "107254b1-c66a-48e4-935a-0275a8fb19b3")
+	)
+	(wire
+		(pts
+			(xy 132.08 83.566) (xy 132.08 88.392)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "13fc1b2c-e670-433d-8ba6-4b8ad0a0ec2e")
+	)
+	(wire
+		(pts
+			(xy 110.49 40.64) (xy 110.49 45.466)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "19274ab6-f719-459d-8cd8-65b01758c1e0")
+	)
+	(wire
+		(pts
+			(xy 162.56 96.012) (xy 169.672 96.012)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b3c283f-921d-4d75-b26f-a5e0d40f6d09")
+	)
+	(wire
+		(pts
+			(xy 87.884 147.574) (xy 87.884 150.368)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1f898fb4-01c4-4c8e-959c-c106374e0e5f")
+	)
+	(wire
+		(pts
+			(xy 237.49 96.012) (xy 237.49 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "20875199-48d3-4859-8e8b-6a7640389471")
+	)
+	(wire
+		(pts
+			(xy 148.844 179.07) (xy 148.844 181.864)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "21fc9453-601a-492d-a13d-d4e6cf42e039")
+	)
+	(wire
+		(pts
+			(xy 65.532 60.706) (xy 65.532 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "227ee685-139c-4992-a26a-d29a254a3c24")
+	)
+	(wire
+		(pts
+			(xy 124.206 169.672) (xy 124.206 171.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2299ff12-abd9-48bf-9601-264f68d285cb")
+	)
+	(wire
+		(pts
+			(xy 118.11 53.086) (xy 125.222 53.086)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "265e531d-bec2-458e-af1c-819517850a56")
+	)
+	(wire
+		(pts
+			(xy 64.77 103.632) (xy 64.77 106.426)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "27d247ce-7f20-45eb-8fe5-8c477f12ac14")
+	)
+	(wire
+		(pts
+			(xy 185.674 53.086) (xy 193.04 53.086)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2846f024-6827-425b-84a5-934ff7080b0b")
+	)
+	(wire
+		(pts
+			(xy 110.49 147.574) (xy 110.49 150.368)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2bbb5f2b-6dbb-4e21-bed0-da449b9a457a")
+	)
+	(wire
+		(pts
+			(xy 162.052 139.954) (xy 169.418 139.954)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2d3fa9fd-d107-4612-a9f1-6ac895d93033")
+	)
+	(wire
+		(pts
+			(xy 118.11 139.954) (xy 124.46 139.954)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2d93f697-5846-4bb4-914e-970a66204d16")
+	)
+	(wire
+		(pts
+			(xy 148.844 181.864) (xy 148.844 183.896)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2f7e23f7-3c0b-47a5-88c4-fdf76213b020")
+	)
+	(wire
+		(pts
+			(xy 140.462 53.086) (xy 148.082 53.086)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3003c0d7-1faa-4e26-ba8b-9cbdbc313096")
+	)
+	(wire
+		(pts
+			(xy 178.054 60.706) (xy 178.054 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "34899a91-fb66-4ce6-9962-76bd4bdb3010")
+	)
+	(wire
+		(pts
+			(xy 46.736 116.84) (xy 46.736 139.954)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "355a3cfa-20b4-4e09-bf99-5f5e4ab1a1ea")
+	)
+	(wire
+		(pts
+			(xy 132.842 60.706) (xy 132.842 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "374fdb2d-0b82-4422-9708-6664003daaab")
+	)
+	(wire
+		(pts
+			(xy 200.66 40.64) (xy 200.66 45.466)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "38a1e56c-a9cd-4350-af86-96aad31302eb")
+	)
+	(wire
+		(pts
+			(xy 163.322 53.086) (xy 170.434 53.086)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3ba60391-ee95-4898-8d04-a5ae47937fc4")
+	)
+	(wire
+		(pts
+			(xy 72.39 96.012) (xy 79.502 96.012)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "403f0387-bcfb-4e07-98d4-676910a9d914")
+	)
+	(wire
+		(pts
+			(xy 87.122 103.632) (xy 87.122 106.426)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "41f9e124-0cbe-4a69-97ef-138e1681d171")
+	)
+	(wire
+		(pts
+			(xy 222.25 83.566) (xy 222.25 88.392)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "426ac589-fc67-488e-9c01-a80c26330eb5")
+	)
+	(wire
+		(pts
+			(xy 87.884 127.254) (xy 87.884 132.334)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "440814b6-809d-456d-a772-da5775116562")
+	)
+	(wire
+		(pts
+			(xy 155.702 60.706) (xy 155.702 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "46be9e0c-9211-4116-bda2-ab8ef6363cfa")
+	)
+	(wire
+		(pts
+			(xy 230.632 53.086) (xy 237.49 53.086)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4782ab01-ddb1-4f4f-b2b7-613314ed5f50")
+	)
+	(wire
+		(pts
+			(xy 200.66 60.706) (xy 200.66 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "47e8f1e2-5742-40e6-8d21-d025d41fc71a")
+	)
+	(wire
+		(pts
+			(xy 178.054 40.64) (xy 178.054 45.466)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "487dd7de-9681-45ff-b87c-6d2a64de028f")
+	)
+	(wire
+		(pts
+			(xy 229.87 96.012) (xy 237.49 96.012)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4cd2c92f-c85d-4e93-aaab-098f0f9aa338")
+	)
+	(wire
+		(pts
+			(xy 199.898 83.566) (xy 199.898 88.392)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4d577bcd-bddc-4f59-90e5-51945496d7e8")
+	)
+	(wire
+		(pts
+			(xy 154.94 103.632) (xy 154.94 106.426)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "533b489d-dd13-4848-9697-f1d3a45d8a29")
+	)
+	(wire
+		(pts
+			(xy 132.08 103.632) (xy 132.08 106.426)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "550b7c5b-56c9-478e-bb05-9ae8855aa9a3")
+	)
+	(wire
+		(pts
+			(xy 87.884 60.706) (xy 87.884 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "575ff0be-89dd-4fea-b880-933d45dbae2b")
+	)
+	(wire
+		(pts
+			(xy 136.652 169.672) (xy 148.844 169.672)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "583304f9-1a85-466f-8c1c-987c77172d63")
+	)
+	(wire
+		(pts
+			(xy 136.652 181.864) (xy 148.844 181.864)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "59917c14-15cc-4253-ad41-ce92e8073679")
+	)
+	(wire
+		(pts
+			(xy 154.94 83.566) (xy 154.94 88.392)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5ba977a2-7170-42b5-a576-a5a669c58739")
+	)
+	(wire
+		(pts
+			(xy 208.28 53.086) (xy 215.392 53.086)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5c53241f-2302-41f6-8f4b-0188aa356f2e")
+	)
+	(wire
+		(pts
+			(xy 109.728 103.632) (xy 109.728 106.426)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5ff2bd67-ca15-4cec-91e4-a9152a5b73c2")
+	)
+	(wire
+		(pts
+			(xy 223.012 60.706) (xy 223.012 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6336e477-5644-4629-a4cf-c1b2fe2c6d79")
+	)
+	(wire
+		(pts
+			(xy 117.348 96.012) (xy 124.46 96.012)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "63e96298-25df-4bdf-95e2-e8562ed3f180")
+	)
+	(wire
+		(pts
+			(xy 109.728 83.566) (xy 109.728 88.392)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "68827964-b60c-425d-87df-4ce9202ddd85")
+	)
+	(wire
+		(pts
+			(xy 73.152 53.086) (xy 80.264 53.086)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6a8bb01b-29e7-4d2b-bbfc-91122e9404cb")
+	)
+	(wire
+		(pts
+			(xy 223.012 40.64) (xy 223.012 45.466)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6c99ee11-5a2f-4e64-ab9c-de0a9c8b22ae")
+	)
+	(wire
+		(pts
+			(xy 95.504 139.954) (xy 102.87 139.954)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7134bc73-741f-4dcf-8cf5-9a7940623341")
+	)
+	(wire
+		(pts
+			(xy 124.206 181.864) (xy 136.652 181.864)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "773bb3d7-cbe0-4586-bc98-5a9a9e571b27")
+	)
+	(wire
+		(pts
+			(xy 124.206 169.672) (xy 136.652 169.672)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7b5cc8d7-f105-4a81-9e71-90d0d4b378a7")
+	)
+	(wire
+		(pts
+			(xy 148.844 169.672) (xy 148.844 171.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7fdada2f-6e35-4633-8659-b203f1225f60")
+	)
+	(wire
+		(pts
+			(xy 136.652 179.07) (xy 136.652 181.864)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "87113742-afbf-47dc-81b0-3cd1a316961c")
+	)
+	(wire
+		(pts
+			(xy 46.736 139.954) (xy 57.912 139.954)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "87cd0aa0-00b3-4660-a60f-066f8d9e0fe0")
+	)
+	(wire
+		(pts
+			(xy 184.912 96.012) (xy 192.278 96.012)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8d6b6435-5bb0-426e-ac66-f438243a20c1")
+	)
+	(wire
+		(pts
+			(xy 46.736 96.012) (xy 57.15 96.012)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "90da3a21-4d30-42b0-b744-5300ff4ab2f4")
+	)
+	(wire
+		(pts
+			(xy 207.518 96.012) (xy 214.63 96.012)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9107bca3-dee0-4a6a-aeb9-ddd1b9e19bc6")
+	)
+	(wire
+		(pts
+			(xy 46.736 72.644) (xy 46.736 96.012)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "928cf598-00d7-4e5a-8f54-888f72c9ac01")
+	)
+	(wire
+		(pts
+			(xy 177.292 103.632) (xy 177.292 106.426)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "94674ab4-7d5a-426c-a581-eb50d1ce2d5a")
+	)
+	(wire
+		(pts
+			(xy 136.652 169.672) (xy 136.652 171.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9a599284-9545-4766-8303-e227895ea609")
+	)
+	(wire
+		(pts
+			(xy 73.152 139.954) (xy 80.264 139.954)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9ce8360e-38fe-4e05-8ef2-30fed89c4d4c")
+	)
+	(wire
+		(pts
+			(xy 65.532 147.574) (xy 65.532 150.368)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a807a701-b900-4458-9eef-d179dfded9f5")
+	)
+	(wire
+		(pts
+			(xy 199.898 147.574) (xy 199.898 150.368)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aaacd03f-74c6-488b-97e1-ca6b656694d4")
+	)
+	(wire
+		(pts
+			(xy 222.25 103.632) (xy 222.25 106.426)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b02f0b39-1216-4d9a-97e6-17f816fe8c55")
+	)
+	(wire
+		(pts
+			(xy 139.7 96.012) (xy 147.32 96.012)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b0a6a15c-1b51-46ca-9d7c-216609ac1dfe")
+	)
+	(wire
+		(pts
+			(xy 110.49 60.706) (xy 110.49 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b0ab2f1e-ea8a-405d-8049-1989fd68b5ce")
+	)
+	(wire
+		(pts
+			(xy 111.76 181.864) (xy 124.206 181.864)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b44bfbed-6393-46ff-b35a-1c15afa4e1ac")
+	)
+	(wire
+		(pts
+			(xy 177.292 83.566) (xy 177.292 88.392)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b47171c9-9222-40e6-a557-9cfbdaa60023")
+	)
+	(wire
+		(pts
+			(xy 111.76 167.64) (xy 111.76 169.672)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b65ae284-c4c2-4b08-8dd2-341cf1ab4465")
+	)
+	(wire
+		(pts
+			(xy 64.77 83.566) (xy 64.77 88.392)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b6c8b070-ee5d-4002-b78b-7a5aa8da3dc6")
+	)
+	(wire
+		(pts
+			(xy 132.08 147.574) (xy 132.08 150.368)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b6cc3e72-084e-4d9d-977f-34e6bdb54270")
+	)
+	(wire
+		(pts
+			(xy 47.752 53.086) (xy 57.912 53.086)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b7b2968b-3b4c-41e4-8204-34d66db00e08")
+	)
+	(wire
+		(pts
+			(xy 87.884 40.64) (xy 87.884 45.466)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bf0b1b21-c5e8-4725-a18c-070ce3b2a37b")
+	)
+	(wire
+		(pts
+			(xy 94.742 96.012) (xy 102.108 96.012)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c56ab6e2-81cd-4e91-90c1-9f483684b955")
+	)
+	(wire
+		(pts
+			(xy 111.76 179.07) (xy 111.76 181.864)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c843bc33-741f-465c-ad3e-454480e2b680")
+	)
+	(wire
+		(pts
+			(xy 177.038 127.254) (xy 177.038 132.334)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c88717cc-5417-4b46-9d31-c156adcc45fa")
+	)
+	(wire
+		(pts
+			(xy 111.76 169.672) (xy 124.206 169.672)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ca4e2494-5a82-4eaf-a721-64e0ca204a60")
+	)
+	(wire
+		(pts
+			(xy 155.702 40.64) (xy 155.702 45.466)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cad11800-bbf3-4d42-b064-1a228a45671f")
+	)
+	(wire
+		(pts
+			(xy 111.76 169.672) (xy 111.76 171.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cbf55656-087f-4ee3-89d0-d5ffd4bf89bc")
+	)
+	(wire
+		(pts
+			(xy 95.504 53.086) (xy 102.87 53.086)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cfbec968-bbef-4bbe-9621-5b1d6667cab5")
+	)
+	(wire
+		(pts
+			(xy 132.08 127.254) (xy 132.08 132.334)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d0dc4913-2f77-46ff-9acb-ab1b6fdb5e53")
+	)
+	(wire
+		(pts
+			(xy 132.842 40.64) (xy 132.842 45.466)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d478fbef-f2af-4a4b-8edb-5760f880c58b")
+	)
+	(wire
+		(pts
+			(xy 184.658 139.954) (xy 192.278 139.954)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d50aba11-9caa-4168-803b-5867f872ff31")
+	)
+	(wire
+		(pts
+			(xy 139.7 139.954) (xy 146.812 139.954)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d93672d8-7f00-4cb3-b7fb-2aee8106e1cc")
+	)
+	(wire
+		(pts
+			(xy 237.49 53.086) (xy 237.49 72.644)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e2e935a5-2167-4a64-ac17-6ecc2996ac16")
+	)
+	(wire
+		(pts
+			(xy 237.49 72.644) (xy 46.736 72.644)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e67266b6-7320-4af7-99f0-6314747420ed")
+	)
+	(wire
+		(pts
+			(xy 237.49 116.84) (xy 46.736 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ebb6a43c-fbe5-4562-8a0e-a236fdc456a8")
+	)
+	(wire
+		(pts
+			(xy 154.432 147.574) (xy 154.432 150.368)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f2eefc03-06df-4979-ade5-ae53269381e7")
+	)
+	(wire
+		(pts
+			(xy 65.532 127.254) (xy 65.532 132.334)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f3a908ec-4f6e-48a4-823a-dbf3b7879981")
+	)
+	(wire
+		(pts
+			(xy 199.898 103.632) (xy 199.898 106.426)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fc8d0d76-228c-4360-a936-2c80c109e957")
+	)
+	(wire
+		(pts
+			(xy 110.49 127.254) (xy 110.49 132.334)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fdb1ba82-5b62-40d2-b7b7-e236996975b6")
+	)
+	(text "last row of LEDs are:\n- follow on/off\n- generator 1 indicator\n- generator 2 indicator\n- modulated 1 indicator\n- modulated 2 indicator\n- trig out 1 indicator\n- trig out 2 indicator"
+		(exclude_from_sim no)
+		(at 64.77 180.086 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2f01d6a3-af82-4bff-af27-b853ab858b72")
+	)
+	(hierarchical_label "LED_data_in"
+		(shape input)
+		(at 47.752 53.086 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e3554979-fdf6-4a43-afda-5ca2cf2a53fb")
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 87.884 53.086 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "03f73537-6f2d-412c-8b63-a90068746baa")
+		(property "Reference" "D4"
+			(at 92.964 60.452 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 92.964 62.992 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 89.154 60.706 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 90.424 62.611 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 87.884 53.086 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "31be5247-7bb9-42cf-8142-ae82463f76d2")
+		)
+		(pin "2"
+			(uuid "5d536de5-9b76-436a-a9e0-70678ff24c1b")
+		)
+		(pin "3"
+			(uuid "348d1563-505d-435e-95d5-46eb88151e7b")
+		)
+		(pin "4"
+			(uuid "a7844ce5-df2b-4312-84ed-f4a6588e11f4")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 87.884 150.368 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "065388c0-95f1-4e4f-8083-1cba7fc60c06")
+		(property "Reference" "#PWR0121"
+			(at 87.884 156.718 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 87.884 155.448 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 87.884 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 87.884 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 87.884 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "70e14806-a0ef-4452-bd2c-c3cfafa40c2b")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0121")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 87.884 40.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0e47f1d7-fc68-4da9-a01b-962e5076e554")
+		(property "Reference" "#PWR084"
+			(at 87.884 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 87.884 35.814 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 87.884 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 87.884 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 87.884 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "baed2301-90b7-4bdc-82ea-0f26dcc469d7")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR084")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 132.08 96.012 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "14d5c543-b920-4081-a70c-aca146b4629f")
+		(property "Reference" "D14"
+			(at 137.16 103.378 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 137.16 105.918 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 133.35 103.632 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 134.62 105.537 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 132.08 96.012 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a8314aca-5bf5-420e-9eec-927512c5d08f")
+		)
+		(pin "2"
+			(uuid "21187fe7-dbc3-4eea-a269-1833b8132e5f")
+		)
+		(pin "3"
+			(uuid "de949e13-3712-4d15-aede-9cfc7b27b046")
+		)
+		(pin "4"
+			(uuid "11e2bffd-9ab1-4abe-960a-408a6edf2d36")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D14")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 87.122 83.566 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "160c4797-de04-41d6-ab52-fe73f7f9747e")
+		(property "Reference" "#PWR0100"
+			(at 87.122 87.376 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 87.122 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 87.122 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 87.122 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 87.122 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "33a38f86-441c-4719-9822-1751ce4b5c8b")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0100")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 132.08 83.566 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "165b6bb6-2384-49bd-b26b-51bec6fcc9e2")
+		(property "Reference" "#PWR0102"
+			(at 132.08 87.376 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 132.08 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 132.08 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 132.08 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 132.08 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c8e61a1d-d30a-4ed4-8a77-6d4b4e6effe9")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0102")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 223.012 63.5 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1b84086a-474a-463a-8b60-d03ac0625c07")
+		(property "Reference" "#PWR098"
+			(at 223.012 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 223.012 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 223.012 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 223.012 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 223.012 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "10480ca2-4b07-4801-aa28-85aa947e8065")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR098")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 111.76 175.26 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1e0708e4-7936-437f-a733-582e6981aa49")
+		(property "Reference" "C24"
+			(at 114.808 173.9899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF"
+			(at 114.808 176.5299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 112.7252 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 111.76 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 111.76 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5528859b-7aeb-43e8-9744-21c94d98eef9")
+		)
+		(pin "2"
+			(uuid "224ed10b-8a61-4dd3-b7c2-09b6bc7b0d34")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "C24")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 109.728 96.012 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1e1d3083-51a9-4907-8b0c-ba62866c8bc7")
+		(property "Reference" "D13"
+			(at 114.808 103.378 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 114.808 105.918 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 110.998 103.632 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 112.268 105.537 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 109.728 96.012 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8e3d21e6-bb61-412a-90e7-a8d693011f04")
+		)
+		(pin "2"
+			(uuid "fdb9848d-15b8-4096-92ec-fd7dd7f68092")
+		)
+		(pin "3"
+			(uuid "35a4423b-c1f1-4166-b5bb-dfbfb1dba627")
+		)
+		(pin "4"
+			(uuid "b39c14d7-a669-48ec-9696-73b9685cb78b")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 199.898 106.426 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2174f7f1-b973-412e-b1cc-53dbc214a3d2")
+		(property "Reference" "#PWR0113"
+			(at 199.898 112.776 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 199.898 111.506 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 199.898 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 199.898 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 199.898 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ed9f5b88-afd7-4f43-ba71-d15563dbb20e")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0113")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 199.898 139.954 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "22abb239-7684-4680-bd3b-0ec96c64adad")
+		(property "Reference" "D25"
+			(at 204.978 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 204.978 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 201.168 147.574 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 202.438 149.479 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 199.898 139.954 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "58967188-27e5-4f7e-be2f-ed5df0d39b6f")
+		)
+		(pin "2"
+			(uuid "87fb9ff7-4c77-496d-9019-37eb49f4556e")
+		)
+		(pin "3"
+			(uuid "8cc79e33-f5e8-44b5-9f9c-eb13d1979a74")
+		)
+		(pin "4"
+			(uuid "199fe50f-cc53-4fcd-bfeb-d2e3e745c456")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D25")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 177.038 150.368 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "24dd4320-991b-424d-8126-29594077464f")
+		(property "Reference" "#PWR0155"
+			(at 177.038 156.718 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 177.038 155.448 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.038 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.038 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 177.038 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "aaceb4cc-b1c5-4ded-8ca4-c750947e9c2b")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0155")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 124.206 175.26 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2593a97a-6262-48da-8374-bb03fdcb1dc4")
+		(property "Reference" "C25"
+			(at 127.254 173.9899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF"
+			(at 127.254 176.5299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 125.1712 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 124.206 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 124.206 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3a438c2a-5bbe-4890-92d1-6c3ef5792656")
+		)
+		(pin "2"
+			(uuid "ee2e1f5a-29a5-4803-81c7-964137893dd5")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "C25")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 65.532 127.254 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "269b18a2-0ce3-466a-8db7-e9acab71ae23")
+		(property "Reference" "#PWR0115"
+			(at 65.532 131.064 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 65.532 122.428 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 65.532 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 65.532 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 65.532 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9a3b5995-90de-4f6d-b1ff-7122f19093cc")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0115")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 222.25 106.426 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "284e4804-605d-4b0a-bd50-47b77f3f7f2a")
+		(property "Reference" "#PWR0114"
+			(at 222.25 112.776 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 222.25 111.506 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 222.25 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 222.25 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 222.25 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5a9d2883-5c9c-44a7-a381-b593f367ffe3")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0114")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 177.038 139.954 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2e29c7c6-b108-459b-8dc3-e3e7025b7f11")
+		(property "Reference" "D24"
+			(at 182.118 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 182.118 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 178.308 147.574 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 179.578 149.479 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 177.038 139.954 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "48bcb95c-66f7-4191-bb05-b2f19da12741")
+		)
+		(pin "2"
+			(uuid "4492e37d-996b-4e08-bfd4-09ba984de7bb")
+		)
+		(pin "3"
+			(uuid "1d632ab8-b135-4d06-862d-bc1953d91c06")
+		)
+		(pin "4"
+			(uuid "20d87423-53f9-4ff5-8b1b-839546556d78")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D24")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 132.08 106.426 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "31e3fcc3-9b4b-4b9b-a7b8-686528701ca0")
+		(property "Reference" "#PWR0110"
+			(at 132.08 112.776 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 132.08 111.506 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 132.08 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 132.08 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 132.08 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "69021a0e-0358-4371-9329-093c09fff123")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0110")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 87.884 63.5 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "329bf9bb-f226-4145-a793-896f67c147de")
+		(property "Reference" "#PWR092"
+			(at 87.884 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 87.884 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 87.884 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 87.884 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 87.884 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5aca26ea-fe80-4a1b-9032-aa9bfb7a7562")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR092")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 178.054 53.086 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "367e36cc-86a8-4b9e-a18f-612eeec5e981")
+		(property "Reference" "D8"
+			(at 183.134 60.452 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 183.134 62.992 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 179.324 60.706 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 180.594 62.611 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 178.054 53.086 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c87ba02d-9468-4ba4-a5d9-8fc0b0209c09")
+		)
+		(pin "2"
+			(uuid "7c7bfa51-cd51-42c7-9a87-76d89734168d")
+		)
+		(pin "3"
+			(uuid "4043ba4e-d6a1-4fbd-a093-e570f1c0b8ef")
+		)
+		(pin "4"
+			(uuid "677b5611-05ee-4890-9dd4-13ef27a21479")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 178.054 40.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "3ae5a656-403d-4aa2-8578-77b98bd1a5f0")
+		(property "Reference" "#PWR088"
+			(at 178.054 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 178.054 35.814 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 178.054 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 178.054 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 178.054 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f6aa6f9d-83d8-4fd6-8fd7-4bb04f144932")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR088")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 199.898 127.254 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "3f62b237-ff41-4a7d-85e2-111cf1be4216")
+		(property "Reference" "#PWR0156"
+			(at 199.898 131.064 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 199.898 122.428 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 199.898 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 199.898 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 199.898 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a326d131-e76a-408a-965a-4cf952c1c227")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0156")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 155.702 63.5 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "434d2a76-56bb-4ba4-86f7-fe8420d93c54")
+		(property "Reference" "#PWR095"
+			(at 155.702 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 155.702 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 155.702 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 155.702 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 155.702 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8a83ed9b-6913-4ff6-b90c-467cf7f99793")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR095")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 222.25 96.012 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "46eac82a-2e6e-43f0-af26-5a40f57017b8")
+		(property "Reference" "D18"
+			(at 227.33 103.378 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 227.33 105.918 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 223.52 103.632 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 224.79 105.537 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 222.25 96.012 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "aa99b675-c58a-4ada-a036-7ffb2d1af2d7")
+		)
+		(pin "2"
+			(uuid "b89d0c0c-2f9b-4cb5-8834-7a402615e787")
+		)
+		(pin "3"
+			(uuid "8e087883-0c53-4d7b-b54d-552afefb3005")
+		)
+		(pin "4"
+			(uuid "4dc3a425-8fb2-4836-95e2-370535e72a0a")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D18")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 132.08 139.954 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4dcbc150-5d71-4d64-9bc9-f320a43e6c69")
+		(property "Reference" "D22"
+			(at 137.16 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 137.16 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 133.35 147.574 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 134.62 149.479 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 132.08 139.954 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b21382ce-1aff-4fb6-839d-c464992ee31e")
+		)
+		(pin "2"
+			(uuid "fcecc691-c2ad-4d28-9b10-3806306aa594")
+		)
+		(pin "3"
+			(uuid "1a7b7bf6-1575-49f7-a447-d7012a09551c")
+		)
+		(pin "4"
+			(uuid "de4ee1f4-fb74-4033-8b31-7f90a7c30d5d")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D22")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 110.49 150.368 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "532ee18e-21a1-4bc3-96b8-ba73e7777c15")
+		(property "Reference" "#PWR0122"
+			(at 110.49 156.718 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 110.49 155.448 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 110.49 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 110.49 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 110.49 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "118e3fc5-e1a0-4b43-94f9-31a43008a3db")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0122")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 109.728 83.566 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5366df24-8d75-420d-89cb-0c22cae35ea8")
+		(property "Reference" "#PWR0101"
+			(at 109.728 87.376 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 109.728 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 109.728 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 109.728 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 109.728 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e2bffbce-a41c-40d5-bb3f-334613dcadba")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0101")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 154.432 150.368 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "541cab94-ccdb-477c-bdcd-2ec94eeb598c")
+		(property "Reference" "#PWR0153"
+			(at 154.432 156.718 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.432 155.448 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 154.432 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 154.432 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 154.432 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5d23ee84-d1fd-43c2-bba8-7b6ca629b8f3")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0153")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 87.884 139.954 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "65e82786-caf1-44fd-abc9-762bfc0ab8e5")
+		(property "Reference" "D20"
+			(at 92.964 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 92.964 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 89.154 147.574 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 90.424 149.479 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 87.884 139.954 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c8ededaa-7797-41dc-8392-712ad22e94f7")
+		)
+		(pin "2"
+			(uuid "aaf3f50f-165e-48ae-bb41-c2525d88d3f5")
+		)
+		(pin "3"
+			(uuid "127bdceb-85ad-4155-9335-ab0ba419fde3")
+		)
+		(pin "4"
+			(uuid "ab8657bb-9012-4289-943e-133380544043")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D20")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 132.842 63.5 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "67098580-ccda-4899-9188-6083c0333852")
+		(property "Reference" "#PWR094"
+			(at 132.842 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 132.842 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 132.842 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 132.842 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 132.842 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3ca5cd5c-bcbd-48c9-ac55-5d0f3f5e0ca9")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR094")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 110.49 40.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "67229e22-9996-43ac-b933-9137831e16b1")
+		(property "Reference" "#PWR085"
+			(at 110.49 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 110.49 35.814 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 110.49 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 110.49 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 110.49 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bc9ddc39-7a17-44b8-a0ab-351415cc0662")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR085")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 148.844 175.26 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "67d223f1-ce29-4e61-866f-95d00adfb848")
+		(property "Reference" "C27"
+			(at 151.892 173.9899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF"
+			(at 151.892 176.5299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 149.8092 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 148.844 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 148.844 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2cae2bfe-d0ee-41b3-af73-52ac42bc496b")
+		)
+		(pin "2"
+			(uuid "d76dfd4a-5376-4eb8-9bfc-3d5ef1404eac")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "C27")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 132.842 40.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6aa08515-76a0-45ce-9c4b-52711ec1ac43")
+		(property "Reference" "#PWR086"
+			(at 132.842 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 132.842 35.814 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 132.842 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 132.842 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 132.842 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "aacbe153-247a-4029-bce2-9b2096a587e0")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR086")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 199.898 96.012 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "70831892-e91b-4265-abe1-d627a3433202")
+		(property "Reference" "D17"
+			(at 204.978 103.378 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 204.978 105.918 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 201.168 103.632 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 202.438 105.537 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 199.898 96.012 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f5c43467-7104-4c1e-ac38-b526a86a351f")
+		)
+		(pin "2"
+			(uuid "3f861f46-b76d-427e-9572-03f2ffec3176")
+		)
+		(pin "3"
+			(uuid "5aabc876-0b49-4e44-8933-5d976f7ac14a")
+		)
+		(pin "4"
+			(uuid "eb80de21-cbe4-44af-ba46-8391ce4941f2")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 65.532 40.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7edb2a1a-843a-4980-9732-4867b11f4307")
+		(property "Reference" "#PWR083"
+			(at 65.532 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 65.532 35.814 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 65.532 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 65.532 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 65.532 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "11a1062c-b9c0-4c1f-be77-ffd95d5616b6")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR083")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 64.77 83.566 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "852bfbbb-fe39-4baa-99e0-1bd125518ac4")
+		(property "Reference" "#PWR099"
+			(at 64.77 87.376 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 64.77 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 64.77 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 64.77 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 64.77 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "289ff1b9-294e-4de4-9ee6-55bcff9b1a79")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR099")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 200.66 63.5 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8748a093-8d01-450d-8442-cef566672697")
+		(property "Reference" "#PWR097"
+			(at 200.66 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 200.66 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 200.66 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 200.66 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 200.66 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fe4d08f1-6b89-496c-a881-fb99de5a164a")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR097")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 199.898 150.368 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "89205c47-9154-4831-89a6-7f85c4e8d47f")
+		(property "Reference" "#PWR0159"
+			(at 199.898 156.718 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 199.898 155.448 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 199.898 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 199.898 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 199.898 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "78560130-cdeb-4c72-9b45-fcd4ac069bdf")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0159")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 223.012 40.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9029ce2b-dfea-4540-b30a-e995b815030d")
+		(property "Reference" "#PWR090"
+			(at 223.012 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 223.012 35.814 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 223.012 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 223.012 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 223.012 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "48e8159d-e671-4921-9a88-469f5e26ada2")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR090")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 154.432 127.254 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "966b5717-6027-4691-b83d-ba8f749d5827")
+		(property "Reference" "#PWR0152"
+			(at 154.432 131.064 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 154.432 122.428 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 154.432 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 154.432 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 154.432 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d6a321e5-522c-436c-aa4f-dcbd2cccc660")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0152")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 155.702 40.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "98088245-59cd-4443-a4f1-7f2a0dabf02e")
+		(property "Reference" "#PWR087"
+			(at 155.702 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 155.702 35.814 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 155.702 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 155.702 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 155.702 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d69a0580-6ba6-4516-a249-a584e0666f6a")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR087")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 199.898 83.566 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9dcad9b0-9251-4921-a470-7d12a2e9ea84")
+		(property "Reference" "#PWR0105"
+			(at 199.898 87.376 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 199.898 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 199.898 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 199.898 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 199.898 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7a21536d-837c-40df-81cf-850b116d2755")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0105")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 132.08 127.254 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a2140f4d-6e17-4f29-a6f4-74fe05f6d120")
+		(property "Reference" "#PWR0150"
+			(at 132.08 131.064 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 132.08 122.428 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 132.08 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 132.08 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 132.08 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "12a84213-1333-4b05-8f39-1c8c265bb859")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0150")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 155.702 53.086 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a8c8a211-2a7d-4077-babe-2c8bcdc98006")
+		(property "Reference" "D7"
+			(at 160.782 60.452 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 160.782 62.992 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 156.972 60.706 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 158.242 62.611 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 155.702 53.086 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1594833c-72aa-4265-99b1-b6424b3bc62e")
+		)
+		(pin "2"
+			(uuid "bd2da497-fa95-4b7b-8871-63807c90005f")
+		)
+		(pin "3"
+			(uuid "ad66d881-08db-4808-a6fc-56f8c4eeb237")
+		)
+		(pin "4"
+			(uuid "574550fe-045a-42f3-ba98-53b5e415bef2")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 177.292 96.012 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ab9edcd9-2862-407c-8405-0a50b94964b1")
+		(property "Reference" "D16"
+			(at 182.372 103.378 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 182.372 105.918 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 178.562 103.632 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 179.832 105.537 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 177.292 96.012 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2d7bec5c-33a0-452a-a175-28147e7a59ff")
+		)
+		(pin "2"
+			(uuid "e230431e-d8ba-444a-ac8c-2547f67c5c69")
+		)
+		(pin "3"
+			(uuid "0644d160-b6c8-4d01-9e4c-ebf0b522f341")
+		)
+		(pin "4"
+			(uuid "5d74cfe5-c3db-41d8-9a0f-fd4c9a62fbd5")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 177.038 127.254 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "acd92c5e-df50-4069-b047-ad5a1d109749")
+		(property "Reference" "#PWR0154"
+			(at 177.038 131.064 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 177.038 122.428 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.038 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.038 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 177.038 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7197b6df-88eb-48a5-8bb1-e4bed7ce0ab0")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0154")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 200.66 40.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b30c7cd8-e3f7-4661-bdf5-09bcc8bc83a4")
+		(property "Reference" "#PWR089"
+			(at 200.66 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 200.66 35.814 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 200.66 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 200.66 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 200.66 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ccf2f4ab-85b0-477b-8bf1-1702c45fef5e")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR089")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 110.49 63.5 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b3a1cea5-432f-4929-88f8-b6dfd7f82ee5")
+		(property "Reference" "#PWR093"
+			(at 110.49 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 110.49 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 110.49 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 110.49 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 110.49 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "06a3a566-3984-46bf-a5da-69c87099e3ce")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR093")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 110.49 127.254 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b706d262-585b-4c54-a563-eaafd54fdf77")
+		(property "Reference" "#PWR0117"
+			(at 110.49 131.064 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 110.49 122.428 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 110.49 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 110.49 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 110.49 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d63abd1b-387a-4d1e-9c3c-969eebb97d35")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0117")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 87.122 106.426 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b7827a02-c078-4568-96ec-558cf5a1b76f")
+		(property "Reference" "#PWR0108"
+			(at 87.122 112.776 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 87.122 111.506 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 87.122 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 87.122 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 87.122 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1d89043e-fae9-460d-99f8-df4217609dd8")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0108")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 178.054 63.5 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "bb4ba668-7bb3-43d7-9ec8-34e4a126a8c5")
+		(property "Reference" "#PWR096"
+			(at 178.054 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 178.054 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 178.054 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 178.054 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 178.054 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "babadd59-b7aa-4804-a652-52a718693d8a")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR096")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 177.292 83.566 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "bd2fa359-f9e8-4daa-ad04-9d7eec6e269e")
+		(property "Reference" "#PWR0104"
+			(at 177.292 87.376 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 177.292 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.292 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.292 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 177.292 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8a3518ec-0972-4fe0-9f10-871e2e4192ec")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0104")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 148.844 183.896 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "be58b8a3-c27d-4b19-8a71-1c442705bb92")
+		(property "Reference" "#PWR0119"
+			(at 148.844 190.246 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 148.844 188.976 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 148.844 183.896 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 148.844 183.896 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 148.844 183.896 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8f65700d-85f6-49f0-b200-a1fe16168eda")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0119")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 222.25 83.566 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "bfcddb37-c014-4803-8240-691a6999a091")
+		(property "Reference" "#PWR0106"
+			(at 222.25 87.376 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 222.25 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 222.25 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 222.25 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 222.25 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6740a0c9-7c5d-4a97-8ad3-560a53a4d38e")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0106")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 64.77 96.012 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c7c6c922-0d26-4f7f-b189-c800e7dac203")
+		(property "Reference" "D11"
+			(at 69.85 103.378 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 69.85 105.918 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 66.04 103.632 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 67.31 105.537 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 64.77 96.012 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fc648600-c8a1-4f86-8534-790724effda0")
+		)
+		(pin "2"
+			(uuid "e24a7654-3b71-4b1a-8737-80eea495920a")
+		)
+		(pin "3"
+			(uuid "33341c0f-02ea-4b6a-81bb-d986722e41a0")
+		)
+		(pin "4"
+			(uuid "c2207ffa-9909-4053-8847-6c43ad86128d")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 177.292 106.426 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d158498b-f917-4064-9fbd-c3ae2e6ba9f6")
+		(property "Reference" "#PWR0112"
+			(at 177.292 112.776 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 177.292 111.506 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.292 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.292 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 177.292 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e60d5c97-8284-48d9-8d10-7e4e324b702a")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0112")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 87.122 96.012 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d37e066c-5415-42b5-bf92-926b5b833155")
+		(property "Reference" "D12"
+			(at 92.202 103.378 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 92.202 105.918 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 88.392 103.632 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 89.662 105.537 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 87.122 96.012 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "63bc13a0-e591-4b30-bda2-72313abb4895")
+		)
+		(pin "2"
+			(uuid "46c651c3-050e-4136-8180-7f125c4cf829")
+		)
+		(pin "3"
+			(uuid "e6ccd7d2-9ee4-441b-b38e-2605d9d8ecf8")
+		)
+		(pin "4"
+			(uuid "2afe3359-7afd-4c13-9bdf-2b24e8539ad9")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 109.728 106.426 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d6215663-4dbf-41f6-80b6-24276279a5cd")
+		(property "Reference" "#PWR0109"
+			(at 109.728 112.776 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 109.728 111.506 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 109.728 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 109.728 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 109.728 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "303a415f-b2a4-4533-89a3-ef77c75bdfec")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0109")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 64.77 106.426 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d974d220-4db3-470b-ac79-8aa92e28b7ec")
+		(property "Reference" "#PWR0107"
+			(at 64.77 112.776 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 64.77 111.506 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 64.77 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 64.77 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 64.77 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f40e5563-eca3-4b09-a48c-689c0f94f3f4")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0107")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 110.49 53.086 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d9f056b6-aac0-4989-ac9a-a1149c73129d")
+		(property "Reference" "D5"
+			(at 115.57 60.452 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 115.57 62.992 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 111.76 60.706 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 113.03 62.611 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 110.49 53.086 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8b1b9f43-70d9-4ec8-9bfe-398edc1a0917")
+		)
+		(pin "2"
+			(uuid "51c9ea4e-3eed-4790-8688-5ad6a8d0c827")
+		)
+		(pin "3"
+			(uuid "22851488-3abb-4476-b533-1c77573a5480")
+		)
+		(pin "4"
+			(uuid "b75aa506-d069-4c39-820f-fd218f06516e")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 132.842 53.086 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "dcb1fe3e-5905-4808-976a-97aa885350fb")
+		(property "Reference" "D6"
+			(at 137.922 60.452 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 137.922 62.992 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 134.112 60.706 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 135.382 62.611 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 132.842 53.086 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "70453154-cac3-4bf9-b640-31e1da0e48b7")
+		)
+		(pin "2"
+			(uuid "8b751b34-0879-4ac2-8d1b-104ee23b03ec")
+		)
+		(pin "3"
+			(uuid "9642d4b6-9510-4d36-acea-36f662df191c")
+		)
+		(pin "4"
+			(uuid "b3dede64-9856-4c1a-975d-ea6a131e1faa")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 65.532 63.5 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "df7ca315-f92f-45dd-8c72-c077576f892f")
+		(property "Reference" "#PWR091"
+			(at 65.532 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 65.532 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 65.532 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 65.532 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 65.532 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bb58b9ae-d461-4c04-a66c-fb9700b3d98b")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR091")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 154.94 106.426 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e24c4d7d-5bc3-4dcb-b72e-2b1c64d3a5b5")
+		(property "Reference" "#PWR0111"
+			(at 154.94 112.776 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 111.506 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 154.94 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 154.94 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 154.94 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bdffc7d7-b98e-457a-aa21-7e5bfc5e7725")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0111")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 65.532 139.954 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e2898b16-966c-45d1-85e6-c38417d314a4")
+		(property "Reference" "D19"
+			(at 70.612 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 70.612 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 66.802 147.574 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 68.072 149.479 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 65.532 139.954 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "63479f3a-3fd9-4ad0-bf56-e99ccc442457")
+		)
+		(pin "2"
+			(uuid "3fbf48b0-69e8-4ac5-b68e-b9265969e05e")
+		)
+		(pin "3"
+			(uuid "8d1ba60e-80a3-4006-a381-42c747b9dba4")
+		)
+		(pin "4"
+			(uuid "c3ac2e04-c146-495d-a3e3-fb61538c634c")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 200.66 53.086 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e29fddfe-5a41-4b96-9776-aba033a0c9d8")
+		(property "Reference" "D9"
+			(at 205.74 60.452 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 205.74 62.992 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 201.93 60.706 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 203.2 62.611 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 200.66 53.086 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "31910860-fedd-41d4-8498-0c7dc371c1e5")
+		)
+		(pin "2"
+			(uuid "813b0b8c-9bcc-4e4e-bd32-c0895ecb7066")
+		)
+		(pin "3"
+			(uuid "959bead7-d04e-440e-abc7-aff23ade1784")
+		)
+		(pin "4"
+			(uuid "3e495d92-e252-4f2c-bdc3-c6dea7b4fa9f")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 65.532 53.086 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e350991a-d333-41b7-9ec2-5f1cf9caff48")
+		(property "Reference" "D3"
+			(at 70.612 60.452 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 70.612 62.992 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 66.802 60.706 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 68.072 62.611 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 65.532 53.086 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2a6246ed-5b8e-4d42-8f26-e8e9049cbca0")
+		)
+		(pin "2"
+			(uuid "8b6d5542-6988-4a12-a3a0-d207a052f12b")
+		)
+		(pin "3"
+			(uuid "7e3ee1f4-9ba3-4270-85a5-029b4dfee764")
+		)
+		(pin "4"
+			(uuid "85aed1d9-d661-44a3-9da2-002784feb2c5")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 110.49 139.954 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e7108a3b-7918-45d3-9ce0-686d17bc04fc")
+		(property "Reference" "D21"
+			(at 115.57 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 115.57 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 111.76 147.574 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 113.03 149.479 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 110.49 139.954 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c22ea46a-af1b-4c87-8db0-db73c68cf613")
+		)
+		(pin "2"
+			(uuid "5ee72fe3-4b2e-4f1a-a70e-dfa1317f0394")
+		)
+		(pin "3"
+			(uuid "5619b1f0-bd75-42f1-9bb6-299f044d8e64")
+		)
+		(pin "4"
+			(uuid "ff27fcc2-f1e7-4e6a-b525-9e1df96f156d")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D21")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 65.532 150.368 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "eac7a17c-6395-4dfd-b639-3e3a917870d3")
+		(property "Reference" "#PWR0120"
+			(at 65.532 156.718 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 65.532 155.448 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 65.532 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 65.532 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 65.532 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a12d95a2-9851-473f-854c-afd6918014df")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0120")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 132.08 150.368 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ebc736d0-7338-4599-91bd-3c09bc09a23e")
+		(property "Reference" "#PWR0151"
+			(at 132.08 156.718 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 132.08 155.448 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 132.08 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 132.08 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 132.08 150.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c4de381b-8263-4470-b217-e28699d62b43")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0151")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 87.884 127.254 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ee8dc894-8672-47f0-b04d-f795d5999127")
+		(property "Reference" "#PWR0116"
+			(at 87.884 131.064 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 87.884 122.428 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 87.884 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 87.884 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 87.884 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4a601ee0-ea3c-42c1-9ee7-c5ffcaefa9f0")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0116")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 154.94 96.012 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ef14325d-40bc-4171-ad31-4c9ce3621b5a")
+		(property "Reference" "D15"
+			(at 160.02 103.378 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 160.02 105.918 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 156.21 103.632 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 157.48 105.537 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 154.94 96.012 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c50b6270-7e13-4b31-b585-669a7fdbc917")
+		)
+		(pin "2"
+			(uuid "35e3a52a-43ea-43d5-8ca3-46a3f9c3d175")
+		)
+		(pin "3"
+			(uuid "0b002c77-33e2-4455-be99-6cb0caebde59")
+		)
+		(pin "4"
+			(uuid "71a7927e-d39a-4190-af91-8b9afa47ed52")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 154.432 139.954 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f3afe4d3-40ad-46c7-a6ee-97dc35cbfc25")
+		(property "Reference" "D23"
+			(at 159.512 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 159.512 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 155.702 147.574 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 156.972 149.479 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 154.432 139.954 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6eb29446-9c05-4b86-b6f7-386e3622fb1a")
+		)
+		(pin "2"
+			(uuid "5165bb32-887e-4020-80fa-95a21bb064e1")
+		)
+		(pin "3"
+			(uuid "2665277a-520d-46a8-8032-4dbac7c14435")
+		)
+		(pin "4"
+			(uuid "38347d57-d033-4eb1-af86-a1e0d52e15af")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D23")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "LED:WS2812B")
+		(at 223.012 53.086 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f3d936fb-ab73-42a5-b385-a0a74836ed86")
+		(property "Reference" "D10"
+			(at 228.092 60.452 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6812MINI-E"
+			(at 228.092 62.992 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "EURORACK:SK6812MINIE"
+			(at 224.282 60.706 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+			(at 225.552 62.611 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 223.012 53.086 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fe34d419-ba98-4601-ad33-58e330d50a61")
+		)
+		(pin "2"
+			(uuid "e24c2527-5194-4a25-a192-5c33be7c0fbf")
+		)
+		(pin "3"
+			(uuid "e6700e4f-6b46-48f5-b8c2-ca176ba20e79")
+		)
+		(pin "4"
+			(uuid "5120a5e5-287c-4d69-9324-40ec6cf8b552")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "D10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 154.94 83.566 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f5ec4417-2176-4803-83ab-4e3c9682809d")
+		(property "Reference" "#PWR0103"
+			(at 154.94 87.376 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 154.94 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 154.94 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 154.94 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 154.94 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9225b4d6-0357-427f-8648-29927b37e2d5")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0103")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 136.652 175.26 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f9bf5f22-7501-40d0-9b48-9c7871965260")
+		(property "Reference" "C26"
+			(at 139.7 173.9899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF"
+			(at 139.7 176.5299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 137.6172 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 136.652 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 136.652 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4afb028f-5763-4380-891a-294ec17383fa")
+		)
+		(pin "2"
+			(uuid "00ee5e2b-6c65-4a86-9486-41d7c540021f")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "C26")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 111.76 167.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "fb2d5f38-4740-4e89-8d89-a5d21b979e22")
+		(property "Reference" "#PWR0118"
+			(at 111.76 171.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 111.76 162.814 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 111.76 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 111.76 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 111.76 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e11bb0f1-76fa-4369-beb3-ac0efbafa3c7")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/92cd94fe-929b-402e-b683-ac80f4f78fe8"
+					(reference "#PWR0118")
+					(unit 1)
+				)
+			)
+		)
+	)
+)
