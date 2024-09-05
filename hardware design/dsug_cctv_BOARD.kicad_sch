@@ -132,6 +132,298 @@
 				)
 			)
 		)
+		(symbol "+5V_2"
+			(power)
+			(pin_numbers hide)
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "+5V"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+5V\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "+5V_2_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+5V_2_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "74xGxx:74AHCT1G125"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U"
+				(at -2.54 3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "74AHCT1G125"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Single Buffer Gate Tri-State, Low-Voltage CMOS"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "Single Gate Buff Tri-State LVC CMOS"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "SOT* SG-*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "74AHCT1G125_0_1"
+				(polyline
+					(pts
+						(xy -7.62 6.35) (xy -7.62 -6.35) (xy 5.08 0) (xy -7.62 6.35)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "74AHCT1G125_1_1"
+				(pin input inverted
+					(at 0 10.16 270)
+					(length 7.62)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -15.24 0 0)
+					(length 7.62)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -5.08 -10.16 90)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin tri_state line
+					(at 12.7 0 180)
+					(length 7.62)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -5.08 10.16 270)
+					(length 5.08)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "Amplifier_Operational:MCP6004"
 			(pin_names
 				(offset 0.127)
@@ -3866,6 +4158,102 @@
 				)
 			)
 		)
+		(symbol "GND_2"
+			(power)
+			(pin_numbers hide)
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "GND"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "GND_2_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND_2_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "MCU_RaspberryPi:RP2040"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -6030,196 +6418,6 @@
 				)
 			)
 		)
-		(symbol "Transistor_BJT:MMBT3904"
-			(pin_names
-				(offset 0) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "Q"
-				(at 5.08 1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "MMBT3904"
-				(at 5.08 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-				(at 5.08 -1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-						(italic yes)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Description" "0.2A Ic, 40V Vce, Small Signal NPN Transistor, SOT-23"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "NPN Transistor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "SOT?23*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "MMBT3904_0_1"
-				(polyline
-					(pts
-						(xy 0.635 0.635) (xy 2.54 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.635 -0.635) (xy 2.54 -2.54) (xy 2.54 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.635 1.905) (xy 0.635 -1.905) (xy 0.635 -1.905)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 -1.778) (xy 1.778 -1.27) (xy 2.286 -2.286) (xy 1.27 -1.778) (xy 1.27 -1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(circle
-					(center 1.27 0)
-					(radius 2.8194)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "MMBT3904_1_1"
-				(pin input line
-					(at -5.08 0 0)
-					(length 5.715)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 -5.08 90)
-					(length 2.54)
-					(name "E"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 5.08 270)
-					(length 2.54)
-					(name "C"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "power:+12V"
 			(power)
 			(pin_names
@@ -7044,12 +7242,6 @@
 		(uuid "0194b226-895c-4f63-9cfa-8c4b154cab2c")
 	)
 	(junction
-		(at 65.532 34.544)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "10a0a839-05e0-4929-abf6-91e897682725")
-	)
-	(junction
 		(at 155.194 245.618)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -7168,12 +7360,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "654a48e0-e8f3-49c2-8252-3a9dee5bc11c")
-	)
-	(junction
-		(at 86.106 42.672)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "6909e44f-918f-4bdb-b8c0-c7cca693b725")
 	)
 	(junction
 		(at 152.4 43.434)
@@ -7869,16 +8055,6 @@
 	)
 	(wire
 		(pts
-			(xy 103.632 50.8) (xy 113.03 50.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "204a9835-39cf-4007-a955-9844f2836fde")
-	)
-	(wire
-		(pts
 			(xy 286.512 225.552) (xy 293.624 225.552)
 		)
 		(stroke
@@ -8089,16 +8265,6 @@
 	)
 	(wire
 		(pts
-			(xy 93.726 50.8) (xy 96.012 50.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2c122b41-35e4-4a51-911f-f05e4152e9e0")
-	)
-	(wire
-		(pts
 			(xy 57.404 121.92) (xy 57.404 120.396)
 		)
 		(stroke
@@ -8139,16 +8305,6 @@
 	)
 	(wire
 		(pts
-			(xy 81.534 42.672) (xy 86.106 42.672)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2fa8c48b-528d-41c5-a4b9-25ff3178c088")
-	)
-	(wire
-		(pts
 			(xy 175.514 43.434) (xy 175.514 46.99)
 		)
 		(stroke
@@ -8166,6 +8322,16 @@
 			(type default)
 		)
 		(uuid "315243d3-0d52-4873-9f5a-17b377d3ed37")
+	)
+	(wire
+		(pts
+			(xy 72.39 45.72) (xy 72.39 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "32a99147-752e-4d66-95e7-599cdbd77cc9")
 	)
 	(wire
 		(pts
@@ -8379,6 +8545,16 @@
 	)
 	(wire
 		(pts
+			(xy 72.39 20.32) (xy 72.39 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "47263794-db89-4f02-a6f6-7c6e4932d691")
+	)
+	(wire
+		(pts
 			(xy 152.4 43.434) (xy 163.83 43.434)
 		)
 		(stroke
@@ -8456,6 +8632,16 @@
 			(type default)
 		)
 		(uuid "4e47fa6c-c9ab-4830-845d-43a27cf09833")
+	)
+	(wire
+		(pts
+			(xy 60.96 25.4) (xy 60.96 22.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4edb18e1-bfda-4c9a-85d2-c634bf2f1d0f")
 	)
 	(wire
 		(pts
@@ -8616,16 +8802,6 @@
 			(type default)
 		)
 		(uuid "610b5142-b4e1-479e-8127-3d72a27b7acb")
-	)
-	(wire
-		(pts
-			(xy 86.106 31.496) (xy 86.106 42.672)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "618494f0-fb5b-4ac3-907c-c96285c96f6c")
 	)
 	(wire
 		(pts
@@ -9039,16 +9215,6 @@
 	)
 	(wire
 		(pts
-			(xy 65.532 34.544) (xy 65.532 37.592)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8417a2e9-15f2-46f1-a08a-cff081427fb6")
-	)
-	(wire
-		(pts
 			(xy 230.632 177.546) (xy 242.57 177.546)
 		)
 		(stroke
@@ -9299,13 +9465,13 @@
 	)
 	(wire
 		(pts
-			(xy 65.532 47.752) (xy 65.532 60.198)
+			(xy 67.31 22.86) (xy 67.31 25.4)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "99a8fab1-f71a-487c-99af-69b938854fe4")
+		(uuid "9b293b67-ffe2-4bdd-8c2a-95aae4dfccb0")
 	)
 	(wire
 		(pts
@@ -9709,16 +9875,6 @@
 	)
 	(wire
 		(pts
-			(xy 65.532 31.496) (xy 65.532 34.544)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bf5e97f0-4948-4694-aa9c-4b179174bb8b")
-	)
-	(wire
-		(pts
 			(xy 71.12 203.2) (xy 73.66 203.2)
 		)
 		(stroke
@@ -9859,16 +10015,6 @@
 	)
 	(wire
 		(pts
-			(xy 86.106 42.672) (xy 86.106 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c85b0dfa-15c4-4212-8c4f-124dec36bed9")
-	)
-	(wire
-		(pts
 			(xy 189.992 121.158) (xy 198.882 121.158)
 		)
 		(stroke
@@ -9949,16 +10095,6 @@
 	)
 	(wire
 		(pts
-			(xy 73.152 42.672) (xy 73.914 42.672)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d09f5671-f532-4017-b289-6cb17f0a77db")
-	)
-	(wire
-		(pts
 			(xy 284.988 128.27) (xy 298.45 128.27)
 		)
 		(stroke
@@ -10016,6 +10152,16 @@
 			(type default)
 		)
 		(uuid "d34c77a7-cff9-4918-a82c-0c12dd772baa")
+	)
+	(wire
+		(pts
+			(xy 82.55 35.56) (xy 99.06 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d410e7b7-e2bf-46cb-b5d2-90fff7fa8553")
 	)
 	(wire
 		(pts
@@ -10119,16 +10265,6 @@
 	)
 	(wire
 		(pts
-			(xy 86.106 55.88) (xy 86.106 60.198)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "da75bc1c-62a7-483f-bd9f-71c9ba200132")
-	)
-	(wire
-		(pts
 			(xy 52.07 270.51) (xy 66.04 270.51)
 		)
 		(stroke
@@ -10189,23 +10325,13 @@
 	)
 	(wire
 		(pts
-			(xy 49.022 34.544) (xy 65.532 34.544)
+			(xy 48.006 35.56) (xy 54.61 35.56)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "dcec15a8-211b-4c95-8b84-21f836b82d7d")
-	)
-	(wire
-		(pts
-			(xy 65.532 20.574) (xy 65.532 23.876)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dcec9a11-12fc-46fd-8e70-c3a8ef6e46c6")
 	)
 	(wire
 		(pts
@@ -10269,16 +10395,6 @@
 	)
 	(wire
 		(pts
-			(xy 86.106 20.574) (xy 86.106 23.876)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e220d4db-9c93-4810-95a8-b6067bb0c634")
-	)
-	(wire
-		(pts
 			(xy 323.342 174.752) (xy 315.214 174.752)
 		)
 		(stroke
@@ -10296,6 +10412,16 @@
 			(type default)
 		)
 		(uuid "e26132b0-def5-4506-839e-69c8801259ae")
+	)
+	(wire
+		(pts
+			(xy 60.96 22.86) (xy 67.31 22.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e28f12db-061c-4766-b871-ae89237d9738")
 	)
 	(wire
 		(pts
@@ -11348,7 +11474,7 @@
 		(uuid "e5a2836c-1a65-4a36-aad8-affca7eb92fe")
 	)
 	(label "LED_data"
-		(at 113.03 50.8 180)
+		(at 99.06 35.56 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -11713,77 +11839,6 @@
 			(project "dsug_cctv_BOARD"
 				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
 					(reference "#PWR018")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 65.532 27.686 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "097f0689-8839-46f9-b6aa-ae3dae0b862b")
-		(property "Reference" "R47"
-			(at 67.31 26.4159 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "1k"
-			(at 67.31 28.9559 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 64.516 27.94 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 65.532 27.686 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 65.532 27.686 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "e4961281-be6c-4616-98fa-3739c8c11e13")
-		)
-		(pin "2"
-			(uuid "c20042cb-e938-4aa0-9a80-28685af73c58")
-		)
-		(instances
-			(project "dsug_cctv_BOARD"
-				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
-					(reference "R47")
 					(unit 1)
 				)
 			)
@@ -12492,83 +12547,6 @@
 			(project "dsug_cctv_BOARD"
 				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
 					(reference "#PWR034")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Transistor_BJT:MMBT3904")
-		(at 88.646 50.8 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "196bfbf7-7fb7-496d-b2b4-8dacb9f6d463")
-		(property "Reference" "Q2"
-			(at 82.804 49.5299 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MMBT3904"
-			(at 82.804 52.0699 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 83.566 52.705 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF"
-			(at 88.646 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 88.646 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "14eadcfe-ad92-451b-99b7-860a4e2abe2c")
-		)
-		(pin "2"
-			(uuid "edc42e14-d451-48d5-bf2b-803e5c5e9fa5")
-		)
-		(pin "3"
-			(uuid "8dd4a18c-2312-40d9-965d-145d84403ab4")
-		)
-		(instances
-			(project "dsug_cctv_BOARD"
-				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
-					(reference "Q2")
 					(unit 1)
 				)
 			)
@@ -14590,83 +14568,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Transistor_BJT:MMBT3904")
-		(at 68.072 42.672 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "59078939-83ce-42da-b6a6-ddad37db38a5")
-		(property "Reference" "Q1"
-			(at 62.23 41.4019 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MMBT3904"
-			(at 62.23 43.9419 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 62.992 44.577 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF"
-			(at 68.072 42.672 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 68.072 42.672 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "60efcef8-fcef-4a02-88c7-ebfc62fbda11")
-		)
-		(pin "2"
-			(uuid "d48ef353-f9cc-44ff-8bfa-cb7e07c83d2e")
-		)
-		(pin "3"
-			(uuid "281b2d96-138e-42eb-9075-ff9aab2c7cac")
-		)
-		(instances
-			(project "dsug_cctv_BOARD"
-				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
-					(reference "Q1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+5V")
 		(at 38.1 248.92 0)
 		(unit 1)
@@ -15114,72 +15015,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 86.106 20.574 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "65080ff6-5264-435f-a370-1274682303e8")
-		(property "Reference" "#PWR052"
-			(at 86.106 24.384 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 86.106 15.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 86.106 20.574 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 86.106 20.574 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 86.106 20.574 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "a1fc9a57-d86e-4aa4-88f7-b26412fd0add")
-		)
-		(instances
-			(project "dsug_cctv_BOARD"
-				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
-					(reference "#PWR052")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+3V3")
 		(at 244.602 50.292 0)
 		(unit 1)
@@ -15606,6 +15441,73 @@
 		)
 	)
 	(symbol
+		(lib_name "GND_2")
+		(lib_id "power:GND")
+		(at 72.39 50.8 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "76e22702-4a71-44ea-88d3-32dc8e610e6b")
+		(property "Reference" "#PWR06"
+			(at 72.39 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 72.39 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 72.39 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 72.39 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 72.39 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f68b7408-a1a9-475b-9cda-f568b3dba1a4")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
+					(reference "#PWR06")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 179.832 250.698 0)
 		(unit 1)
@@ -15670,6 +15572,84 @@
 			(project "dsug_cctv_BOARD"
 				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
 					(reference "C8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "74xGxx:74AHCT1G125")
+		(at 67.31 35.56 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "79d48da0-18ff-484c-a111-7eb477f32adf")
+		(property "Reference" "U16"
+			(at 82.55 29.2414 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "74AHCT1G125"
+			(at 82.55 31.7814 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 67.31 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf"
+			(at 67.31 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Single Buffer Gate Tri-State, Low-Voltage CMOS"
+			(at 67.31 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "4b44603f-3236-49f8-bbf7-0e4ff491d284")
+		)
+		(pin "2"
+			(uuid "8fa80d4b-5aca-4656-b0b1-313203fca9c8")
+		)
+		(pin "5"
+			(uuid "59e65588-24e2-497c-b7a6-36ea30ae5e23")
+		)
+		(pin "1"
+			(uuid "edefdfdd-d82e-4fd7-901d-ef93db55e838")
+		)
+		(pin "4"
+			(uuid "03a71755-6287-49eb-b6dd-d296b7160803")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
+					(reference "U16")
 					(unit 1)
 				)
 			)
@@ -15876,75 +15856,6 @@
 			(project "dsug_cctv_BOARD"
 				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
 					(reference "R98")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 99.822 50.8 90)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "7df5e72b-dd2a-4313-bbf7-a54359ab5862")
-		(property "Reference" "R100"
-			(at 99.822 44.45 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1k"
-			(at 99.822 46.99 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 100.076 51.816 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 99.822 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 99.822 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "4f25f824-a364-4a93-ad56-6de8f4e031a9")
-		)
-		(pin "2"
-			(uuid "f963efae-00dc-4672-908a-ae77cb9e52df")
-		)
-		(instances
-			(project "dsug_cctv_BOARD"
-				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
-					(reference "R100")
 					(unit 1)
 				)
 			)
@@ -16545,72 +16456,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 65.532 20.574 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "9eb6b3c6-bd61-416c-ae7b-cea6ebbb8c15")
-		(property "Reference" "#PWR06"
-			(at 65.532 24.384 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 65.532 15.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 65.532 20.574 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 65.532 20.574 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 65.532 20.574 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6f55a02b-d798-457e-b039-bb66973fa5c2")
-		)
-		(instances
-			(project "dsug_cctv_BOARD"
-				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
-					(reference "#PWR06")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_US")
 		(at 358.394 59.69 90)
 		(unit 1)
@@ -16672,142 +16517,6 @@
 			(project "dsug_cctv_BOARD"
 				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
 					(reference "R104")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 65.532 60.198 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "a10c6f66-492c-4251-88bf-e24f3e2b4913")
-		(property "Reference" "#PWR020"
-			(at 65.532 66.548 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 65.532 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 65.532 60.198 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 65.532 60.198 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 65.532 60.198 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "5ed4a78d-30cc-46f2-8bb0-319568424595")
-		)
-		(instances
-			(project "dsug_cctv_BOARD"
-				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
-					(reference "#PWR020")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 77.724 42.672 90)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "a15a01af-0379-4f50-951f-cc09e4baf221")
-		(property "Reference" "R88"
-			(at 77.724 36.83 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1k"
-			(at 77.724 39.37 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 77.978 43.688 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 77.724 42.672 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 77.724 42.672 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "89bd20c1-e7dc-47d2-b72e-798c7d34607d")
-		)
-		(pin "2"
-			(uuid "2803216c-8933-4971-addb-9b0cc98d5889")
-		)
-		(instances
-			(project "dsug_cctv_BOARD"
-				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
-					(reference "R88")
 					(unit 1)
 				)
 			)
@@ -18057,77 +17766,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_US")
-		(at 86.106 27.686 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "c5a55582-4088-4aca-976a-2280b88d1b16")
-		(property "Reference" "R99"
-			(at 88.9 26.4159 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "1k"
-			(at 88.9 28.9559 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 85.09 27.94 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 86.106 27.686 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 86.106 27.686 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "637e3390-be7b-46c9-97e0-c3008e75bb58")
-		)
-		(pin "2"
-			(uuid "6de4753b-a4cd-4be0-a698-515b860ff9be")
-		)
-		(instances
-			(project "dsug_cctv_BOARD"
-				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
-					(reference "R99")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 359.664 103.124 270)
 		(unit 1)
@@ -18189,73 +17827,6 @@
 			(project "dsug_cctv_BOARD"
 				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
 					(reference "#PWR014")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 86.106 60.198 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "cfa39ccd-5b1f-4f46-98ed-dec36b8eec79")
-		(property "Reference" "#PWR054"
-			(at 86.106 66.548 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 86.106 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 86.106 60.198 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 86.106 60.198 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 86.106 60.198 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "15290532-d5e0-4e36-a4cc-436b7f7c833f")
-		)
-		(instances
-			(project "dsug_cctv_BOARD"
-				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
-					(reference "#PWR054")
 					(unit 1)
 				)
 			)
@@ -18326,6 +17897,73 @@
 			(project "dsug_cctv_BOARD"
 				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
 					(reference "C2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_name "+5V_2")
+		(lib_id "power:+5V")
+		(at 72.39 20.32 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d114d52f-a8fd-4653-b94a-1635951139ee")
+		(property "Reference" "#PWR020"
+			(at 72.39 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 72.39 15.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 72.39 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 72.39 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 72.39 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "701198f3-d901-450c-aa78-1c216689f141")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -18595,6 +18233,73 @@
 			(project "dsug_cctv_BOARD"
 				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
 					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_name "GND_2")
+		(lib_id "power:GND")
+		(at 60.96 25.4 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e7a8bf29-4d5c-41cc-bb7f-e89209904774")
+		(property "Reference" "#PWR052"
+			(at 60.96 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 60.96 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 60.96 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 60.96 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 60.96 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c89cbefe-d4fc-43e4-b808-aa0ce12e4485")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
+					(reference "#PWR052")
 					(unit 1)
 				)
 			)
@@ -19169,7 +18874,7 @@
 		)
 	)
 	(sheet
-		(at 34.036 30.226)
+		(at 33.02 30.48)
 		(size 14.986 8.382)
 		(fields_autoplaced yes)
 		(stroke
@@ -19181,7 +18886,7 @@
 		)
 		(uuid "92cd94fe-929b-402e-b683-ac80f4f78fe8")
 		(property "Sheetname" "LEDs"
-			(at 34.036 29.5144 0)
+			(at 33.02 29.7684 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19190,7 +18895,7 @@
 			)
 		)
 		(property "Sheetfile" "LEDs.kicad_sch"
-			(at 34.036 39.1926 0)
+			(at 33.02 39.4466 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19199,7 +18904,7 @@
 			)
 		)
 		(pin "LED_data_in" input
-			(at 49.022 34.544 0)
+			(at 48.006 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
