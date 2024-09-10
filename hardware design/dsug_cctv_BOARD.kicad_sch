@@ -9305,6 +9305,16 @@
 	)
 	(wire
 		(pts
+			(xy 255.27 240.03) (xy 255.27 242.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ca44c43-d37f-4073-8c61-4f39ea202d07")
+	)
+	(wire
+		(pts
 			(xy 184.912 177.546) (xy 205.232 177.546)
 		)
 		(stroke
@@ -9622,16 +9632,6 @@
 			(type default)
 		)
 		(uuid "a7d5fd5c-5f7e-461a-8e73-29c4d0835680")
-	)
-	(wire
-		(pts
-			(xy 255.27 239.268) (xy 255.27 242.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a8cfd5ca-4d4c-4274-a19d-fe3b0bfff544")
 	)
 	(wire
 		(pts
@@ -11839,6 +11839,72 @@
 			(project "dsug_cctv_BOARD"
 				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
 					(reference "#PWR018")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3VADC")
+		(at 255.27 240.03 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0722d87a-5290-40ed-95fb-ab9d1f6b50b4")
+		(property "Reference" "#PWR054"
+			(at 259.08 241.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3VADC"
+			(at 255.27 234.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 255.27 240.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 255.27 240.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3VADC\""
+			(at 255.27 240.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "947586d5-7f71-4b6a-be32-f951616414f2")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
+					(reference "#PWR054")
 					(unit 1)
 				)
 			)
@@ -18568,72 +18634,6 @@
 			(project "dsug_cctv_BOARD"
 				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
 					(reference "#PWR0163")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 255.27 239.268 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "f36f5c19-7e25-40e8-b8a6-79e7518c9f23")
-		(property "Reference" "#PWR0126"
-			(at 255.27 243.078 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 255.27 233.934 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 255.27 239.268 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 255.27 239.268 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 255.27 239.268 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6eb96dbc-3456-42d7-9a1e-85b2682d9b55")
-		)
-		(instances
-			(project "dsug_cctv_BOARD"
-				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
-					(reference "#PWR0126")
 					(unit 1)
 				)
 			)

@@ -6148,7 +6148,7 @@
 		)
 		(uuid "c0fcd45d-f955-465d-b479-0f792b014b17")
 	)
-	(text "signal in"
+	(text "trigger in"
 		(exclude_from_sim no)
 		(at 20.066 146.304 0)
 		(effects
@@ -7455,15 +7455,15 @@
 		(fields_autoplaced yes)
 		(uuid "1ee9b9c2-94d5-4b28-8327-98ce3c28856d")
 		(property "Reference" "C50"
-			(at 261.366 93.218 90)
+			(at 261.366 93.98 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "1nF"
-			(at 261.366 95.758 90)
+		(property "Value" "2.2nF"
+			(at 261.366 96.52 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13839,15 +13839,15 @@
 		(fields_autoplaced yes)
 		(uuid "9a4db86f-b4a6-4f5e-926d-afba79c63670")
 		(property "Reference" "C52"
-			(at 306.832 81.788 90)
+			(at 306.832 82.55 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "1nF"
-			(at 306.832 84.328 90)
+		(property "Value" "2.2nF"
+			(at 306.832 85.09 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15864,8 +15864,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "1nF"
-			(at 248.666 120.396 0)
+		(property "Value" "2.2nF"
+			(at 247.396 120.142 0)
 			(effects
 				(font
 					(size 1.27 1.27)
