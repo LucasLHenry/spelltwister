@@ -2981,7 +2981,17 @@
 	)
 	(wire
 		(pts
-			(xy 130.556 30.734) (xy 137.922 30.734)
+			(xy 127 20.32) (xy 127 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0d4dc183-df78-4a0c-b748-98be762a31cd")
+	)
+	(wire
+		(pts
+			(xy 130.81 29.21) (xy 138.176 29.21)
 		)
 		(stroke
 			(width 0)
@@ -3258,16 +3268,6 @@
 			(type default)
 		)
 		(uuid "1f152716-8a6b-445b-9295-3aa410e68839")
-	)
-	(wire
-		(pts
-			(xy 126.492 77.724) (xy 126.492 82.042)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1fc701ba-ccab-4f90-85f8-34a228904d50")
 	)
 	(wire
 		(pts
@@ -3561,7 +3561,7 @@
 	)
 	(wire
 		(pts
-			(xy 126.492 89.662) (xy 126.492 93.218)
+			(xy 127 88.9) (xy 127 92.456)
 		)
 		(stroke
 			(width 0)
@@ -3801,6 +3801,16 @@
 	)
 	(wire
 		(pts
+			(xy 127 76.2) (xy 127 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4fc2618f-c766-4614-8008-28d6542eafed")
+	)
+	(wire
+		(pts
 			(xy 33.528 163.83) (xy 33.528 166.624)
 		)
 		(stroke
@@ -3938,16 +3948,6 @@
 			(type default)
 		)
 		(uuid "5c097b13-d0ae-41da-a9fe-914ad1e14ebf")
-	)
-	(wire
-		(pts
-			(xy 126.746 22.606) (xy 126.746 26.924)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5ccde781-cd55-464a-ba72-a3efdc10f6f1")
 	)
 	(wire
 		(pts
@@ -5091,7 +5091,7 @@
 	)
 	(wire
 		(pts
-			(xy 126.746 34.544) (xy 126.746 38.1)
+			(xy 127 33.02) (xy 127 36.576)
 		)
 		(stroke
 			(width 0)
@@ -5171,7 +5171,7 @@
 	)
 	(wire
 		(pts
-			(xy 130.302 85.852) (xy 137.668 85.852)
+			(xy 130.81 85.09) (xy 138.176 85.09)
 		)
 		(stroke
 			(width 0)
@@ -6215,7 +6215,7 @@
 		(uuid "33021aab-2ee1-46f5-b5bc-e3e137f64a84")
 	)
 	(label "ratio_pot"
-		(at 134.112 30.734 270)
+		(at 134.366 29.21 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6325,7 +6325,7 @@
 		(uuid "c9a778d1-d6cd-4439-a75d-3f9dd861ba57")
 	)
 	(label "shape_pot"
-		(at 133.096 85.852 270)
+		(at 133.604 85.09 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6560,7 +6560,7 @@
 	)
 	(hierarchical_label "ratio_POT_IN"
 		(shape input)
-		(at 137.922 30.734 0)
+		(at 138.176 29.21 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6668,7 +6668,7 @@
 	)
 	(hierarchical_label "shape_POT_IN"
 		(shape input)
-		(at 137.668 85.852 0)
+		(at 138.176 85.09 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6815,6 +6815,76 @@
 				)
 				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/bd8c531c-02a8-4190-9c59-8241bb2368bf"
 					(reference "R85")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3VADC")
+		(at 127 76.2 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0803fc72-5bce-47ba-89af-4e119e0312d5")
+		(property "Reference" "#PWR0194"
+			(at 123.19 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3VADC"
+			(at 127 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 127 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 127 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3VADC\""
+			(at 127 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9b57a944-d57d-4d23-8f89-31c87ca98a5b")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/01856007-427f-4a2f-8b02-0471af5a1061"
+					(reference "#PWR0194")
+					(unit 1)
+				)
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/bd8c531c-02a8-4190-9c59-8241bb2368bf"
+					(reference "#PWR0195")
 					(unit 1)
 				)
 			)
@@ -7730,76 +7800,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 126.492 77.724 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "1f919fa6-ba42-45dc-87d5-92ab74c0b0df")
-		(property "Reference" "#PWR0166"
-			(at 126.492 81.534 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 126.492 72.898 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 126.492 77.724 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 126.492 77.724 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 126.492 77.724 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "614030dd-3ea3-4c0d-8253-43e8ea79a0bc")
-		)
-		(instances
-			(project "dsug_cctv_BOARD"
-				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/01856007-427f-4a2f-8b02-0471af5a1061"
-					(reference "#PWR0166")
-					(unit 1)
-				)
-				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/bd8c531c-02a8-4190-9c59-8241bb2368bf"
-					(reference "#PWR076")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 255.524 127.508 0)
 		(unit 1)
@@ -7959,7 +7959,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "120k"
 			(at 76.454 232.664 0)
 			(effects
 				(font
@@ -9081,76 +9081,6 @@
 				)
 				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/bd8c531c-02a8-4190-9c59-8241bb2368bf"
 					(reference "#PWR062")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 126.746 22.606 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "44be832d-41a1-4a18-9a70-db58adc9b9af")
-		(property "Reference" "#PWR0165"
-			(at 126.746 26.416 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 126.746 17.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 126.746 22.606 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 126.746 22.606 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 126.746 22.606 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "21afd3fd-caf2-4fc8-a2d8-cddd6933a667")
-		)
-		(instances
-			(project "dsug_cctv_BOARD"
-				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/01856007-427f-4a2f-8b02-0471af5a1061"
-					(reference "#PWR0165")
-					(unit 1)
-				)
-				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/bd8c531c-02a8-4190-9c59-8241bb2368bf"
-					(reference "#PWR078")
 					(unit 1)
 				)
 			)
@@ -11843,15 +11773,15 @@
 		(fields_autoplaced yes)
 		(uuid "81c6f3f7-78f6-4954-941d-c8ca9e562d7f")
 		(property "Reference" "R39"
-			(at 100.076 239.014 90)
+			(at 100.076 238.76 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "33k"
-			(at 100.076 241.554 90)
+		(property "Value" "47k"
+			(at 100.076 241.3 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12773,7 +12703,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Potentiometer_US")
-		(at 126.746 30.734 0)
+		(at 127 29.21 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12782,7 +12712,7 @@
 		(fields_autoplaced yes)
 		(uuid "8f0d3dfe-1297-4e06-845c-123e7a813bc4")
 		(property "Reference" "RV4"
-			(at 124.968 29.4639 0)
+			(at 125.222 27.9399 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12791,7 +12721,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 124.968 32.0039 0)
+			(at 125.222 30.4799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12800,7 +12730,7 @@
 			)
 		)
 		(property "Footprint" "EURORACK:Potentiometer_RV09_6mm_knob"
-			(at 126.746 30.734 0)
+			(at 127 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12809,7 +12739,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 126.746 30.734 0)
+			(at 127 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12818,7 +12748,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 126.746 30.734 0)
+			(at 127 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13448,7 +13378,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "180k"
 			(at 91.44 224.7899 0)
 			(effects
 				(font
@@ -14231,7 +14161,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 126.746 38.1 0)
+		(at 127 36.576 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14240,7 +14170,7 @@
 		(fields_autoplaced yes)
 		(uuid "a37b9b8e-9061-4fdd-8f36-2b38a09205dc")
 		(property "Reference" "#PWR053"
-			(at 126.746 44.45 0)
+			(at 127 42.926 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14249,7 +14179,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 126.746 43.18 0)
+			(at 127 41.656 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14257,7 +14187,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 126.746 38.1 0)
+			(at 127 36.576 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14266,7 +14196,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 126.746 38.1 0)
+			(at 127 36.576 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14275,7 +14205,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 126.746 38.1 0)
+			(at 127 36.576 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15020,7 +14950,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 126.492 93.218 0)
+		(at 127 92.456 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -15029,7 +14959,7 @@
 		(fields_autoplaced yes)
 		(uuid "b7f0aadb-5cb7-4646-94df-76c538e4d0d4")
 		(property "Reference" "#PWR055"
-			(at 126.492 99.568 0)
+			(at 127 98.806 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15038,7 +14968,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 126.492 98.298 0)
+			(at 127 97.536 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15046,7 +14976,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 126.492 93.218 0)
+			(at 127 92.456 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15055,7 +14985,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 126.492 93.218 0)
+			(at 127 92.456 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15064,7 +14994,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 126.492 93.218 0)
+			(at 127 92.456 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15384,7 +15314,7 @@
 		(fields_autoplaced yes)
 		(uuid "ca8e4167-fc6e-4da4-bd0a-1f6cf9db40ed")
 		(property "Reference" "R33"
-			(at 73.914 211.8359 0)
+			(at 73.66 211.8359 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15392,8 +15322,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100k"
-			(at 73.914 214.3759 0)
+		(property "Value" "180k"
+			(at 73.66 214.3759 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15465,7 +15395,7 @@
 				)
 			)
 		)
-		(property "Value" "150k"
+		(property "Value" "270k"
 			(at 84.582 247.65 90)
 			(effects
 				(font
@@ -17048,6 +16978,76 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3.3VADC")
+		(at 127 20.32 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e0ab7e11-f4ac-4ebf-b3b1-6491059531bc")
+		(property "Reference" "#PWR0165"
+			(at 130.81 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3VADC"
+			(at 127 15.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 127 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 127 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3VADC\""
+			(at 127 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0bfabec7-5a0e-494b-aefc-05654f7b6b73")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/bd8c531c-02a8-4190-9c59-8241bb2368bf"
+					(reference "#PWR0165")
+					(unit 1)
+				)
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d/01856007-427f-4a2f-8b02-0471af5a1061"
+					(reference "#PWR078")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 100.076 232.918 90)
 		(unit 1)
@@ -17121,7 +17121,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Potentiometer_US")
-		(at 126.492 85.852 0)
+		(at 127 85.09 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -17130,7 +17130,7 @@
 		(fields_autoplaced yes)
 		(uuid "e6c618eb-6669-4494-810c-169d9dde8b69")
 		(property "Reference" "RV5"
-			(at 124.714 84.5819 0)
+			(at 125.222 83.8199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17139,7 +17139,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 124.714 87.1219 0)
+			(at 125.222 86.3599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17148,7 +17148,7 @@
 			)
 		)
 		(property "Footprint" "EURORACK:Potentiometer_RV09_6mm_knob"
-			(at 126.492 85.852 0)
+			(at 127 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17157,7 +17157,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 126.492 85.852 0)
+			(at 127 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17166,7 +17166,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 126.492 85.852 0)
+			(at 127 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
