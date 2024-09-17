@@ -10,38 +10,21 @@ ADC_Filter::ADC_Filter(uint16_t low, uint16_t high, bool debug) {
         filtered_value = 0;
         smooth_amt = smth_hi;
         max_idx = arr_len - 1;
-        mode = IIR;
         _debug = debug;
     }
 
 
 uint16_t ADC_Filter::get_next(uint64_t input) {
-    static uint16_t counter;
-    if (_debug) {
-        counter++;
-        if (counter % 50 == 0) Serial.println((filtered_value >> (upsample_amt)));
-    }
-    if (mode == AVG) {
-        arr[idx] = input;
-        avg += input;
-        avg -= arr[(idx + 1) % max_idx];
-        idx++;
-        idx %= max_idx;
-        return avg >> ARR_LEN_BITS;
-    } else if (mode == IIR) {
-        uint64_t upsampled_input = input << upsample_amt;
-        uint64_t diff = ABS_SUB(upsampled_input, filtered_value);
+    uint64_t upsampled_input = input << upsample_amt;
+    uint64_t diff = ABS_SUB(upsampled_input, filtered_value);
 
-        if (diff < low_margin) {
-            smooth_amt = smth_hi;
-        } else if (low_margin <= diff && diff < high_margin) {
-            smooth_amt = smth_mid;
-        } else {
-            smooth_amt = smth_lo;
-        }
-        filtered_value += (upsampled_input - filtered_value) >> smooth_amt;
-        return static_cast<uint16_t>((filtered_value >> (upsample_amt + 4)) << 4);
+    if (diff < low_margin) {
+        smooth_amt = smth_hi;
+    } else if (low_margin <= diff && diff < high_margin) {
+        smooth_amt = smth_mid;
     } else {
-        return input;
+        smooth_amt = smth_lo;
     }
+    filtered_value += (upsampled_input - filtered_value) >> smooth_amt;
+    return static_cast<uint16_t>((filtered_value >> (upsample_amt + 4)) << 4);
 }
