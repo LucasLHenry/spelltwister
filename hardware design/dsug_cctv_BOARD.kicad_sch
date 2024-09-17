@@ -13300,7 +13300,7 @@
 		(fields_autoplaced yes)
 		(uuid "32efe6ae-c653-4279-9794-0b683ce33e81")
 		(property "Reference" "C56"
-			(at 83.058 262.2549 0)
+			(at 83.82 262.2549 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13308,8 +13308,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10uF"
-			(at 83.058 264.7949 0)
+		(property "Value" "22uF"
+			(at 83.82 264.7949 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13503,7 +13503,7 @@
 		(fields_autoplaced yes)
 		(uuid "38b59d76-2ed7-4167-af5d-0227b4b4be28")
 		(property "Reference" "C7"
-			(at 69.088 262.2549 0)
+			(at 69.85 262.2549 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13511,8 +13511,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10uF"
-			(at 69.088 264.7949 0)
+		(property "Value" "22uF"
+			(at 69.85 264.7949 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13930,7 +13930,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_1206_3216Metric"
+		(property "Footprint" "User_Footprints:L_TaiTech_HPC3010TF-4R7M"
 			(at 111.76 200.66 0)
 			(effects
 				(font
@@ -16704,7 +16704,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10uF"
+		(property "Value" "22uF"
 			(at 127 207.6449 0)
 			(effects
 				(font
@@ -16903,7 +16903,7 @@
 		(fields_autoplaced yes)
 		(uuid "9ae28225-16cd-4ff3-8419-5dcb3832e777")
 		(property "Reference" "C1"
-			(at 62.738 201.2949 0)
+			(at 63.5 201.2949 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16911,8 +16911,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10uF"
-			(at 62.738 203.8349 0)
+		(property "Value" "22uF"
+			(at 63.5 203.8349 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17106,7 +17106,7 @@
 		(fields_autoplaced yes)
 		(uuid "a598b376-9ff8-4961-b0eb-cc16b263dc5f")
 		(property "Reference" "C57"
-			(at 110.998 262.2549 0)
+			(at 111.76 262.2549 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17114,8 +17114,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10uF"
-			(at 110.998 264.7949 0)
+		(property "Value" "22uF"
+			(at 111.76 264.7949 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18350,7 +18350,7 @@
 		(fields_autoplaced yes)
 		(uuid "d06d7f4b-3313-48ca-b568-61eae76e4ce5")
 		(property "Reference" "C2"
-			(at 62.738 211.9629 0)
+			(at 63.5 211.9629 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18358,8 +18358,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10uF"
-			(at 62.738 214.5029 0)
+		(property "Value" "22uF"
+			(at 63.5 214.5029 0)
 			(effects
 				(font
 					(size 1.27 1.27)
