@@ -34545,7 +34545,7 @@
 		(descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C39"
-			(at -0.0508 1.6002 0)
+			(at 3.286 0.0124 0)
 			(layer "B.SilkS")
 			(uuid "9ad34582-bb90-4e59-b655-39de5c66c16b")
 			(effects
@@ -60783,7 +60783,7 @@
 		(descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C41"
-			(at 3.0096 -0.0254 90)
+			(at 3.0566 -0.386 90)
 			(layer "B.SilkS")
 			(uuid "a0545e03-f30b-4c44-bc7c-b50a3ab2940f")
 			(effects
@@ -67890,7 +67890,7 @@
 		(descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R97"
-			(at 3.2766 0.0254 90)
+			(at 3.1696 -0.3132 90)
 			(layer "B.SilkS")
 			(uuid "4a7409d6-1efa-48b5-892c-774cae0b21b7")
 			(effects
@@ -76452,19 +76452,19 @@
 		(uuid "a5cba850-04cc-4aef-b753-4b34c61a4501")
 		(effects
 			(font
-				(size 1 1)
+				(size 1.2 1.2)
 				(thickness 0.15)
 			)
 			(justify left bottom mirror)
 		)
 	)
 	(gr_text "have a good day!"
-		(at 113 76 0)
+		(at 113.4 75.8 0)
 		(layer "B.SilkS")
 		(uuid "d6295ca3-3c42-4210-8563-ce8e2195e19e")
 		(effects
 			(font
-				(size 0.6 0.6)
+				(size 0.8 0.8)
 				(thickness 0.1)
 				(bold yes)
 			)
@@ -103516,8 +103516,7 @@
 				(xy 99.890795 48.401988) (xy 99.890803 48.40199) (xy 99.95135 48.408499) (xy 99.951355 48.408499)
 				(xy 99.951362 48.4085) (xy 100.7155 48.4085) (xy 100.783621 48.428502) (xy 100.830114 48.482158)
 				(xy 100.8415 48.5345) (xy 100.8415 48.73986) (xy 100.866806 48.867077) (xy 100.866807 48.86708)
-				(xy 100.90675 48.96351) (xy 100.916445 48.986917) (xy 100.988509 49.094769) (xy 100.988513 49.094773)
-				(xy 102.723023 50.829284) (xy 102.723026 50.829286) (xy 102.723031 50.829291) (xy 102.802015 50.882066)
+				(xy 100.90675 48.96351) (xy 100.916445 48.986917) (xy 100.988509 49.094769) (xy 102.723031 50.829291)
 				(xy 102.830883 50.901355) (xy 102.950723 50.950994) (xy 103.077943 50.9763) (xy 120.028657 50.9763)
 				(xy 120.155877 50.950994) (xy 120.275717 50.901355) (xy 120.383569 50.829291) (xy 122.845654 48.367204)
 				(xy 122.907966 48.33318) (xy 122.934749 48.3303) (xy 122.955287 48.3303) (xy 123.142088 48.290594)

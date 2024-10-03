@@ -6570,7 +6570,7 @@
 		)
 		(uuid "3bb6cb5d-8862-4548-af7b-684d9d8bf0c3")
 	)
-	(hierarchical_label "trig_OUT"
+	(hierarchical_label "TRIG_OUT"
 		(shape input)
 		(at 198.882 180.848 180)
 		(fields_autoplaced yes)

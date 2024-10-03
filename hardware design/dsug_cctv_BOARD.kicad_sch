@@ -7278,12 +7278,6 @@
 		(uuid "236e1d02-82bc-457f-a70f-aaa408d2080f")
 	)
 	(junction
-		(at 80.01 257.81)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "24959129-c4ee-4532-add5-3d72f60e69d8")
-	)
-	(junction
 		(at 364.236 207.264)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -7504,12 +7498,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b8df8030-c701-49d0-b459-90aeba520e19")
-	)
-	(junction
-		(at 93.98 270.51)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c25c803a-47b6-40b3-9bc5-0d01ff60adea")
 	)
 	(junction
 		(at 167.132 258.826)
@@ -8365,16 +8353,6 @@
 	)
 	(wire
 		(pts
-			(xy 80.01 267.97) (xy 80.01 270.51)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2e76cb07-9041-4f18-9508-080842a7274a")
-	)
-	(wire
-		(pts
 			(xy 242.57 107.188) (xy 230.632 107.188)
 		)
 		(stroke
@@ -8382,6 +8360,16 @@
 			(type default)
 		)
 		(uuid "2ef8ca41-7416-462b-9395-8c53903675c1")
+	)
+	(wire
+		(pts
+			(xy 135.89 200.66) (xy 123.19 200.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "30ce0d3a-171e-4f3c-bc66-a0a8f2ac8465")
 	)
 	(wire
 		(pts
@@ -9365,16 +9353,6 @@
 	)
 	(wire
 		(pts
-			(xy 80.01 270.51) (xy 93.98 270.51)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "88156721-f406-4e2e-b07d-a19f6e67d89b")
-	)
-	(wire
-		(pts
 			(xy 293.624 211.328) (xy 293.624 209.296)
 		)
 		(stroke
@@ -9732,6 +9710,16 @@
 			(type default)
 		)
 		(uuid "a2e15e7e-6c6b-4254-8553-c2f67e2450b7")
+	)
+	(wire
+		(pts
+			(xy 135.89 203.2) (xy 135.89 200.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a365d0c4-dd8a-4953-bdb8-e788955dadcc")
 	)
 	(wire
 		(pts
@@ -10645,6 +10633,16 @@
 	)
 	(wire
 		(pts
+			(xy 135.89 214.63) (xy 135.89 210.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e67cb727-3c6f-4675-8b73-c0c495ee44e0")
+	)
+	(wire
+		(pts
 			(xy 143.51 258.826) (xy 155.702 258.826)
 		)
 		(stroke
@@ -10822,16 +10820,6 @@
 			(type default)
 		)
 		(uuid "f28339a9-011b-4f7b-aff1-0ff5f0b46225")
-	)
-	(wire
-		(pts
-			(xy 80.01 257.81) (xy 80.01 260.35)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f2c5e92d-f713-4ed6-a282-360629b89a4c")
 	)
 	(wire
 		(pts
@@ -13291,7 +13279,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized_US")
-		(at 80.01 264.16 0)
+		(at 135.89 207.01 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -13300,7 +13288,7 @@
 		(fields_autoplaced yes)
 		(uuid "32efe6ae-c653-4279-9794-0b683ce33e81")
 		(property "Reference" "C56"
-			(at 83.82 262.2549 0)
+			(at 139.7 205.1049 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13309,7 +13297,7 @@
 			)
 		)
 		(property "Value" "22uF"
-			(at 83.82 264.7949 0)
+			(at 139.7 207.6449 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13318,7 +13306,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm"
-			(at 80.01 264.16 0)
+			(at 135.89 207.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13327,7 +13315,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 80.01 264.16 0)
+			(at 135.89 207.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13336,7 +13324,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 80.01 264.16 0)
+			(at 135.89 207.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15600,6 +15588,73 @@
 			(project "dsug_cctv_BOARD"
 				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
 					(reference "U2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_name "GND_1")
+		(lib_id "power:GND")
+		(at 135.89 214.63 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6b800b6b-a23e-4347-b878-101f84ae99d4")
+		(property "Reference" "#PWR076"
+			(at 135.89 220.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 135.89 219.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 135.89 214.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 135.89 214.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 135.89 214.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a1b7f9f6-17fd-413a-8c0e-9bed8ea7702b")
+		)
+		(instances
+			(project "dsug_cctv_BOARD"
+				(path "/51d56f2e-5cbb-4b7a-b5cc-91fdc3a7308d"
+					(reference "#PWR076")
 					(unit 1)
 				)
 			)
