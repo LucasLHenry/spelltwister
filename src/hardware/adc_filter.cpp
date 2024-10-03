@@ -9,8 +9,6 @@ ADC_Filter::ADC_Filter(uint16_t low, uint16_t high, bool debug) {
         smth_hi = 7;
         filtered_value = 0;
         smooth_amt = smth_hi;
-        max_idx = arr_len - 1;
-        _debug = debug;
     }
 
 
@@ -26,5 +24,5 @@ uint16_t ADC_Filter::get_next(uint64_t input) {
         smooth_amt = smth_lo;
     }
     filtered_value += (upsampled_input - filtered_value) >> smooth_amt;
-    return static_cast<uint16_t>((filtered_value >> (upsample_amt + 4)) << 4);
+    return static_cast<uint16_t>(filtered_value >> upsample_amt);
 }

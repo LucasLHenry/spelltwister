@@ -133,7 +133,7 @@ uint16_t _calibration_do_scale_calibration(Waveformer& wf) {
 }
 
 uint16_t _calibration_calc_vo_scale(uint16_t one_volt, uint16_t three_volts) {
-    return static_cast<uint16_t>((1 << 18) / static_cast<uint32_t>(one_volt - three_volts));
+    return static_cast<uint16_t>((1 << 17) / static_cast<uint32_t>(one_volt - three_volts));
 }
 
 uint16_t _calibration_calc_vo_offset(uint16_t vo_scale, uint16_t zero_volts) {
