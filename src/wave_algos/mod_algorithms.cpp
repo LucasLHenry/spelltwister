@@ -43,8 +43,9 @@ uint16_t rectify(Waveformer& main, Waveformer& aux, Modulator& mod) {
     return static_cast<uint16_t>((val << 1) - max_y);
 }
 
-uint16_t bitcrush(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    return (main.val >> CRUSH_AMT) << CRUSH_AMT;
+uint16_t crosscrush(Waveformer& main, Waveformer& aux, Modulator& mod) {
+    uint16_t crush_amt = static_cast<uint16_t>((static_cast<uint32_t>(aux.val) * (CRUSH_MAX - CRUSH_MIN)) >> 16) + CRUSH_MIN; // should go from CRUSH_MIN to CRUSH_MAX
+    return (main.val >> crush_amt) << crush_amt;
 }
 
 

@@ -29,7 +29,8 @@ static_assert(max_adc == 4095);
 #define TRIG_LED_LENGTH_MS 75
 
 // modulation algorithm settings
-#define CRUSH_AMT 12
+#define CRUSH_MIN 11
+#define CRUSH_MAX 14
 #define FM_ALGO_AMT 8
 #define SRR_AMT 7
 

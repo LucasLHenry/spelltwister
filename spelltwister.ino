@@ -53,7 +53,7 @@ algo_f_ptr algo_arr[16] = {
     sine_pm,                    // single   // good but maybe bumps with CZ101 idea
     sample_rate_reduce,         // single   //
     analog_pulse_pm,            // single   //
-    three_voice_chorus          // single   // 
+    crosscrush                  // double   // good
 };
 
 
