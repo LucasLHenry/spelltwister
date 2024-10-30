@@ -38,22 +38,22 @@ called within loop1(), it is called based on a hardware timer. Therefore, loop1(
 */
 
 algo_f_ptr algo_arr[16] = {
-    rectify,
-    half_freq,
-    double_freq,
-    invert,
-    exclusive_or,
-    difference,
-    sum,
-    frequency_mod,
-    amplitude_mod,
-    gate,
-    shape_mod,
-    ratio_mod,
-    sine_pm,
-    sample_rate_reduce,
-    analog_pulse_pm,
-    three_voice_chorus
+    rectify,                    // single   // similar to double freq for VCO
+    half_freq,                  // single   // good
+    double_freq,                // single   // good
+    invert,                     // single   // good for envelopes
+    exclusive_or,               // double   // really good
+    difference,                 // double   // needed with sum? only relevant for envelopes
+    sum,                        // double   // good
+    frequency_mod,              // double   // good
+    amplitude_mod,              // double   // good
+    gate,                       // double   // meh, but should probably stay
+    shape_mod,                  // double   // good
+    ratio_mod,                  // double   // good
+    sine_pm,                    // single   // good but maybe bumps with CZ101 idea
+    sample_rate_reduce,         // single   //
+    analog_pulse_pm,            // single   //
+    three_voice_chorus          // single   // 
 };
 
 

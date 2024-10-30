@@ -30,7 +30,7 @@ static_assert(max_adc == 4095);
 
 // modulation algorithm settings
 #define CRUSH_AMT 12
-#define FM_ALGO_AMT 10
-#define SRR_AMT 1
+#define FM_ALGO_AMT 8
+#define SRR_AMT 7
 
 #endif
