@@ -5,6 +5,7 @@
 #include "../classes/NVMWrapper/nvm_wrapper.h"
 #include "pins.h"
 #include "../tables/colours.h"
+#include "../tables/phasors.h"
 
 #ifndef CALIBRATION_H
 #define CALIBRATION_H
