@@ -18,7 +18,7 @@ void Modulator::generate() {
         val = 0;
         xfade_mode == OFF;
     } else {
-        incoming_idx = (is_a)? algo_ring.a_idx : algo_ring.b_idx;
+        if (xfade_mode == OFF) incoming_idx = (is_a)? algo_ring.a_idx : algo_ring.b_idx;
 
         val = ring_algos[_idx](_main, _aux, *this) >> (fade_amt >> 2);
 
@@ -27,14 +27,15 @@ void Modulator::generate() {
             fade_amt = 0;
         } else if (xfade_mode == XFADE_DOWN) {
             fade_amt++;
-            if (fade_amt == xfade_len) {  // end of xfade_down
+            if (fade_amt >= xfade_len) {  // end of xfade_down
                 xfade_mode == XFADE_UP;
                 _idx = incoming_idx;  // switch to new algo
             }
         } else if (xfade_mode == XFADE_UP) {
             fade_amt--;
-            if (fade_amt == 0) {  // end of xfade_up
+            if (fade_amt <= 0) {  // end of xfade_up
                 xfade_mode == OFF;
+                _idx = incoming_idx;
             }
         }
     }
