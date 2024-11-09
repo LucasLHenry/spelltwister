@@ -22,7 +22,7 @@ class Modulator {
     algo_f_ptr* ring_algos;
     bool is_a;
     uint16_t incoming_idx, _idx;
-    uint16_t fade_amt;
+    uint16_t xfade_amt;
     uint16_t xfade_len;
     XFadeMode xfade_mode;
     public:
