@@ -87,13 +87,37 @@ uint16_t Waveformer::calc_ratio() {
     return rat_filter.get_next(CLIP(calibrated_pot + calibrated_cv, 0, max_adc)) >> 1;
 }
 
+// follows format {multiply by, divide by}
+int16_t follow_intervals[8][2] = {
+    {1, 1},     // unity
+    {6, 5},     // minor third
+    {5, 4},     // major third
+    {4, 3},     // perfect fourth
+    {3, 2},     // perfect fifth
+    {9, 5},     // minor seventh
+    {2, 1},     // octave
+    {4, 1},     // two octaves
+};
+
 uint32_t Waveformer::calc_phasor() {
-    if (!is_a && follow) return _other->core.pha;
     int16_t calibrated_lin = (raw_vals.fm - configs.fm_offset) / FM_ATTENUATION;
     uint16_t filtered_val = pitch_filter.get_next(raw_vals.pitch);
 
     int32_t calibrated_exp = configs.vo_offset - ((filtered_val * configs.vo_scale) >> 8);
     uint16_t processed_val = CLIP(calibrated_exp + calibrated_lin, 0, max_adc);
+
+    if (!is_a && follow) {
+        uint16_t ratio_idx = processed_val >> 9;  // 0-4095 -> 0-7
+        uint16_t multiplier = follow_intervals[ratio_idx][0];
+        uint16_t divider = follow_intervals[ratio_idx][1];
+        uint64_t mult_phasor = static_cast<uint64_t>(_other->core.pha) * multiplier;
+        mult_phasor /= divider;
+        if (mult_phasor > max_pha) {
+            return _other->core.pha;
+        } else {
+            return mult_phasor;
+        }
+    }
 
     if (mode == VCO) return phasor_table[processed_val];
     else return slow_phasor_table[processed_val];
