@@ -105,8 +105,7 @@ void setup() {
 
 void loop() {
     if (save_mod_pos_flag) {
-        leds.fill(mix_colour);
-        leds.show();
+        blink(leds, mix_colour, 50, 300);
         nvm.set_mod_pos(true, ring.a_idx_wo_cv);
         nvm.set_mod_pos(false, ring.b_idx_wo_cv);
         nvm.save_mod_pos();
