@@ -109,7 +109,7 @@ void loop() {
         leds.show();
         nvm.set_mod_pos(true, ring.a_idx_wo_cv);
         nvm.set_mod_pos(false, ring.b_idx_wo_cv);
-        nvm.save_config_data();
+        nvm.save_mod_pos();
         pwm_set_enabled(a_pwm_slice, true);
         pwm_set_enabled(b_pwm_slice, true);
         save_mod_pos_flag = false;
