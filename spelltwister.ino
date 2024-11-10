@@ -70,15 +70,13 @@ Modulator mod_b(b, a, ring, algo_arr);
 
 NVMWrapper nvm;
 
-// called when the follow button is pressed
-void follow_ISR() {
-    b.follow = !b.follow;
-    if (b.follow) {
-        b.core.set(a.core);
-    }
-}
-
+bool save_mod_pos_flag;
+uint16_t a_pwm_slice, b_pwm_slice;
+void write_other_leds();
+void encoder_long_press_handler();
+void follow_ISR();
 bool calibrating = false;
+
 void setup() {
     analogReadResolution(BITS_ADC);
     Serial.begin(9600);
@@ -87,6 +85,8 @@ void setup() {
     a.init(&b);
     b.init(&a);
     nvm = NVMWrapper();
+    ring.btn.attachLongPressStart(encoder_long_press_handler);
+    ring.btn.setPressMs(3000);
     ring.begin(nvm.get_mod_pos(true), nvm.get_mod_pos(false));
     a.configs = nvm.get_config_data(true);
     b.configs = nvm.get_config_data(false);
@@ -101,15 +101,19 @@ void setup() {
     }
 
     follow_btn.attachClick(follow_ISR);
-
 }
 
-void write_other_leds();
-
-
-uint64_t loop_counter, runtime_s;
-bool save_mod_pos_flag;
 void loop() {
+    if (save_mod_pos_flag) {
+        leds.fill(mix_colour);
+        leds.show();
+        nvm.set_mod_pos(true, ring.a_idx_wo_cv);
+        nvm.set_mod_pos(false, ring.b_idx_wo_cv);
+        nvm.save_config_data();
+        pwm_set_enabled(a_pwm_slice, true);
+        pwm_set_enabled(b_pwm_slice, true);
+        save_mod_pos_flag = false;
+    }
     // read inputs
     a.read();
     b.read();
@@ -119,16 +123,6 @@ void loop() {
     ring.write_leds(leds);
     write_other_leds();
     leds.show();
-
-    loop_counter++;
-    if (loop_counter % LOOPS_PER_SEC == 0) {
-        runtime_s++;
-        if (runtime_s % 20 == 0) {
-            nvm.set_mod_pos(true, ring.a_idx_wo_cv);
-            nvm.set_mod_pos(false, ring.b_idx_wo_cv);
-            save_mod_pos_flag = true;
-        }
-    }
 }
 
 repeating_timer_t pwm_timer;
@@ -149,8 +143,8 @@ void setup1() {
     constexpr uint16_t max_val = (1 << BIT_DEPTH) - 1;
     constexpr uint32_t pwm_freq = CLOCK_FREQ / max_val;
 
-    setup_pwm_pins(PRI_OUT_A, SEC_OUT_A, max_val);
-    setup_pwm_pins(PRI_OUT_B, SEC_OUT_B, max_val);
+    a_pwm_slice = setup_pwm_pins(PRI_OUT_A, SEC_OUT_A, max_val);
+    b_pwm_slice = setup_pwm_pins(PRI_OUT_B, SEC_OUT_B, max_val);
 
     pinMode(TRIG_OUT_A, OUTPUT);
     pinMode(TRIG_OUT_B, OUTPUT);
@@ -165,13 +159,7 @@ void setup1() {
     attachInterrupt(digitalPinToInterrupt(SIG_IN_B), b_sync_ISR, FALLING);
 }
 
-void loop1() {
-    // have to do this from core 1 so that the outputs don't drop out
-    if (save_mod_pos_flag) {
-        nvm.save_mod_pos();
-        save_mod_pos_flag = false;
-    }
-}
+void loop1() {}
 
 bool PwmTimerHandler(repeating_timer_t* rt) {
     if (calibrating) return true;
@@ -224,4 +212,19 @@ void write_other_leds() {
 
     // write follow LED
     leds.setPixelColor(FLW_LED, (b.follow)? mix_colour : black);
+}
+
+// responsible for running saving code
+void encoder_long_press_handler() {
+    save_mod_pos_flag = true;
+    pwm_set_enabled(a_pwm_slice, false);
+    pwm_set_enabled(b_pwm_slice, false);
+}
+
+// called when the follow button is pressed
+void follow_ISR() {
+    b.follow = !b.follow;
+    if (b.follow) {
+        b.core.set(a.core);
+    }
 }
