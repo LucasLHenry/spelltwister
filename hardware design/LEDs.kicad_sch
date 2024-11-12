@@ -1630,7 +1630,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 89.154 60.706 0)
 			(effects
 				(font
@@ -1837,7 +1837,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 133.35 103.632 0)
 			(effects
 				(font
@@ -2180,7 +2180,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 110.998 103.632 0)
 			(effects
 				(font
@@ -2321,7 +2321,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 201.168 147.574 0)
 			(effects
 				(font
@@ -2664,7 +2664,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 178.308 147.574 0)
 			(effects
 				(font
@@ -2871,7 +2871,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 179.324 60.706 0)
 			(effects
 				(font
@@ -3144,7 +3144,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 223.52 103.632 0)
 			(effects
 				(font
@@ -3219,7 +3219,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 133.35 147.574 0)
 			(effects
 				(font
@@ -3492,7 +3492,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 89.154 147.574 0)
 			(effects
 				(font
@@ -3835,7 +3835,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 201.168 103.632 0)
 			(effects
 				(font
@@ -4504,7 +4504,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 156.972 60.706 0)
 			(effects
 				(font
@@ -4579,7 +4579,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 178.562 103.632 0)
 			(effects
 				(font
@@ -5248,7 +5248,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 66.04 103.632 0)
 			(effects
 				(font
@@ -5389,7 +5389,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 88.392 103.632 0)
 			(effects
 				(font
@@ -5596,7 +5596,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 111.76 60.706 0)
 			(effects
 				(font
@@ -5671,7 +5671,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 134.112 60.706 0)
 			(effects
 				(font
@@ -5878,7 +5878,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 66.802 147.574 0)
 			(effects
 				(font
@@ -5953,7 +5953,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 201.93 60.706 0)
 			(effects
 				(font
@@ -6028,7 +6028,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 66.802 60.706 0)
 			(effects
 				(font
@@ -6103,7 +6103,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 111.76 147.574 0)
 			(effects
 				(font
@@ -6376,7 +6376,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 156.21 103.632 0)
 			(effects
 				(font
@@ -6451,7 +6451,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 155.702 147.574 0)
 			(effects
 				(font
@@ -6526,7 +6526,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SK6812MINIE"
+		(property "Footprint" "benjiaomodular:SK6812MINIE"
 			(at 224.282 60.706 0)
 			(effects
 				(font

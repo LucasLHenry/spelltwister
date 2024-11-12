@@ -6916,7 +6916,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:Potentiometer_RV09_6mm_knob"
+		(property "Footprint" "benjiaomodular:Potentiometer_RV09_6mm_knob"
 			(at 65.024 246.888 0)
 			(effects
 				(font
@@ -6992,7 +6992,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SPDT_P2.54mm_Vertical"
+		(property "Footprint" "benjiaomodular:SPDT_P2.54mm_Vertical"
 			(at 110.998 154.686 0)
 			(effects
 				(font
@@ -7465,7 +7465,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "EURORACK:AudioJack_3.5mm_with_drawing"
+		(property "Footprint" "benjiaomodular:AudioJack_3.5mm_with_drawing"
 			(at 26.162 161.29 0)
 			(effects
 				(font
@@ -9186,7 +9186,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "EURORACK:Potentiometer_RV09_talltrimmer"
+		(property "Footprint" "benjiaomodular:Potentiometer_RV09_talltrimmer"
 			(at 42.418 107.188 0)
 			(effects
 				(font
@@ -10445,7 +10445,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "EURORACK:AudioJack_3.5mm_with_drawing"
+		(property "Footprint" "benjiaomodular:AudioJack_3.5mm_with_drawing"
 			(at 40.894 258.318 0)
 			(effects
 				(font
@@ -10523,7 +10523,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "EURORACK:AudioJack_3.5mm_with_drawing"
+		(property "Footprint" "benjiaomodular:AudioJack_3.5mm_with_drawing"
 			(at 24.638 102.108 0)
 			(effects
 				(font
@@ -10601,7 +10601,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "EURORACK:AudioJack_3.5mm_with_drawing"
+		(property "Footprint" "benjiaomodular:AudioJack_3.5mm_with_drawing"
 			(at 290.068 181.102 0)
 			(effects
 				(font
@@ -11713,7 +11713,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "EURORACK:Potentiometer_RV09_talltrimmer"
+		(property "Footprint" "benjiaomodular:Potentiometer_RV09_talltrimmer"
 			(at 307.848 186.182 0)
 			(effects
 				(font
@@ -12508,7 +12508,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "EURORACK:AudioJack_3.5mm_with_drawing"
+		(property "Footprint" "benjiaomodular:AudioJack_3.5mm_with_drawing"
 			(at 343.154 54.102 0)
 			(effects
 				(font
@@ -12729,7 +12729,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "EURORACK:Potentiometer_RV09_6mm_knob"
+		(property "Footprint" "benjiaomodular:Potentiometer_RV09_6mm_knob"
 			(at 127 29.21 0)
 			(effects
 				(font
@@ -13059,7 +13059,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "EURORACK:AudioJack_3.5mm_with_drawing"
+		(property "Footprint" "benjiaomodular:AudioJack_3.5mm_with_drawing"
 			(at 24.384 47.498 0)
 			(effects
 				(font
@@ -13859,7 +13859,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "EURORACK:AudioJack_3.5mm_with_drawing"
+		(property "Footprint" "benjiaomodular:AudioJack_3.5mm_with_drawing"
 			(at 188.976 256.032 0)
 			(effects
 				(font
@@ -14614,7 +14614,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "EURORACK:Potentiometer_RV09_talltrimmer"
+		(property "Footprint" "benjiaomodular:Potentiometer_RV09_talltrimmer"
 			(at 42.164 52.578 0)
 			(effects
 				(font
@@ -17147,7 +17147,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "EURORACK:Potentiometer_RV09_6mm_knob"
+		(property "Footprint" "benjiaomodular:Potentiometer_RV09_6mm_knob"
 			(at 127 85.09 0)
 			(effects
 				(font
@@ -17294,7 +17294,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:Potentiometer_RV09_talltrimmer"
+		(property "Footprint" "benjiaomodular:Potentiometer_RV09_talltrimmer"
 			(at 65.024 221.488 0)
 			(effects
 				(font
@@ -17656,7 +17656,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "EURORACK:AudioJack_3.5mm_with_drawing"
+		(property "Footprint" "benjiaomodular:AudioJack_3.5mm_with_drawing"
 			(at 342.9 115.824 0)
 			(effects
 				(font
@@ -17733,7 +17733,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "EURORACK:AudioJack_3.5mm_with_drawing"
+		(property "Footprint" "benjiaomodular:AudioJack_3.5mm_with_drawing"
 			(at 251.206 172.72 0)
 			(effects
 				(font

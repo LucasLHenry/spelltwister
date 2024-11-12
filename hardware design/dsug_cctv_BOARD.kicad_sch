@@ -11930,7 +11930,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:RotaryEncoder_Switch_Vertical_H20mm_20mm_knob"
+		(property "Footprint" "benjiaomodular:RotaryEncoder_Switch_Vertical_H20mm_20mm_knob"
 			(at 45.974 77.47 0)
 			(effects
 				(font
@@ -13120,7 +13120,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:push_switch_5.1x5.1"
+		(property "Footprint" "benjiaomodular:push_switch_5.1x5.1"
 			(at 204.978 55.372 0)
 			(effects
 				(font
@@ -14928,7 +14928,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:ABM8-272-T3_ABR"
+		(property "Footprint" "benjiaomodular:ABM8-272-T3_ABR"
 			(at 366.014 103.124 0)
 			(effects
 				(font
@@ -15068,7 +15068,7 @@
 				)
 			)
 		)
-		(property "Footprint" "EURORACK:SW_PUSH_6mm"
+		(property "Footprint" "benjiaomodular:SW_PUSH_6mm"
 			(at 41.91 115.316 0)
 			(effects
 				(font
@@ -16551,7 +16551,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-353_SC-70-5"
 			(at 67.31 35.56 0)
 			(effects
 				(font
