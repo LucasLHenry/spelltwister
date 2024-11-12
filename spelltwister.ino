@@ -1,8 +1,7 @@
 /*
 Developed by Lucas Henry, May 2024
 
-This file is meant to be as readable as possible, showing only high-level logic. All of the meat of this
-project is within the src directory, so dig into that to do your hacking.
+The main entry point file for the firmware, showing high-level logic.
 */
 
 #include <Arduino.h>
@@ -22,21 +21,8 @@ project is within the src directory, so dig into that to do your hacking.
 #include "src/tables/colours.h"
 
 
-/*
-RP2040 is a dual core processor. These cores are referred to as c0 and c1. c0 calls setup() and loop(),
-while c1 calls setup1() and loop1(). In this implementation, the two cores are configured to perform 
-different tasks. 
-
-c0 handles non time-critical input sensing, which is pretty much every input except
-for trig/sync in. It does so by reading from the ADCs in the loop() function, and updating the correct
-values in the global variables. 
-
-c1 is responsible for all of the time-critical applications, which means generating waveforms and handling
-trig/sync in. Waveform samples are generated at approximately 48kHz, using a PWM carrier waveform of ~60kHz
-with an output bit depth of 11 (range of 0 to 2047). Because of this, the sample generation function is not
-called within loop1(), it is called based on a hardware timer. Therefore, loop1() is completely empty.
-*/
-
+// --- SELECTED RING ALGORITHMS ---
+// on the front panel, runs clockwise starting at the bottom
 algo_f_ptr algo_arr[16] = {
     rectify,                    // single   // similar to double freq for VCO
     half_freq,                  // single   // good
@@ -56,27 +42,34 @@ algo_f_ptr algo_arr[16] = {
     crosscrush                  // double   // good
 };
 
-
-int8_t led_pins[8] = LED_DATA;
+// --- GLOBAL VARIABLES ---
+int8_t led_pins[8] = LED_DATA;  // pin setup for led strip
 Adafruit_NeoPXL8 leds(NUM_LEDS, led_pins, NEO_GRB);  // led strip controller
 LedRing ring(ALGO_ENC_1, ALGO_ENC_2, ALGO_BTN);  // algorithm ring controller
 LedRing* _LEDRING = &ring; // used for internal ISR stuff
-OneButton follow_btn(FLW_BTN, false, false);  // button in center
+OneButton follow_btn(FLW_BTN, false, false);  // follow button
 
-Waveformer a(true,  MUX_A, LIN_TIME_A);
-Waveformer b(false, MUX_B, LIN_TIME_B);
-Modulator mod_a(a, b, ring, algo_arr);
-Modulator mod_b(b, a, ring, algo_arr);
+Waveformer a(true,  MUX_A, LIN_TIME_A);  // left side waveform generator
+Waveformer b(false, MUX_B, LIN_TIME_B);  // right side waveform generator
+Modulator mod_a(a, b, ring, algo_arr);  // left side waveform modulator
+Modulator mod_b(b, a, ring, algo_arr);  // right side waveform modulator
 
-NVMWrapper nvm;
+NVMWrapper nvm;  // interface for loading/storing config data
 
-bool save_mod_pos_flag;
-uint16_t a_pwm_slice, b_pwm_slice;
-void write_other_leds();
-void encoder_long_press_handler();
+bool save_mod_pos_flag;  // flag raised when user triggers encoder position save
+uint16_t a_pwm_slice, b_pwm_slice;  // hardware PWM slices allocated to A and B
+bool calibrating = false;  // indicates code is in a calibration state
+repeating_timer_t pwm_timer;
+
+// --- FORWARD DECLARATIONS ---
+void encoder_long_press_ISR();
 void follow_ISR();
-bool calibrating = false;
+bool pwm_timer_ISR(repeating_timer_t* rt);
+void a_sync_ISR();
+void b_sync_ISR();
+void write_other_leds();
 
+// --- CORE 0 SETUP/LOOP ---
 void setup() {
     analogReadResolution(BITS_ADC);
     Serial.begin(9600);
@@ -85,7 +78,7 @@ void setup() {
     a.init(&b);
     b.init(&a);
     nvm = NVMWrapper();
-    ring.btn.attachLongPressStart(encoder_long_press_handler);
+    ring.btn.attachLongPressStart(encoder_long_press_ISR);
     ring.btn.setPressMs(3000);
     ring.begin(nvm.get_mod_pos(true), nvm.get_mod_pos(false));
     a.configs = nvm.get_config_data(true);
@@ -104,6 +97,7 @@ void setup() {
 }
 
 void loop() {
+    // save state if triggered
     if (save_mod_pos_flag) {
         blink(leds, mix_colour, 50, 300);
         nvm.set_mod_pos(true, ring.a_idx_wo_cv);
@@ -113,45 +107,33 @@ void loop() {
         pwm_set_enabled(b_pwm_slice, true);
         save_mod_pos_flag = false;
     }
+
     // read inputs
     a.read();
     b.read();
     follow_btn.tick();
 
+    // write and push leds
     ring.update(a.mod_idx, b.mod_idx);
     ring.write_leds(leds);
     write_other_leds();
     leds.show();
 }
 
-repeating_timer_t pwm_timer;
-bool PwmTimerHandler(repeating_timer_t* rt);
 
-void a_sync_ISR() {
-    a.reset();
-    a.running = true;
-}
-
-void b_sync_ISR() {
-    b.reset();
-    b.running = true;
-}
-
+// --- CORE 1 SETUP/LOOP ---
 void setup1() {
-    // setup outputs!
+    // setup outputs
     constexpr uint16_t max_val = (1 << BIT_DEPTH) - 1;
-    constexpr uint32_t pwm_freq = CLOCK_FREQ / max_val;
-
     a_pwm_slice = setup_pwm_pins(PRI_OUT_A, SEC_OUT_A, max_val);
     b_pwm_slice = setup_pwm_pins(PRI_OUT_B, SEC_OUT_B, max_val);
-
     pinMode(TRIG_OUT_A, OUTPUT);
     pinMode(TRIG_OUT_B, OUTPUT);
 
     // timer setup
-    int64_t timer_period_us = - (1000 / PWM_FREQ_kHz);
+    int64_t timer_period_us = - (1000 / PWM_FREQ_kHz);  // negative means include execution time in period
     alarm_pool_t* pool = alarm_pool_create(0, 1);
-    alarm_pool_add_repeating_timer_us(pool, timer_period_us, PwmTimerHandler, NULL, &pwm_timer);
+    alarm_pool_add_repeating_timer_us(pool, timer_period_us, pwm_timer_ISR, NULL, &pwm_timer);
 
     // interrupt setup
     attachInterrupt(digitalPinToInterrupt(SIG_IN_A), a_sync_ISR, FALLING);
@@ -160,17 +142,22 @@ void setup1() {
 
 void loop1() {}
 
-bool PwmTimerHandler(repeating_timer_t* rt) {
-    if (calibrating) return true;
 
+// --- OTHER FUNCTIONS ---
+bool pwm_timer_ISR(repeating_timer_t* rt) {
+    if (calibrating) return true;
+    // increment phasors etc.
     a.update();
     b.update();
 
+    // create new outputs
     a.generate();
     b.generate();
     mod_a.generate();
     mod_b.generate();
-    // subtract max_x to account for output filter inversion
+
+    // push new values to outputs
+    // subtract max_x to account for filter signal inversion
     pwm_set_gpio_level(PRI_OUT_A, max_x - (a.val >> bit_diff));
     pwm_set_gpio_level(PRI_OUT_B, max_x - (b.val >> bit_diff));
     pwm_set_gpio_level(SEC_OUT_A, max_x - (mod_a.val >> bit_diff));
@@ -183,6 +170,7 @@ bool PwmTimerHandler(repeating_timer_t* rt) {
 void write_other_leds() {
     uint8_t a_brightness, a_mod_brightness, b_brightness, b_mod_brightness;
 
+    // envelopes are unipolar while LFO and VCO are bipolar, so change the way the LED behaves.
     if (a.mode == ENV) {
         a_brightness = (a.val - half_y) >> 7;
         a_mod_brightness = (mod_a.val - half_y) >> 7;
@@ -213,8 +201,8 @@ void write_other_leds() {
     leds.setPixelColor(FLW_LED, (b.follow)? mix_colour : black);
 }
 
-// responsible for running saving code
-void encoder_long_press_handler() {
+// responsible for triggering saving code
+void encoder_long_press_ISR() {
     save_mod_pos_flag = true;
     pwm_set_enabled(a_pwm_slice, false);
     pwm_set_enabled(b_pwm_slice, false);
@@ -226,4 +214,16 @@ void follow_ISR() {
     if (b.follow) {
         b.core.set(a.core);
     }
+}
+
+// called when rising input trigger detected on A sync
+void a_sync_ISR() {
+    a.reset();
+    a.running = true;
+}
+
+// called when rising input trigger detected on B sync
+void b_sync_ISR() {
+    b.reset();
+    b.running = true;
 }
