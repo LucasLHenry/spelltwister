@@ -12,8 +12,7 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
     pitch_filter(50, 200, is_A),
     rat_filter  (45, 200, false),
     shp_filter  (45, 200, false),
-    algo_filter (45, 200, false),
-    core(21) // acc is 32b, 32-21 = 11b → 0-2047 range
+    core(21) // acc is 32b, 32-21 = 11b -> 0-2047 range
 {
     if (is_a) {
         mux_sigs = A_mux_sigs;
@@ -25,11 +24,11 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
 }
 
 void Waveformer::init(Waveformer* other) {
-    core.pha = 200 * HZPHASOR;
+    core.pha = 200 * hz_phasor;
     rat = 1023;
     shp = 511;
-    uslp = calc_upslope(1023);
-    dslp = calc_downslope(1023);
+    uslp = calc_upslope(rat);
+    dslp = calc_downslope(rat);
     algo_read.setAnalogResolution(max_adc + 1);
     mode = VCO;
     running = true;
@@ -107,7 +106,7 @@ uint32_t Waveformer::calc_phasor() {
     uint16_t processed_val = CLIP(calibrated_exp + calibrated_lin, 0, max_adc);
 
     if (!is_a && follow) {
-        uint16_t ratio_idx = processed_val >> 9;  // 0-4095 -> 0-7
+        uint16_t ratio_idx = processed_val >> 9;
         uint16_t multiplier = follow_intervals[ratio_idx][0];
         uint16_t divider = follow_intervals[ratio_idx][1];
         uint64_t mult_phasor = static_cast<uint64_t>(_other->core.pha) * multiplier;
@@ -140,7 +139,6 @@ Mode Waveformer::get_mode() {
 }
 
 int8_t Waveformer::calc_mod_idx() {
-    // uint16_t _cv = algo_filter.get_next(raw_vals.algo_mod) >> 8;
     algo_read.update(raw_vals.algo_mod);
     uint16_t _cv = algo_read.getValue() >> 8;
     uint16_t _offset = configs.mod_offset >> 8;

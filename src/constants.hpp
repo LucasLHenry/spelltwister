@@ -3,7 +3,6 @@
 #ifndef CONSTANTS_HPP
 #define CONSTANTS_HPP
 
-#define HZPHASOR 98113
 #define BITS_X 11
 #define BITS_Y 16
 constexpr uint16_t max_x = (1 << BITS_X) - 1;
@@ -23,7 +22,6 @@ static_assert(max_adc == 4095);
 #define LOOPS_PER_SEC 1018
 
 #define FM_ATTENUATION 8
-#define FM_AMT_TO_PHA 9811300
 
 #define TRIG_LENGTH_MS 0.25
 #define TRIG_LED_LENGTH_MS 75

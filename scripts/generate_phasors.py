@@ -12,7 +12,7 @@ max_lfo_env_period_s = 10
 adc_bits = 12
 arr_len = 2 ** adc_bits
 voltage_max = 7
-hz_phasor = 94472  # phasor that corresponds to 1Hz freq
+hz_phasor = 92291  # phasor that corresponds to 1Hz freq
 
 path_to_tables = "/src/tables/"
 file_name = "phasors.h"
@@ -32,6 +32,7 @@ def main():
     with open(file_path, 'w') as f:
         f.write(file_header)
         min_vco_phasor, max_vco_phasor = vco_phasor_writer(f)
+        f.write(f"const uint32_t hz_phasor = {hz_phasor};\n")
         f.write(f"const uint32_t min_pha = {min_vco_phasor};\n")
         f.write(f"const uint32_t max_pha = {max_vco_phasor};\n")
         min_slow_phasor, max_slow_phasor = lfo_env_phasor_writer(f)

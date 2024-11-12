@@ -39,16 +39,35 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, NVMWr
     b_configs.vo_scale  = _calibration_calc_vo_scale(b_val_1v, b_val_3v);
     b_configs.vo_offset = _calibration_calc_vo_offset(b_configs.vo_scale, b_configs.vo_offset);
 
-    // Serial.println("A CONFIGS");
-    // print_config_data(a_configs);
-    // Serial.println("B CONFIGS");
-    // print_config_data(a_configs);
-
     a.configs = a_configs;
     b.configs = b_configs;
     nvm.set_config_data(true, a_configs);
     nvm.set_config_data(false, b_configs);
     nvm.save_config_data();
+}
+
+void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf) {
+    AllInputs zero_vals = wf.get_all(32);
+    conf.vo_offset = zero_vals.pitch;
+    conf.fm_offset = zero_vals.fm;
+    conf.shp_cv_offset = zero_vals.shape_cv;
+    conf.rat_cv_offset = zero_vals.ratio_cv;
+    conf.shp_pot_offset = zero_vals.shape_pot;
+    conf.rat_pot_offset = zero_vals.ratio_pot;
+    conf.mod_offset = zero_vals.algo_mod;
+}
+
+uint16_t _calibration_do_scale_calibration(Waveformer& wf) {
+    AllInputs vals = wf.get_all(32);
+    return vals.pitch;
+}
+
+uint16_t _calibration_calc_vo_scale(uint16_t one_volt, uint16_t three_volts) {
+    return static_cast<uint16_t>((scale_factor) / static_cast<uint32_t>(one_volt - three_volts));
+}
+
+uint16_t _calibration_calc_vo_offset(uint16_t vo_scale, uint16_t zero_volts) {
+    return (zero_volts * vo_scale) >> 8;
 }
 
 void _calibration_wait_for_click(Adafruit_NeoPXL8& leds) {
@@ -57,6 +76,18 @@ void _calibration_wait_for_click(Adafruit_NeoPXL8& leds) {
         _blink_led_non_blocking(leds, FLW_LED, mix_colour, 500);
     }
     delay(500);
+}
+
+void _blink_led_non_blocking(Adafruit_NeoPXL8& leds, int led_num, uint32_t colour, uint64_t interval_ms) {
+    static uint64_t _previous_ms, _current_ms;
+    static bool _led_state;
+    _current_ms = millis();
+    if (_current_ms - _previous_ms >= interval_ms) {
+        _led_state = !_led_state;
+        _previous_ms = _current_ms;
+        leds.setPixelColor(led_num, (_led_state)? colour : black);
+        leds.show();
+    }
 }
 
 void _calibration_display_module_leds(Adafruit_NeoPXL8& leds, bool is_a, _Step step) {
@@ -113,42 +144,5 @@ void _calibration_display_startup_leds(Adafruit_NeoPXL8& leds) {
             leds.show();
             delay(75);
         }
-    }
-}
-
-void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf) {
-    AllInputs zero_vals = wf.get_all(16);
-    conf.vo_offset = zero_vals.pitch;
-    conf.fm_offset = zero_vals.fm;
-    conf.shp_cv_offset = zero_vals.shape_cv;
-    conf.rat_cv_offset = zero_vals.ratio_cv;
-    conf.shp_pot_offset = zero_vals.shape_pot;
-    conf.rat_pot_offset = zero_vals.ratio_pot;
-    conf.mod_offset = zero_vals.algo_mod;
-}
-
-uint16_t _calibration_do_scale_calibration(Waveformer& wf) {
-    AllInputs vals = wf.get_all(16);
-    return vals.pitch;
-}
-
-uint16_t _calibration_calc_vo_scale(uint16_t one_volt, uint16_t three_volts) {
-    return static_cast<uint16_t>((scale_factor) / static_cast<uint32_t>(one_volt - three_volts));
-}
-
-uint16_t _calibration_calc_vo_offset(uint16_t vo_scale, uint16_t zero_volts) {
-    return (zero_volts * vo_scale) >> 8;
-}
-
-
-void _blink_led_non_blocking(Adafruit_NeoPXL8& leds, int led_num, uint32_t colour, uint64_t interval_ms) {
-    static uint64_t _previous_ms, _current_ms;
-    static bool _led_state;
-    _current_ms = millis();
-    if (_current_ms - _previous_ms >= interval_ms) {
-        _led_state = !_led_state;
-        _previous_ms = _current_ms;
-        leds.setPixelColor(led_num, (_led_state)? colour : black);
-        leds.show();
     }
 }
