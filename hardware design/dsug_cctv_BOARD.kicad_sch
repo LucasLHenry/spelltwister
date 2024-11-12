@@ -7284,12 +7284,6 @@
 		(uuid "27b4aff1-ebf8-435f-950b-9da49d8d3e44")
 	)
 	(junction
-		(at 99.06 200.66)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2c802d4e-7033-4304-a581-fcb03d2f257a")
-	)
-	(junction
 		(at 199.898 258.826)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -7414,6 +7408,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7f40fab2-6b53-417a-9ebe-400e552718c7")
+	)
+	(junction
+		(at 99.06 190.5)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "831b5b34-b47c-4a4b-adaa-1f985f58a0f4")
 	)
 	(junction
 		(at 107.95 257.81)
@@ -9623,16 +9623,6 @@
 	)
 	(wire
 		(pts
-			(xy 99.06 190.5) (xy 99.06 191.77)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9ceb49b0-b182-4768-8f34-5d025fe19230")
-	)
-	(wire
-		(pts
 			(xy 198.374 60.452) (xy 199.898 60.452)
 		)
 		(stroke
@@ -9710,6 +9700,16 @@
 			(type default)
 		)
 		(uuid "a2e15e7e-6c6b-4254-8553-c2f67e2450b7")
+	)
+	(wire
+		(pts
+			(xy 99.06 199.39) (xy 99.06 200.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a35465a5-fa46-473a-98a3-e50783ff86a5")
 	)
 	(wire
 		(pts
@@ -9903,7 +9903,7 @@
 	)
 	(wire
 		(pts
-			(xy 99.06 200.66) (xy 107.95 200.66)
+			(xy 99.06 190.5) (xy 107.95 190.5)
 		)
 		(stroke
 			(width 0)
@@ -10383,6 +10383,16 @@
 	)
 	(wire
 		(pts
+			(xy 118.11 190.5) (xy 118.11 200.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d807606f-7a9b-4a95-a2ae-c1fbbebf9914")
+	)
+	(wire
+		(pts
 			(xy 184.912 175.006) (xy 205.232 175.006)
 		)
 		(stroke
@@ -10540,16 +10550,6 @@
 			(type default)
 		)
 		(uuid "e09e64fe-7f1a-49ff-a379-5c16fa3c265a")
-	)
-	(wire
-		(pts
-			(xy 99.06 199.39) (xy 99.06 200.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e1f5f594-0f04-4d58-9eda-725d29288a5d")
 	)
 	(wire
 		(pts
@@ -10823,7 +10823,7 @@
 	)
 	(wire
 		(pts
-			(xy 118.11 200.66) (xy 115.57 200.66)
+			(xy 118.11 190.5) (xy 115.57 190.5)
 		)
 		(stroke
 			(width 0)
@@ -10860,6 +10860,16 @@
 			(type default)
 		)
 		(uuid "f5678c3b-e68e-4d2f-a198-aaed99b279b3")
+	)
+	(wire
+		(pts
+			(xy 99.06 190.5) (xy 99.06 191.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f6106342-37e3-4a8c-b449-e283b28a7824")
 	)
 	(wire
 		(pts
@@ -13894,7 +13904,7 @@
 	)
 	(symbol
 		(lib_id "Device:L")
-		(at 111.76 200.66 90)
+		(at 111.76 190.5 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -13903,7 +13913,7 @@
 		(fields_autoplaced yes)
 		(uuid "4ad66092-4234-45d7-ac1d-1c53bde84b71")
 		(property "Reference" "L1"
-			(at 111.76 195.58 90)
+			(at 111.76 185.42 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13911,7 +13921,7 @@
 			)
 		)
 		(property "Value" "4.7uH"
-			(at 111.76 198.12 90)
+			(at 111.76 187.96 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13919,7 +13929,7 @@
 			)
 		)
 		(property "Footprint" "User_Footprints:L_TaiTech_HPC3010TF-4R7M"
-			(at 111.76 200.66 0)
+			(at 111.76 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13928,7 +13938,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 111.76 200.66 0)
+			(at 111.76 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13937,7 +13947,7 @@
 			)
 		)
 		(property "Description" "Inductor"
-			(at 111.76 200.66 0)
+			(at 111.76 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
