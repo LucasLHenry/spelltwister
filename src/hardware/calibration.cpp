@@ -47,7 +47,7 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, NVMWr
 }
 
 void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf) {
-    AllInputs zero_vals = wf.get_all(32);
+    AllInputs zero_vals = wf.get_all(16);
     conf.vo_offset = zero_vals.pitch;
     conf.fm_offset = zero_vals.fm;
     conf.shp_cv_offset = zero_vals.shape_cv;
@@ -58,7 +58,7 @@ void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf) {
 }
 
 uint16_t _calibration_do_scale_calibration(Waveformer& wf) {
-    AllInputs vals = wf.get_all(32);
+    AllInputs vals = wf.get_all(16);
     return vals.pitch;
 }
 

@@ -102,7 +102,7 @@ uint32_t Waveformer::calc_phasor() {
     int16_t calibrated_lin = (raw_vals.fm - configs.fm_offset) / FM_ATTENUATION;
     uint16_t filtered_val = pitch_filter.get_next(raw_vals.pitch);
 
-    int32_t calibrated_exp = configs.vo_offset - ((filtered_val * configs.vo_scale) >> 8);
+    int32_t calibrated_exp = (configs.vo_offset - filtered_val) * configs.vo_scale >> 8;
     uint16_t processed_val = CLIP(calibrated_exp + calibrated_lin, 0, max_adc);
 
     if (!is_a && follow) {
@@ -169,7 +169,7 @@ AllInputs Waveformer::get_all(uint16_t repeats) {
         read_all();
         return raw_vals;
     }
-    uint16_t all_vals_sums[7];
+    uint64_t all_vals_sums[7];
     for (int i = 0; i < repeats; i++) {
         read_all();
         all_vals_sums[0] += raw_vals.pitch;    
