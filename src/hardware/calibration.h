@@ -20,29 +20,32 @@
 // 4. mod offset, which does the same thing as fm offset but for the algorithm modification cv
 // 5. shape offset, which is analogous to above for shape
 // 6. ratio offset, which is analogous to above for ratio
-//
+// 7. encoder direction (some encoders rotate the opposite way of others, can't control this)
 //
 // these can be calibrated in the following ways:
 //    1. set both course and fine time knobs to 0 with no cv input, then read the pitch value
 //    2. input 1V, read value, input 3V, read value, do math
 //    3, 4, 5, 6. all of these have their own cv inputs so its simply a matter of reading from these
 //        while there isn't anything plugged in.
+//    7. test encoder direction, click on encoder knob to reverse it
 //
 //
-// this can be achieved in 3 steps:
+// this can be achieved in 4 steps:
 //      Step 1: with nothing plugged in and all knobs set to full counterclockwise, read cv inputs
 //              for v/o, fm, mod, shape, and ratio. These give the offsets for these values
 //      Step 2: plug in 1V at v/o input, read to get value 1 for v/o scale
 //      Step 3: plug in 3V at v/o input, read to get value 2 for v/o scale
+//      Step 4: rotate encoder knob, press encoder knob to reverse direction if needed
 
 typedef enum _Step {ONE, TWO, THREE} _Step;
 
-void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, NVMWrapper& nvm);
+void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, LedRing& ring, NVMWrapper& nvm);
 void _calibration_display_startup_leds(Adafruit_NeoPXL8& leds);
 void _calibration_wait_for_click(Adafruit_NeoPXL8& leds);
 void _calibration_display_module_leds(Adafruit_NeoPXL8& leds, bool is_a, _Step step);
 void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf);
 uint16_t _calibration_do_scale_calibration(Waveformer& wf);
+bool _calibration_do_encoder_calibration(LedRing& ring, Adafruit_NeoPXL8& leds);
 uint16_t _calibration_calc_vo_scale(uint16_t one_volt, uint16_t three_volts);
 uint16_t _calibration_calc_vo_offset(uint16_t vo_scale, uint16_t zero_volts);
 void _blink_led_non_blocking(Adafruit_NeoPXL8& leds, int led_num, uint32_t colour, uint64_t interval_ms);

@@ -24,6 +24,7 @@ void print_config_data(ConfigData& conf);
 
 typedef struct {
     char data_exists;
+    bool encoder_reversed;
     ConfigData a_data;
     ConfigData b_data;
 } ConfigMemoryLayout;
@@ -44,6 +45,8 @@ class NVMWrapper {
         NVMWrapper();
         ConfigData get_config_data(bool is_a);
         void set_config_data(bool is_a, ConfigData& conf);
+        void set_encoder_direction(bool reversed);
+        bool get_encoder_direction();
         void save_config_data();
 
         uint8_t get_mod_pos(bool is_a);

@@ -57,6 +57,15 @@ void NVMWrapper::save_config_data() {
     EEPROM.commit();
 }
 
+void NVMWrapper::set_encoder_direction(bool reversed) {
+    conf_mem.encoder_reversed = reversed;
+}
+
+bool NVMWrapper::get_encoder_direction() {
+    if (!conf_data_stored) return false;
+    return conf_mem.encoder_reversed;
+}
+
 uint8_t NVMWrapper::get_mod_pos(bool is_a) {
     if (!mod_data_stored) return 0;
     return (is_a)? mod_mem.a_idx : mod_mem.b_idx;

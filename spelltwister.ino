@@ -78,9 +78,6 @@ void setup() {
     a.init(&b);
     b.init(&a);
     nvm = NVMWrapper();
-    ring.btn.attachLongPressStart(encoder_long_press_ISR);
-    ring.btn.setPressMs(3000);
-    ring.begin(nvm.get_mod_pos(true), nvm.get_mod_pos(false));
     a.configs = nvm.get_config_data(true);
     b.configs = nvm.get_config_data(false);
     leds.begin();
@@ -89,9 +86,14 @@ void setup() {
     // calibration mode
     if (digitalRead(FLW_BTN) == HIGH) {
         calibrating = true;
-        run_calibration(a, b, leds, nvm);
+        run_calibration(a, b, leds, ring, nvm);
         calibrating = false;
     }
+
+    ring.btn.attachLongPressStart(encoder_long_press_ISR);
+    ring.btn.setPressMs(3000);
+    ring.reversed = nvm.get_encoder_direction();
+    ring.begin(nvm.get_mod_pos(true), nvm.get_mod_pos(false));
 
     follow_btn.attachClick(follow_ISR);
 }

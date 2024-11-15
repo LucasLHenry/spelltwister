@@ -18,6 +18,8 @@ class LedRing {
     int64_t enc_change;
     Encoder enc;
     public:
+        bool calibration_mode;
+        bool reversed;
         OneButton btn;
         int16_t a_idx, b_idx;
         int16_t a_idx_wo_cv, b_idx_wo_cv;

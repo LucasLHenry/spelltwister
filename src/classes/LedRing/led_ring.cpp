@@ -10,6 +10,14 @@ LedRing::LedRing(int enc_pin_1, int enc_pin_2, int btn_pin):
 }
 
 void LedRing::write_leds(Adafruit_NeoPXL8 &leds) {
+    if (calibration_mode) {
+        for (int i = 0; i < NUM_RING_LEDS; i++) {
+            if (i == a_idx) leds.setPixelColor(i, mix_colour);
+            else leds.setPixelColor(i, black);
+        }
+        return;
+    }
+    
     if (a_idx == b_idx) {
         for (int i = 0; i < NUM_RING_LEDS; i++) {
             if (i == a_idx) leds.setPixelColor(i, mix_colour);
@@ -38,7 +46,7 @@ void LedRing::update(int8_t a_change, int8_t b_change) {
 
     // handle encoder
     new_enc_pos = enc.read();
-    enc_change = new_enc_pos - enc_pos;
+    enc_change = (reversed)? enc_pos - new_enc_pos : new_enc_pos - enc_pos;
     enc_pos = new_enc_pos;
 
     if (a_is_active) a_pos_raw += enc_change;

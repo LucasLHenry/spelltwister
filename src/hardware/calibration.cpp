@@ -1,6 +1,6 @@
 #include "calibration.h"
 
-void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, NVMWrapper& nvm) {
+void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, LedRing& ring, NVMWrapper& nvm) {
     _calibration_display_startup_leds(leds);
     ConfigData a_configs, b_configs;
 
@@ -34,15 +34,23 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, NVMWr
     _calibration_wait_for_click(leds);
     b_val_3v = _calibration_do_scale_calibration(b);
 
+
+    /******************STEP FOUR*********************/
+    bool reversed = _calibration_do_encoder_calibration(ring, leds);
+
+    /******************CALCULATIONS******************/
     a_configs.vo_scale  = _calibration_calc_vo_scale(a_val_1v, a_val_3v);
     a_configs.vo_offset = _calibration_calc_vo_offset(a_configs.vo_scale, a_configs.vo_offset);
     b_configs.vo_scale  = _calibration_calc_vo_scale(b_val_1v, b_val_3v);
     b_configs.vo_offset = _calibration_calc_vo_offset(b_configs.vo_scale, b_configs.vo_offset);
 
+    /******************SAVE DATA*********************/
     a.configs = a_configs;
     b.configs = b_configs;
+    ring.reversed = reversed;
     nvm.set_config_data(true, a_configs);
     nvm.set_config_data(false, b_configs);
+    nvm.set_encoder_direction(reversed);
     nvm.save_config_data();
 }
 
@@ -60,6 +68,31 @@ void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf) {
 uint16_t _calibration_do_scale_calibration(Waveformer& wf) {
     AllInputs vals = wf.get_all(16);
     return vals.pitch;
+}
+
+bool _reversed;
+bool _encoder_dir_changed;
+void _calibration_encoder_btn_handler() {
+    _reversed = !_reversed;
+    _encoder_dir_changed = true;
+}
+
+bool _calibration_do_encoder_calibration(LedRing& ring, Adafruit_NeoPXL8& leds) {
+    ring.btn.attachClick(_calibration_encoder_btn_handler);
+    ring.a_is_active = true;
+    ring.calibration_mode = true;
+    while (true) {
+        if (digitalRead(FLW_BTN) == HIGH) break;
+        if (_encoder_dir_changed) {
+            ring.reversed = _reversed;
+            _encoder_dir_changed = false;
+        }
+        ring.update(0, 0);
+        ring.write_leds(leds);
+        _blink_led_non_blocking(leds, FLW_LED, mix_colour, 500);
+    }
+    ring.calibration_mode = false;
+    return _reversed;
 }
 
 uint16_t _calibration_calc_vo_scale(uint16_t one_volt, uint16_t three_volts) {
@@ -86,8 +119,8 @@ void _blink_led_non_blocking(Adafruit_NeoPXL8& leds, int led_num, uint32_t colou
         _led_state = !_led_state;
         _previous_ms = _current_ms;
         leds.setPixelColor(led_num, (_led_state)? colour : black);
-        leds.show();
     }
+    leds.show();
 }
 
 void _calibration_display_module_leds(Adafruit_NeoPXL8& leds, bool is_a, _Step step) {
