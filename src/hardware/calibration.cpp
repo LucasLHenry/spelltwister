@@ -108,7 +108,7 @@ void _calibration_wait_for_click(Adafruit_NeoPXL8& leds) {
         if (digitalRead(FLW_BTN) == HIGH) break;
         _blink_led_non_blocking(leds, FLW_LED, mix_colour, 500);
     }
-    delay(500);
+    delay(700);
 }
 
 void _blink_led_non_blocking(Adafruit_NeoPXL8& leds, int led_num, uint32_t colour, uint64_t interval_ms) {

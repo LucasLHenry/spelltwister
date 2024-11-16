@@ -80,6 +80,7 @@ void setup() {
     nvm = NVMWrapper();
     a.configs = nvm.get_config_data(true);
     b.configs = nvm.get_config_data(false);
+    ring.reversed = nvm.get_encoder_direction();
     leds.begin();
     leds.setBrightness(0x70);
 
@@ -92,7 +93,6 @@ void setup() {
 
     ring.btn.attachLongPressStart(encoder_long_press_ISR);
     ring.btn.setPressMs(3000);
-    ring.reversed = nvm.get_encoder_direction();
     ring.begin(nvm.get_mod_pos(true), nvm.get_mod_pos(false));
 
     follow_btn.attachClick(follow_ISR);
