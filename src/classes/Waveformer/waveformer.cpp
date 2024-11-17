@@ -106,7 +106,7 @@ uint32_t Waveformer::calc_phasor() {
     uint16_t processed_val = CLIP(calibrated_exp + calibrated_lin, 0, max_adc);
 
     if (!is_a && follow) {
-        uint16_t ratio_idx = processed_val >> 9;
+        uint16_t ratio_idx = static_cast<uint16_t>((static_cast<uint32_t>(processed_val)*5) >> 11);
         uint16_t multiplier = follow_intervals[ratio_idx][0];
         uint16_t divider = follow_intervals[ratio_idx][1];
         uint64_t mult_phasor = static_cast<uint64_t>(_other->core.pha) * multiplier;
