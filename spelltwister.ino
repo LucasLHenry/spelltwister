@@ -222,6 +222,7 @@ void follow_ISR() {
 void a_sync_ISR() {
     a.reset();
     a.running = true;
+    if (b.linked_start) b_sync_ISR();
 }
 
 // called when rising input trigger detected on B sync

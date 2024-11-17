@@ -86,8 +86,17 @@ uint16_t Waveformer::calc_ratio() {
     return rat_filter.get_next(CLIP(calibrated_pot + calibrated_cv, 0, max_adc)) >> 1;
 }
 
-// follows format {multiply by, divide by}
-int16_t follow_intervals[8][2] = {
+// follow behaviour table:
+//         B VCO               B LFO               B ENV
+//       -----------------------------------------------
+// A VCO | pitch intervals     same v/o            same v/o     
+//       |
+// A LFO | same v/o            clock divider       same start time
+//       |
+// A ENV | same v/o            same start time     same start time
+
+// format is {multiply by, divide by}
+uint16_t vco_follow_intervals[8][2] = {
     {1, 1},     // unity
     {6, 5},     // minor third
     {5, 4},     // major third
@@ -98,28 +107,48 @@ int16_t follow_intervals[8][2] = {
     {4, 1},     // two octaves
 };
 
+uint16_t lfo_follow_intervals[8][2] = {
+    {1,  8},
+    {1,  4}, 
+    {1,  2},
+    {1,  1}, 
+    {2,  1},
+    {4,  1}, 
+    {8,  1},
+    {16, 1},
+};
+
 uint32_t Waveformer::calc_phasor() {
     int16_t calibrated_lin = (raw_vals.fm - configs.fm_offset) / FM_ATTENUATION;
     uint16_t filtered_val = pitch_filter.get_next(raw_vals.pitch);
 
     int32_t calibrated_exp = (configs.vo_offset - filtered_val) * configs.vo_scale >> 8;
-    uint16_t processed_val = CLIP(calibrated_exp + calibrated_lin, 0, max_adc);
+    phasor_idx = CLIP(calibrated_exp + calibrated_lin, 0, max_adc);
 
+    linked_start = false;
     if (!is_a && follow) {
-        uint16_t ratio_idx = static_cast<uint16_t>((static_cast<uint32_t>(processed_val)*5) >> 11);
-        uint16_t multiplier = follow_intervals[ratio_idx][0];
-        uint16_t divider = follow_intervals[ratio_idx][1];
-        uint64_t mult_phasor = static_cast<uint64_t>(_other->core.pha) * multiplier;
-        mult_phasor /= divider;
-        if (mult_phasor > max_pha) {
-            return _other->core.pha;
+        // pitch intervals / clock divider (same logic but different tables)
+        if ((mode == VCO && _other->mode == VCO) || (mode == LFO && _other->mode == LFO)) { 
+            uint16_t ratio_idx = static_cast<uint16_t>((static_cast<uint32_t>(phasor_idx)*5) >> 11);
+            uint16_t multiplier = (mode == VCO)? vco_follow_intervals[ratio_idx][0] : lfo_follow_intervals[ratio_idx][0];
+            uint16_t divider = (mode == VCO)? vco_follow_intervals[ratio_idx][1] : lfo_follow_intervals[ratio_idx][1];
+            uint64_t mult_phasor = static_cast<uint64_t>(_other->core.pha) * multiplier;
+            mult_phasor /= divider;
+            if (mult_phasor > max_pha) {
+                return _other->core.pha;
+            } else {
+                return mult_phasor;
+            }
+        // link start times, same
+        } else if (mode == VCO || _other->mode == VCO) {
+            linked_start = true;
         } else {
-            return mult_phasor;
+            phasor_idx = _other->phasor_idx;
         }
     }
 
-    if (mode == VCO) return phasor_table[processed_val];
-    else return slow_phasor_table[processed_val];
+    if (mode == VCO) return phasor_table[phasor_idx];
+    else return slow_phasor_table[phasor_idx];
 }
 
 Mode Waveformer::get_mode() {

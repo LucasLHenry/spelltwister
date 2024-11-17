@@ -103,6 +103,8 @@ class Waveformer {
         bool end_of_cycle, prev_eos;
         bool eos_led;
         int8_t mod_idx;
+        uint16_t phasor_idx;
+        bool linked_start;
 };
 
 // order for mux_assignemnts is ratio cv, ratio pot, shape cv, shape pot, algo cv, switch 1, switch 2, exp time cv
