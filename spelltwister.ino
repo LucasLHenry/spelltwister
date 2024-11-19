@@ -219,7 +219,7 @@ void follow_ISR() {
 void a_sync_ISR() {
     a.reset();
     a.running = true;
-    if (b.follow_mode == SYNCED_START) b_sync_ISR();
+    if (b.follow_mode != DISABLED) b_sync_ISR();
 }
 
 // called when rising input trigger detected on B sync
