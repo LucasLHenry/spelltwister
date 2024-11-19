@@ -26,6 +26,14 @@ constexpr uint64_t trig_led_length_in_updates = static_cast<uint64_t>(TRIG_LED_L
 
 enum Mode {VCO, LFO, ENV};
 
+enum FollowBehaviour {
+    OFF,
+    VCO_INTERVALS,
+    LFO_INTERVALS,
+    SAME_VOLT_PER_OCT,
+    SYNC_START,
+};
+
 typedef struct AllInputs {
     uint16_t pitch;
     uint16_t fm;
@@ -82,6 +90,7 @@ class Waveformer {
     uint64_t update_counter, EOS_start_time;
     AllInputs raw_vals;
     public:
+        FollowBehaviour follow_mode;
         DDS_Wrapper core;
         ConfigData configs;
         bool is_a;

@@ -12,7 +12,7 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
     pitch_filter(50, 200, is_A),
     rat_filter  (45, 200, false),
     shp_filter  (45, 200, false),
-    core(21) // acc is 32b, 32-21 = 11b -> 0-2047 range
+    core(acc_downshift)
 {
     if (is_a) {
         mux_sigs = A_mux_sigs;
