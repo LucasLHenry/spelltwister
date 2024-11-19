@@ -27,11 +27,11 @@ constexpr uint64_t trig_led_length_in_updates = static_cast<uint64_t>(TRIG_LED_L
 enum Mode {VCO, LFO, ENV};
 
 enum FollowBehaviour {
-    OFF,
-    VCO_INTERVALS,
-    LFO_INTERVALS,
+    DISABLED,
+    TONE_INTERVALS,
+    CLOCK_DIV_MULT,
     SAME_VOLT_PER_OCT,
-    SYNC_START,
+    SYNCED_START,
 };
 
 typedef struct AllInputs {
@@ -89,13 +89,16 @@ class Waveformer {
     Waveformer* _other;
     uint64_t update_counter, EOS_start_time;
     AllInputs raw_vals;
+    FollowBehaviour prev_follow_mode;
+    uint32_t get_follow_mult_div();
+    uint16_t follow_interval_idx;
+    bool follow_interval_idx_changed;
     public:
         FollowBehaviour follow_mode;
         DDS_Wrapper core;
         ConfigData configs;
         bool is_a;
         uint16_t uslp, dslp;
-        bool follow;
         Mode mode;
         bool running;
         uint16_t rat, shp;
@@ -113,7 +116,8 @@ class Waveformer {
         bool eos_led;
         int8_t mod_idx;
         uint16_t phasor_idx;
-        bool linked_start;
+        void toggle_follow_mode();
+        void set_follow_mode();
 };
 
 // order for mux_assignemnts is ratio cv, ratio pot, shape cv, shape pot, algo cv, switch 1, switch 2, exp time cv

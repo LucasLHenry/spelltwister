@@ -72,6 +72,7 @@ void Waveformer::read() {
     mode = get_mode();
     mod_idx = calc_mod_idx();
     if (mode != ENV) running = true;
+    if (follow_mode != DISABLED) set_follow_mode();
 }
 
 uint16_t Waveformer::calc_shape() {
@@ -125,25 +126,32 @@ uint32_t Waveformer::calc_phasor() {
     int32_t calibrated_exp = (configs.vo_offset - filtered_val) * configs.vo_scale >> 8;
     phasor_idx = CLIP(calibrated_exp + calibrated_lin, 0, max_adc);
 
-    linked_start = false;
-    if (!is_a && follow) {
-        // pitch intervals / clock divider (same logic but different tables)
-        if ((mode == VCO && _other->mode == VCO) || (mode == LFO && _other->mode == LFO)) { 
-            uint16_t ratio_idx = static_cast<uint16_t>((static_cast<uint32_t>(phasor_idx)*5) >> 11);
-            uint16_t multiplier = (mode == VCO)? vco_follow_intervals[ratio_idx][0] : lfo_follow_intervals[ratio_idx][0];
-            uint16_t divider = (mode == VCO)? vco_follow_intervals[ratio_idx][1] : lfo_follow_intervals[ratio_idx][1];
-            uint64_t mult_phasor = static_cast<uint64_t>(_other->core.pha) * multiplier;
-            mult_phasor /= divider;
-            if (mult_phasor > max_pha) {
-                return _other->core.pha;
-            } else {
-                return mult_phasor;
+    if (!is_a && follow_mode != DISABLED) {
+        if (follow_mode == TONE_INTERVALS) {
+            uint32_t mult_div = get_follow_mult_div();
+            uint16_t mult = mult_div >> 16;
+            uint16_t div = mult_div & 0xFFFF;
+
+            uint32_t follow_phasor = (_other->core.pha * mult) / div;
+            if (follow_phasor > max_pha) return max_pha;
+            else return follow_phasor;
+        } else if (follow_mode == CLOCK_DIV_MULT) {
+            uint32_t mult_div = get_follow_mult_div();
+            uint16_t mult = mult_div >> 16;
+            uint16_t div = mult_div & 0xFFFF;
+
+            if (prev_follow_mode != CLOCK_DIV_MULT || follow_interval_idx_changed) {
+                // reset phase
+                core.acc = static_cast<uint32_t>(((static_cast<uint64_t>(_other->core.acc) * mult) / div) % max_acc);
             }
-        // link start times, same
-        } else if (mode == VCO || _other->mode == VCO) {
-            linked_start = true;
-        } else {
+
+            uint32_t follow_phasor = (_other->core.pha * mult) / div;
+            if (follow_phasor > max_pha) return max_pha;
+            else return follow_phasor;
+        } else if (follow_mode == SAME_VOLT_PER_OCT) {
             phasor_idx = _other->phasor_idx;
+        } else if (follow_mode == SYNCED_START) {
+            ;  // logic for this happens in a_sync_ISR, included for completeness
         }
     }
 
@@ -221,6 +229,40 @@ AllInputs Waveformer::get_all(uint16_t repeats) {
     };
 
     return reads;
+}
+
+void Waveformer::toggle_follow_mode() {
+    if (follow_mode != DISABLED) {
+        follow_mode = DISABLED;
+    } else {
+        set_follow_mode();
+    }
+}
+
+void Waveformer::set_follow_mode() {
+    prev_follow_mode = follow_mode;
+    if (mode == VCO && _other->mode == VCO) follow_mode = TONE_INTERVALS;
+    else if (mode == LFO && _other->mode == LFO) follow_mode = CLOCK_DIV_MULT;
+    else if (mode == VCO || _other->mode == VCO) follow_mode = SAME_VOLT_PER_OCT;
+    else follow_mode = SYNCED_START;
+}
+
+uint32_t Waveformer::get_follow_mult_div() {
+    uint16_t new_interval_idx = static_cast<uint16_t>((static_cast<uint32_t>(phasor_idx)*5) >> 11);
+    follow_interval_idx_changed = follow_interval_idx != new_interval_idx;
+    follow_interval_idx = new_interval_idx;
+    uint16_t multiplier, divider;
+    if (follow_mode == TONE_INTERVALS) {
+        multiplier = vco_follow_intervals[new_interval_idx][0];
+        divider = vco_follow_intervals[new_interval_idx][1];
+    } else if (follow_mode == CLOCK_DIV_MULT) {
+        multiplier = lfo_follow_intervals[new_interval_idx][0];
+        divider = lfo_follow_intervals[new_interval_idx][1];
+    } else {
+        multiplier = 1;
+        divider = 1;
+    }
+    return (static_cast<uint32_t>(multiplier) << 16) | divider;
 }
 
 void Waveformer::print_info(bool verbose) {

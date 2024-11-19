@@ -200,7 +200,7 @@ void write_other_leds() {
     leds.setPixelColor(TRIG_B_LED, (b.eos_led)? b_colour : black);
 
     // write follow LED
-    leds.setPixelColor(FLW_LED, (b.follow)? mix_colour : black);
+    leds.setPixelColor(FLW_LED, (b.follow_mode != DISABLED)? mix_colour : black);
 }
 
 // responsible for triggering saving code
@@ -212,17 +212,14 @@ void encoder_long_press_ISR() {
 
 // called when the follow button is pressed
 void follow_ISR() {
-    b.follow = !b.follow;
-    if (b.follow) {
-        b.core.set(a.core);
-    }
+    b.toggle_follow_mode();
 }
 
 // called when rising input trigger detected on A sync
 void a_sync_ISR() {
     a.reset();
     a.running = true;
-    if (b.linked_start) b_sync_ISR();
+    if (b.follow_mode == SYNCED_START) b_sync_ISR();
 }
 
 // called when rising input trigger detected on B sync
