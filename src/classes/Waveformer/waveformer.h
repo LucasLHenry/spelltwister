@@ -1,6 +1,5 @@
 #include <Arduino.h>
 #include <Mux.h>
-#include <ResponsiveAnalogRead.h>
 
 #include "../../wave_algos/generator.h"
 #include "../../hardware/pins.h"
@@ -76,8 +75,7 @@ class DDS_Wrapper {
 class Waveformer {
     uint16_t raw_mod;
     int lin_time_pin, mux_pin;
-    ResponsiveAnalogRead algo_read;
-    ADC_Filter pitch_filter, rat_filter, shp_filter;
+    ADC_Filter pitch_filter, rat_filter, shp_filter, mod_filter;
     uint16_t* mux_sigs;
     admux::Mux mux;
     uint16_t calc_ratio();

@@ -63,8 +63,10 @@ void LedRing::update(int8_t a_change, int8_t b_change) {
     b_idx = b_idx_wo_cv;
     if (a_change + a_idx < 0) a_change += 16;
     a_idx += a_change;
+    a_idx %= 16;
     if (b_change + b_idx < 0) b_change += 16;
     b_idx += b_change;
+    b_idx %= 16;
 }
 
 void button_handler() {

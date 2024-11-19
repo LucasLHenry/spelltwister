@@ -8,10 +8,10 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
     is_a {is_A},
     mux(admux::Pin(mux_pin, INPUT, admux::PinType::Analog), admux::Pinset(MUX_S0, MUX_S1, MUX_S2)),
     lin_time_pin(time_pin),
-    algo_read(0, true),
-    pitch_filter(50, 200, is_A),
+    pitch_filter(50, 200, false),
     rat_filter  (45, 200, false),
     shp_filter  (45, 200, false),
+    mod_filter  (45, 200, false),
     core(acc_downshift)
 {
     if (is_a) {
@@ -29,7 +29,6 @@ void Waveformer::init(Waveformer* other) {
     shp = 511;
     uslp = calc_upslope(rat);
     dslp = calc_downslope(rat);
-    algo_read.setAnalogResolution(max_adc + 1);
     mode = VCO;
     running = true;
     _other = other;
@@ -176,11 +175,10 @@ Mode Waveformer::get_mode() {
 }
 
 int8_t Waveformer::calc_mod_idx() {
-    algo_read.update(raw_vals.algo_mod);
-    uint16_t _cv = algo_read.getValue() >> 8;
-    uint16_t _offset = configs.mod_offset >> 8;
-    int16_t calibrated_cv = static_cast<int16_t>(_cv) - static_cast<int16_t>(_offset);
-    return static_cast<int8_t>(-calibrated_cv);
+    int16_t _cv = mod_filter.get_next(raw_vals.algo_mod) >> 8;
+    int16_t _offset = configs.mod_offset >> 8;
+    int16_t calibrated_cv = _offset - _cv;
+    return static_cast<int8_t>(calibrated_cv);
 }
 
 void Waveformer::reset() {
