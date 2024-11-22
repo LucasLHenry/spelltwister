@@ -5,11 +5,13 @@ import os
 from colour import Color
 from typing import TextIO
 import matplotlib.pyplot as plt
+from copy import deepcopy
 
 
 # TO TRY OUT DIFFERENT COLOURS, CHANGE ONLY THESE TWO LINES
 a_side_colour = Color("orange")
 b_side_colour = Color("blue")
+dim_factor = 0.05
 # EVERYTHING ELSE IS GENERATED BASED ON THESE TWO COLOURS
 
 
@@ -35,23 +37,34 @@ array_name = "brightness_table"
 
 def main():
     file_path = f"{os.getcwd()}{path_to_tables}{file_name}"
+    
+    a_side_colour_dim = deepcopy(a_side_colour)
+    a_side_colour_dim.set_luminance(dim_factor)
+    b_side_colour_dim = deepcopy(b_side_colour)
+    b_side_colour_dim.set_luminance(dim_factor)
+    
     with open(file_path, 'w') as f:
         f.write(file_header)
         f.write("const uint32_t black = 0;\n")
         f.write(f"const uint32_t a_{colour_name} = {colour_to_int(a_side_colour)};\n")
         f.write(f"const uint32_t b_{colour_name} = {colour_to_int(b_side_colour)};\n")
+        f.write(f"const uint32_t a_{colour_name}_dim = {colour_to_int(a_side_colour_dim)};\n")
+        f.write(f"const uint32_t b_{colour_name}_dim = {colour_to_int(b_side_colour_dim)};\n")
         mix_colour = Color(rgb=(
             (a_side_colour.get_red()   + b_side_colour.get_red())   / 2,
             (a_side_colour.get_green() + b_side_colour.get_green()) / 2,
             (a_side_colour.get_blue()  + b_side_colour.get_blue())  / 2,
         ))
+        mix_colour_dim = deepcopy(mix_colour)
+        mix_colour_dim.set_luminance(dim_factor)
         f.write(f"const uint32_t {mix_colour_name} = {colour_to_int(mix_colour)};\n")
+        f.write(f"const uint32_t {mix_colour_name}_dim = {colour_to_int(mix_colour_dim)};\n")
         write_array(f, is_a=True)
         write_array(f, is_a=False)
         f.write(file_footer)
         
-    with open(file_path, 'r') as f:
-        display_colours(f)
+    # with open(file_path, 'r') as f:
+    #     display_colours(f)
 
 
 def write_array(f: TextIO, is_a: bool):
@@ -110,6 +123,6 @@ def parse_colour(colour_val: int) -> Color:
     c.set_green(int(hex_str[2:4], 16) / 255.0)
     c.set_blue( int(hex_str[4:],  16) / 255.0)
     return c
-    
+
 if __name__ == "__main__":
     main()

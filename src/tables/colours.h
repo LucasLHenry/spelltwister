@@ -6,7 +6,10 @@
 const uint32_t black = 0;
 const uint32_t a_colour = 16753920;
 const uint32_t b_colour = 255;
+const uint32_t a_colour_dim = 1642496;
+const uint32_t b_colour_dim = 25;
 const uint32_t mix_colour = 8344191;
+const uint32_t mix_colour_dim = 985615;
 const uint32_t a_brightness_table[256] = {
     0,
     65792,
@@ -265,7 +268,7 @@ const uint32_t a_brightness_table[256] = {
     16622592,
     16688128
 };
-const uint32_t b_brightness_table[256] {
+const uint32_t b_brightness_table[256] = {
     0,
     1,
     2,

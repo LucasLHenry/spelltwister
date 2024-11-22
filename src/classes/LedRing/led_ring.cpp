@@ -17,18 +17,20 @@ void LedRing::write_leds(Adafruit_NeoPXL8 &leds) {
         }
         return;
     }
-    
-    if (a_idx == b_idx) {
-        for (int i = 0; i < NUM_RING_LEDS; i++) {
-            if (i == a_idx) leds.setPixelColor(i, mix_colour);
-            else leds.setPixelColor(i, black);
+    leds.fill(black);
+    for (int i = 0; i < NUM_RING_LEDS; i++) {
+        if (i == a_idx_wo_cv) {
+            if (i == b_idx_wo_cv) leds.setPixelColor(i, mix_colour_dim);
+            else leds.setPixelColor(i, a_colour_dim);
         }
-    } else {
-        for (int i = 0; i < NUM_RING_LEDS; i++) {
-            if (i == a_idx) leds.setPixelColor(i, a_colour);
-            else if (i == b_idx) leds.setPixelColor(i, b_colour);
-            else leds.setPixelColor(i, black);
+        else if (i == b_idx_wo_cv) leds.setPixelColor(i, b_colour_dim);
+
+
+        if (i == a_idx) {
+            if (i == b_idx) leds.setPixelColor(i, mix_colour);
+            else leds.setPixelColor(i, a_colour);
         }
+        else if (i == b_idx) leds.setPixelColor(i, b_colour);
     }
 }
 
