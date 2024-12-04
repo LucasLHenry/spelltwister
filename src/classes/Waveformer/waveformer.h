@@ -89,6 +89,7 @@ class Waveformer {
     AllInputs raw_vals;
     FollowBehaviour prev_follow_mode;
     uint32_t get_follow_mult_div();
+    void oversample_pitch();
     uint16_t follow_interval_idx;
     bool follow_interval_idx_changed;
     public:

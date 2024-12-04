@@ -8,7 +8,7 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
     is_a {is_A},
     mux(admux::Pin(mux_pin, INPUT, admux::PinType::Analog), admux::Pinset(MUX_S0, MUX_S1, MUX_S2)),
     lin_time_pin(time_pin),
-    pitch_filter(50, 200, false),
+    pitch_filter(25, 200, false),
     rat_filter  (45, 200, false),
     shp_filter  (45, 200, false),
     mod_filter  (45, 200, false),
@@ -59,6 +59,7 @@ void Waveformer::generate() {
 
 void Waveformer::read() {
     read_all();
+    oversample_pitch();
     uint16_t rat_buf = calc_ratio();
     if (rat_buf != rat) {
         rat = rat_buf;
@@ -197,6 +198,14 @@ void Waveformer::read_all() {
     raw_vals.ratio_pot = mux.read(mux_sigs[R_PT_IDX]); // ratio pot
     raw_vals.ratio_cv  = mux.read(mux_sigs[R_CV_IDX]); // ratio cv
     raw_vals.algo_mod  = mux.read(mux_sigs[M_CV_IDX]); // algo mod
+}
+
+void Waveformer::oversample_pitch() {
+    uint64_t total = raw_vals.pitch;
+    for (int i = 0; i < 7; i++) {
+        total += mux.read(mux_sigs[VO_IDX]);
+    }
+    raw_vals.pitch = static_cast<uint16_t>(total / 8);
 }
 
 AllInputs Waveformer::get_all(uint16_t repeats) {
