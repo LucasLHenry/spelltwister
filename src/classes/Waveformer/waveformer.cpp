@@ -98,6 +98,7 @@ uint16_t Waveformer::calc_ratio() {
 
 // format is {multiply by, divide by}
 uint16_t vco_follow_intervals[8][2] = {
+    {1, 2},     // octave down
     {1, 1},     // unity
     {6, 5},     // minor third
     {5, 4},     // major third
@@ -105,7 +106,6 @@ uint16_t vco_follow_intervals[8][2] = {
     {3, 2},     // perfect fifth
     {9, 5},     // minor seventh
     {2, 1},     // octave
-    {4, 1},     // two octaves
 };
 
 uint16_t lfo_follow_intervals[8][2] = {
@@ -176,9 +176,11 @@ Mode Waveformer::get_mode() {
 }
 
 int8_t Waveformer::calc_mod_idx() {
-    int16_t _cv = mod_filter.get_next(raw_vals.algo_mod) >> 8;
-    int16_t _offset = configs.mod_offset >> 8;
-    int16_t calibrated_cv = _offset - _cv;
+    int16_t _cv = mod_filter.get_next(raw_vals.algo_mod) >> 7;
+    int16_t _offset = configs.mod_offset >> 7;
+    int16_t calibrated_cv = static_cast<int16_t>((_offset - _cv) * 8 / 9);
+    // int32_t val_ = configs.mod_offset - mod_filter.get_next(raw_vals.algo_mod);
+    // float calibrated_val_ = val_ * MOD_IDX_AMPLIFICATION;
     return static_cast<int8_t>(calibrated_cv);
 }
 
