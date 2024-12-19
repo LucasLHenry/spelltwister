@@ -55,7 +55,7 @@ class DDS_Wrapper {
     DDS_Wrapper(uint16_t shift_amt): _shift_amt{shift_amt} {}
 
     void update() {
-        prev_s_acc = s_acc;
+        prev_s_acc = clean_s_acc_;
         acc += pha;
         uint32_t dither_val_ = rand_u32() >> 12;
         clean_s_acc_ = acc >> _shift_amt;
