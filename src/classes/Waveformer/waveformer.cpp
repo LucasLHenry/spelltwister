@@ -316,3 +316,9 @@ void Waveformer::print_info(bool verbose) {
         Serial.println(core.pha);
     }
 }
+
+uint32_t rand_u32() {
+    static uint64_t val = 1234;  // seed
+    val = (val*134775813 + 1) % (1 << 31);
+    return static_cast<uint32_t>(val);
+}

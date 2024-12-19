@@ -43,6 +43,8 @@ typedef struct AllInputs {
     uint16_t algo_mod;
 } AllInputs;
 
+uint32_t rand_u32();
+
 // DDS stands for Direct Digital Synthesis
 class DDS_Wrapper {
     uint16_t _shift_amt;
@@ -55,7 +57,8 @@ class DDS_Wrapper {
     void update() {
         prev_s_acc = s_acc;
         acc += pha;
-        s_acc = acc >> _shift_amt;
+        uint32_t dither_val_ = rand_u32() >> 12;
+        s_acc = (acc + dither_val_) >> _shift_amt;
         overflow = (prev_s_acc > s_acc);
     }
 
