@@ -5,8 +5,8 @@ ADC_Filter::ADC_Filter(uint16_t low, uint16_t high, bool debug) {
         low_margin = low << upsample_amt;
         high_margin = high << upsample_amt;
         smth_lo = 0;
-        smth_mid = 2;
-        smth_hi = 4;
+        smth_mid = 1;
+        smth_hi = 3;
         filtered_value = 0;
         smooth_amt = smth_hi;
     }

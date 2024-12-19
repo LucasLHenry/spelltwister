@@ -4,7 +4,7 @@ import os
 # constants used by them (max and min freq for slow and fast phasors)
 
 # set these!
-min_vco_freq_hz = 25
+min_vco_freq_hz = 30
 min_lfo_env_period_s = 0.025
 max_lfo_env_period_s = 20
 
