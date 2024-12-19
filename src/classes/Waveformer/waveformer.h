@@ -50,7 +50,7 @@ class DDS_Wrapper {
     uint16_t _shift_amt;
     public:
     uint32_t acc, pha;
-    uint16_t s_acc, prev_s_acc;
+    uint16_t s_acc, prev_s_acc, clean_s_acc_;
     bool overflow;
     DDS_Wrapper(uint16_t shift_amt): _shift_amt{shift_amt} {}
 
@@ -58,8 +58,9 @@ class DDS_Wrapper {
         prev_s_acc = s_acc;
         acc += pha;
         uint32_t dither_val_ = rand_u32() >> 12;
+        clean_s_acc_ = acc >> _shift_amt;
+        overflow = (prev_s_acc > clean_s_acc_);
         s_acc = (acc + dither_val_) >> _shift_amt;
-        overflow = (prev_s_acc > s_acc);
     }
 
     void reset(uint32_t new_acc) {
