@@ -67,6 +67,7 @@ class DDS_Wrapper {
         acc = new_acc;
         s_acc = acc >> _shift_amt;
         prev_s_acc = s_acc;
+        clean_s_acc_ = s_acc;
     }
 
     void set(DDS_Wrapper& other) {
