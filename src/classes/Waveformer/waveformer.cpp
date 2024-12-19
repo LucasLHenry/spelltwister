@@ -257,7 +257,7 @@ void Waveformer::set_follow_mode() {
 }
 
 uint32_t Waveformer::get_follow_mult_div() {
-    uint16_t new_interval_idx = static_cast<uint16_t>((static_cast<uint32_t>(phasor_idx)*5) >> 11);
+    uint16_t new_interval_idx = static_cast<uint16_t>((static_cast<uint32_t>(phasor_idx)*6) >> 11);
     follow_interval_idx_changed = follow_interval_idx != new_interval_idx;
     follow_interval_idx = new_interval_idx;
     uint16_t multiplier, divider;
