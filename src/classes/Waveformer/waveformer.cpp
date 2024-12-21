@@ -123,8 +123,8 @@ uint32_t Waveformer::calc_phasor() {
     int16_t calibrated_lin = (raw_vals.fm - configs.fm_offset) / FM_ATTENUATION;
     uint16_t filtered_val = pitch_filter.get_next(raw_vals.pitch);
 
-    int32_t calibrated_exp = (configs.vo_offset - filtered_val) * configs.vo_scale >> 8;
-    phasor_idx = CLIP(calibrated_exp + calibrated_lin, 0, max_adc);
+    int32_t calibrated_exp = ((configs.vo_offset - filtered_val) * configs.vo_scale) >> 8;
+    phasor_idx = CLIP(calibrated_exp + calibrated_lin, 0, phasor_arr_len);
 
     if (!is_a && follow_mode != DISABLED) {
         if (follow_mode == TONE_INTERVALS) {
@@ -132,7 +132,10 @@ uint32_t Waveformer::calc_phasor() {
             uint16_t mult = mult_div >> 16;
             uint16_t div = mult_div & 0xFFFF;
 
+            // we add 10 so that they're not perfectly in phase, can cause
+            // weird sounds when in unison.
             uint32_t follow_phasor = (_other->core.pha * mult) / div;
+            if (mult == 1 && div == 1) follow_phasor = static_cast<uint32_t>(follow_phasor * 1.002);
             if (follow_phasor > max_pha) return max_pha;
             else return follow_phasor;
         } else if (follow_mode == CLOCK_DIV_MULT) {

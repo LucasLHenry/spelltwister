@@ -4,13 +4,14 @@ import os
 # constants used by them (max and min freq for slow and fast phasors)
 
 # set these!
-min_vco_freq_hz = 30
+min_vco_freq_hz = 20
 min_lfo_env_period_s = 0.025
 max_lfo_env_period_s = 20
 
 # hardware determined
 adc_bits = 12
-arr_len = 2 ** adc_bits
+num_voltages = 2 ** adc_bits
+arr_len = int(1.15 * num_voltages)
 voltage_max = 7
 hz_phasor = 92291  # phasor that corresponds to 1Hz freq
 
@@ -40,13 +41,14 @@ def main():
         f.write(f"const uint32_t max_slow_pha = {max_slow_phasor};\n")
         scale_factor = int(2**(adc_bits + 9) / voltage_max)
         f.write(f"const uint32_t scale_factor = {scale_factor};\n")
+        f.write(f"const uint32_t phasor_arr_len = {arr_len};\n")
         f.write(file_footer)
     
 def vco_phasor_writer(f):
     min_pha, max_pha = 0, 0
     f.write(f"const uint32_t phasor_table[{arr_len}] = {{\n")
     for idx in range(arr_len):
-        voltage = linear_map(idx, 0, arr_len-1, 0, voltage_max)
+        voltage = linear_map(idx, 0, num_voltages-1, 0, voltage_max)
         freq = min_vco_freq_hz * (2 ** voltage)
         phasor = int(freq * hz_phasor)
         arr_write_item(f, idx, phasor, 16, arr_len)
@@ -62,7 +64,7 @@ def lfo_env_phasor_writer(f):
     
     f.write(f"const uint32_t slow_phasor_table[{arr_len}] = {{\n")
     for idx in range(arr_len):
-        freq = linear_map(idx, 0, arr_len-1, min_freq_hz, max_freq_hz)
+        freq = linear_map(idx, 0, num_voltages-1, min_freq_hz, max_freq_hz)
         phasor = int(freq * hz_phasor)
         arr_write_item(f, idx, phasor, 16, arr_len)
         
