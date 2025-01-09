@@ -76,14 +76,14 @@ void Waveformer::read() {
 }
 
 uint16_t Waveformer::calc_shape() {
-    int32_t calibrated_pot = configs.shp_pot_offset - raw_vals.shape_pot;
-    int16_t calibrated_cv = configs.shp_cv_offset - raw_vals.shape_cv;
+    int32_t calibrated_pot = configs.shp_pot_offset - static_cast<int16_t>(raw_vals.shape_pot);
+    int16_t calibrated_cv = configs.shp_cv_offset - static_cast<int16_t>(raw_vals.shape_cv);
     return shp_filter.get_next(CLIP(calibrated_pot + calibrated_cv, 0, max_adc)) >> 1;
 }
 
 uint16_t Waveformer::calc_ratio() {
-    int32_t calibrated_pot = configs.rat_pot_offset - raw_vals.ratio_pot;
-    int16_t calibrated_cv = configs.rat_cv_offset - raw_vals.ratio_cv;
+    int32_t calibrated_pot = configs.rat_pot_offset - static_cast<int16_t>(raw_vals.ratio_pot);
+    int16_t calibrated_cv = configs.rat_cv_offset - static_cast<int16_t>(raw_vals.ratio_cv);
     return rat_filter.get_next(CLIP(calibrated_pot + calibrated_cv, 0, max_adc)) >> 1;
 }
 
@@ -121,9 +121,9 @@ uint16_t lfo_follow_intervals[8][2] = {
 
 uint32_t Waveformer::calc_phasor() {
     int16_t calibrated_lin = (raw_vals.fm - configs.fm_offset) / FM_ATTENUATION;
-    uint16_t filtered_val = pitch_filter.get_next(raw_vals.pitch);
+    int16_t filtered_val = pitch_filter.get_next(raw_vals.pitch);
 
-    int32_t calibrated_exp = ((configs.vo_offset - filtered_val) * configs.vo_scale) >> 8;
+    int32_t calibrated_exp = ((configs.vo_offset - static_cast<int16_t>(filtered_val)) * configs.vo_scale) >> 8;
     phasor_idx = CLIP(calibrated_exp + calibrated_lin, 0, phasor_arr_len);
 
     if (!is_a && follow_mode != DISABLED) {

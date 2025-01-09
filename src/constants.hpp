@@ -25,7 +25,7 @@ constexpr uint16_t half_adc = (1 << (BITS_ADC - 1)) - 1;
 
 #define FM_ATTENUATION 8
 
-#define TRIG_LENGTH_MS 0.25
+#define TRIG_LENGTH_MS 3
 #define TRIG_LED_LENGTH_MS 75
 
 // modulation algorithm settings
