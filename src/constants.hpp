@@ -23,7 +23,7 @@ constexpr uint16_t half_adc = (1 << (BITS_ADC - 1)) - 1;
 #define CLOCK_FREQ 125000000
 #define LOOPS_PER_SEC 1018
 
-#define FM_ATTENUATION 8
+#define FM_ATTENUATION 6
 
 #define TRIG_LENGTH_MS 3
 #define TRIG_LED_LENGTH_MS 75
