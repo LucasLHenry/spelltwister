@@ -170,24 +170,11 @@ bool pwm_timer_ISR(repeating_timer_t* rt) {
 }
 
 void write_other_leds() {
-    uint8_t a_brightness, a_mod_brightness, b_brightness, b_mod_brightness;
+    uint8_t a_brightness = (a.val < half_y)? 0 : a.val - half_y >> 7;
+    uint8_t a_mod_brightness = (mod_a.val < half_y)? 0 : mod_a.val - half_y >> 7;
 
-    // envelopes are unipolar while LFO and VCO are bipolar, so change the way the LED behaves.
-    if (a.mode == ENV) {
-        a_brightness = (a.val - half_y) >> 7;
-        a_mod_brightness = (mod_a.val - half_y) >> 7;
-    } else {
-        a_brightness = a.val >> 8;
-        a_mod_brightness = mod_a.val >> 8;
-    }
-
-    if (b.mode == ENV) {
-        b_brightness = (b.val - half_y) >> 7;
-        b_mod_brightness = (mod_b.val - half_y) >> 7;
-    } else {
-        b_brightness = b.val >> 8;
-        b_mod_brightness = mod_b.val >> 8;
-    }
+    uint8_t b_brightness = (b.val < half_y)? 0 : b.val - half_y >> 7;
+    uint8_t b_mod_brightness = (mod_b.val < half_y)? 0 : mod_b.val - half_y >> 7;
 
     // write signal indicators
     leds.setPixelColor(PRI_A_LED, a_brightness_table[a_brightness]);
