@@ -5,8 +5,8 @@ import os
 
 # set these!
 min_vco_freq_hz = 20
-min_lfo_env_period_s = 0.025
-max_lfo_env_period_s = 20
+min_lfo_env_period_s = 0.00625
+max_lfo_env_period_s = 60
 
 # hardware determined
 adc_bits = 12
