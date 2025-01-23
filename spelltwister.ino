@@ -99,6 +99,7 @@ void setup() {
     follow_btn.attachClick(follow_ISR);
 }
 
+uint64_t loop_counter;
 void loop() {
     // save state if triggered
     if (save_mod_pos_flag) {
@@ -115,12 +116,16 @@ void loop() {
     a.read();
     b.read();
     follow_btn.tick();
-
-    // write and push leds
     ring.update(a.mod_idx, b.mod_idx);
-    ring.write_leds(leds);
-    write_other_leds();
-    leds.show();
+    
+    // write and push leds
+    if (loop_counter % 50 == 0) {
+        ring.write_leds(leds);
+        write_other_leds();
+        leds.show();
+    }
+
+    loop_counter++;
 }
 
 
