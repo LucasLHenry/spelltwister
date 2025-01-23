@@ -77,13 +77,13 @@ void Waveformer::read() {
 
 uint16_t Waveformer::calc_shape() {
     int32_t calibrated_pot = configs.shp_pot_offset - static_cast<int16_t>(raw_vals.shape_pot);
-    int16_t calibrated_cv = configs.shp_cv_offset - static_cast<int16_t>(raw_vals.shape_cv);
+    int16_t calibrated_cv = raw_vals.shape_cv - static_cast<int16_t>(configs.shp_cv_offset);
     return shp_filter.get_next(CLIP(calibrated_pot + calibrated_cv, 0, max_adc)) >> 1;
 }
 
 uint16_t Waveformer::calc_ratio() {
     int32_t calibrated_pot = configs.rat_pot_offset - static_cast<int16_t>(raw_vals.ratio_pot);
-    int16_t calibrated_cv = configs.rat_cv_offset - static_cast<int16_t>(raw_vals.ratio_cv);
+    int16_t calibrated_cv = raw_vals.ratio_cv - static_cast<int16_t>(configs.rat_cv_offset);
     return rat_filter.get_next(CLIP(calibrated_pot + calibrated_cv, 0, max_adc)) >> 1;
 }
 
