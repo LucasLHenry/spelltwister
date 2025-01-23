@@ -106,7 +106,7 @@ class Waveformer {
         Mode mode;
         bool running;
         uint16_t rat, shp;
-        uint16_t val;
+        uint32_t val;
         Waveformer(bool is_A, int mux_pin, int time_pin);
         void init(Waveformer* other);
         void update();
