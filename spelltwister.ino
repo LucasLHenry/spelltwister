@@ -36,10 +36,11 @@ algo_f_ptr algo_arr[16] = {
     gate,                       // double   // meh, but should probably stay
     shape_mod,                  // double   // good
     ratio_mod,                  // double   // good
-    sine_pm,                    // single   // good but maybe bumps with CZ101 idea
+    sample_and_hold,
+    // sine_pm,                    // single   // good but maybe bumps with CZ101 idea
     sample_rate_reduce,         // single   //
     analog_pulse_pm,            // single   //
-    crosscrush                  // double   // good
+    rungle                  // double   // good
 };
 
 // --- GLOBAL VARIABLES ---
@@ -146,6 +147,7 @@ void loop1() {}
 
 
 // --- OTHER FUNCTIONS ---
+
 bool pwm_timer_ISR(repeating_timer_t* rt) {
     if (calibrating) return true;
     // increment phasors etc.

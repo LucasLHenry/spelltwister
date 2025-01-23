@@ -30,6 +30,8 @@ class Modulator {
         void generate();
         uint16_t val;
         DDS_Wrapper core;
+        uint16_t param_a;
+        uint16_t param_b;
 };
 
 #endif
