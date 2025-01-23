@@ -27,6 +27,8 @@ void Modulator::generate() {
             if (xfade_amt >= xfade_len) {
                 xfade_mode = XFADE_UP;
                 _idx = incoming_idx;
+                param_a = 0;
+                param_b = 0;
             }
         } else if (xfade_mode == XFADE_UP) {
             xfade_amt--;
