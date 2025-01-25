@@ -114,15 +114,14 @@ uint16_t bitwise_and(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t sample_and_hold(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    static uint16_t threshold = half_y / 2 * 3;
     uint16_t output_val = 0;
-    if (mod.param_b < threshold && aux.val >= threshold) {  // rising edge
-        output_val = main.val;
-        mod.param_a = main.val;
+    if (mod.param_b < trig_threshold && main.val >= trig_threshold) {  // rising edge
+        output_val = aux.val;
+        mod.param_a = aux.val;
     } else {
         output_val = mod.param_a;
     }
-    mod.param_b = aux.val;
+    mod.param_b = main.val;
     return output_val;
 }
 
@@ -133,12 +132,34 @@ uint16_t bitwise_or(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t rungle(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    static uint16_t threshold = half_y / 2 * 3;
-    if (mod.param_b < threshold && aux.val >= threshold) {  // rising edge
+    if (mod.param_b < trig_threshold && main.val >= trig_threshold) {  // rising edge
         mod.param_a <<= 1; // shift register
-        mod.param_a |= (main.val > threshold) ^ ((mod.param_a >> 8) & 0x0001);  // rungle!
+        mod.param_a |= (aux.val > threshold) ^ ((mod.param_a >> 8) & 0x0001);  // rungle!
         mod.param_a &= 0x00FF;  // shift register
     }
-    mod.param_b = aux.val;
+    mod.param_b = main.val;
     return (mod.param_a & 0x00E0) << 8;
+}
+
+
+uint16_t binary_and(Waveformer& main, Waveformer& aux, Modulator& mod) {
+    // bool main_high = main.val > threshold;
+    // bool aux_high = aux.val > threshold;
+    if (main.val > threshold && aux.val > threshold) return max_y;
+    else return 0;
+}
+
+uint16_t binary_or(Waveformer& main, Waveformer& aux, Modulator& mod) {
+    bool main_high = main.val > trig_threshold;
+    bool aux_high = aux.val > trig_threshold;
+    return (main_high || aux_high)? max_y : 0;
+}
+
+uint16_t phase_offset(Waveformer& main, Waveformer& aux, Modulator& mod){ 
+    return main.val;
+}
+
+uint16_t maximum(Waveformer& main, Waveformer& aux, Modulator& mod){ 
+    if (main.val > aux.val) return main.val;
+    else return aux.val;
 }

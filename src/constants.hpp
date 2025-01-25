@@ -33,5 +33,6 @@ constexpr uint16_t half_adc = (1 << (BITS_ADC - 1)) - 1;
 #define CRUSH_MAX 14
 #define FM_ALGO_AMT 8
 #define SRR_AMT 7
+constexpr uint16_t trig_threshold = half_y / 2 * 3;
 
 #endif
