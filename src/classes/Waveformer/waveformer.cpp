@@ -8,7 +8,7 @@ Waveformer::Waveformer(bool is_A, int mux_pin, int time_pin):
     is_a {is_A},
     mux(admux::Pin(mux_pin, INPUT, admux::PinType::Analog), admux::Pinset(MUX_S0, MUX_S1, MUX_S2)),
     lin_time_pin(time_pin),
-    pitch_filter(20, 100, false),
+    pitch_filter(30, 100, false),
     rat_filter  (45, 200, false),
     shp_filter  (45, 200, false),
     mod_filter  (45, 200, false),
