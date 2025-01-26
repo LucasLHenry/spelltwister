@@ -124,7 +124,7 @@ uint32_t Waveformer::calc_phasor() {
     int16_t calibrated_lin = (raw_vals.fm - configs.fm_offset) << 1;
     int16_t filtered_val = pitch_filter.get_next(raw_vals.pitch);
 
-    int32_t calibrated_exp = ((configs.vo_offset - static_cast<int16_t>(filtered_val)) * configs.vo_scale) >> 8;
+    int32_t calibrated_exp = ((static_cast<int16_t>(configs.vo_offset) - static_cast<int16_t>(filtered_val)) * configs.vo_scale) >> 8;
     phasor_idx = CLIP(calibrated_exp + calibrated_lin, 0, phasor_arr_len);
 
     if (!is_a && follow_mode != DISABLED) {
