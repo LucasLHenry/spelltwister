@@ -11,11 +11,12 @@ Modulator::Modulator(Waveformer& main, Waveformer& aux, LedRing& ring, algo_f_pt
     xfade_amt(0)
 {
     is_a = main.is_a;
+    running = false;
 }
 
 void Modulator::generate() {
     uint32_t temp_acc = core.acc;
-    if (!_main.running) {
+    if (!_main.running && !running) {
         val = 0;
     } else {
         incoming_idx = (is_a)? algo_ring.a_idx : algo_ring.b_idx;

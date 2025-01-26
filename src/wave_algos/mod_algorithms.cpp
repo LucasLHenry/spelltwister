@@ -134,7 +134,7 @@ uint16_t bitwise_or(Waveformer& main, Waveformer& aux, Modulator& mod) {
 uint16_t rungle(Waveformer& main, Waveformer& aux, Modulator& mod) {
     if (mod.param_b < trig_threshold && main.val >= trig_threshold) {  // rising edge
         mod.param_a <<= 1; // shift register
-        mod.param_a |= (aux.val > threshold) ^ ((mod.param_a >> 8) & 0x0001);  // rungle!
+        mod.param_a |= (aux.val > trig_threshold) ^ ((mod.param_a >> 8) & 0x0001);  // rungle!
         mod.param_a &= 0x00FF;  // shift register
     }
     mod.param_b = main.val;
@@ -143,23 +143,51 @@ uint16_t rungle(Waveformer& main, Waveformer& aux, Modulator& mod) {
 
 
 uint16_t binary_and(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    // bool main_high = main.val > threshold;
-    // bool aux_high = aux.val > threshold;
-    if (main.val > threshold && aux.val > threshold) return max_y;
+    if (main.val > trig_threshold && aux.val > trig_threshold) return max_y - 1;
     else return 0;
 }
 
 uint16_t binary_or(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    bool main_high = main.val > trig_threshold;
-    bool aux_high = aux.val > trig_threshold;
-    return (main_high || aux_high)? max_y : 0;
+    if (main.val > trig_threshold || aux.val > trig_threshold) return max_y - 1;
+    else return 0;
 }
 
-uint16_t phase_offset(Waveformer& main, Waveformer& aux, Modulator& mod){ 
-    return main.val;
+uint16_t phase_offset(Waveformer& main, Waveformer& aux, Modulator& mod){
+    uint16_t new_phase = ((2048 + main.core.s_acc - main.rat) % 2048);
+    if (main.mode == ENV) {
+        if (main.core.s_acc >= main.rat && mod.param_b < main.rat && main.running) mod.running = true;
+        else if (mod.param_a > new_phase && mod.running) mod.running = false;
+    } else mod.running = true;
+
+    mod.param_a = new_phase;
+    mod.param_b = main.core.s_acc;
+    if (mod.running) return waveform_generator(new_phase, main.shp, main.rat, main.uslp, main.dslp);
+    else return 0;
 }
 
 uint16_t maximum(Waveformer& main, Waveformer& aux, Modulator& mod){ 
     if (main.val > aux.val) return main.val;
     else return aux.val;
+}
+
+#define NUM_HARM_INTERVALS 8
+uint16_t harmonic_fm_intervals[NUM_HARM_INTERVALS][2] = {
+    {1, 8},     // octave down
+    {1, 4},     // unity
+    {1, 2},     // minor third
+    {1, 1},     // major third
+    {2, 1},     // perfect fourth
+    {4, 1},     // perfect fifth
+    {8, 1},     // minor seventh
+    {16, 1},     // octave
+};
+
+uint16_t harmonic_fm(Waveformer& main, Waveformer& aux, Modulator& mod) {
+    uint32_t interval_idx = static_cast<uint32_t>(aux.val) * NUM_HARM_INTERVALS >> 16;
+    uint16_t mult_amt = harmonic_fm_intervals[interval_idx][0];
+    uint16_t div_amt = harmonic_fm_intervals[interval_idx][1];
+    uint32_t new_pha = (main.core.pha * mult_amt) / div_amt;
+    mod.core.acc += new_pha;
+    mod.core.s_acc = mod.core.acc >> acc_downshift;
+    return waveform_generator(mod.core.s_acc, main.shp, main.rat, main.uslp, main.dslp);
 }
