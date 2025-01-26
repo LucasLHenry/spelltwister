@@ -24,23 +24,22 @@ The main entry point file for the firmware, showing high-level logic.
 // --- SELECTED RING ALGORITHMS ---
 // on the front panel, runs clockwise starting at the bottom
 algo_f_ptr algo_arr[16] = {
-    rectify,                    // single   // similar to double freq for VCO
-    half_freq,                  // single   // good
-    double_freq,                // single   // good
-    invert,                     // single   // good for envelopes
-    exclusive_or,               // double   // really good
-    difference,                 // double   // needed with sum? only relevant for envelopes
-    sum,                        // double   // good
-    frequency_mod,              // double   // good
-    amplitude_mod,              // double   // good
-    gate,                       // double   // meh, but should probably stay
-    shape_mod,                  // double   // good
-    ratio_mod,                  // double   // good
-    sample_and_hold,
-    // sine_pm,                    // single   // good but maybe bumps with CZ101 idea
-    sample_rate_reduce,         // single   //
-    analog_pulse_pm,            // single   //
-    rungle                  // double   // good
+    phase_offset,              
+    half_freq,            
+    double_freq,          
+    invert,               
+    exclusive_or,         
+    maximum,           
+    sum,                  
+    frequency_mod,        
+    amplitude_mod,        
+    harmonic_fm,                 
+    binary_and,            
+    binary_or,            
+    sine_pm,           
+    sample_and_hold,        
+    rungle,      
+    crosscrush       
 };
 
 // --- GLOBAL VARIABLES ---
