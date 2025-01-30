@@ -9,6 +9,13 @@
 
 #define CLIP(x,a,b) (MAX(MIN(x,b),a))
 
+#define CONSTRAIN(var, min, max) \
+  if (var < (min)) { \
+    var = (min); \
+  } else if (var > (max)) { \
+    var = (max); \
+  }
+
 uint16_t calc_upslope(uint16_t rat);
 uint16_t calc_downslope(uint16_t rat);
 uint16_t asym_lin_map(uint16_t x, uint16_t low, uint16_t mid, uint16_t high);
