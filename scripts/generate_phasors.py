@@ -1,4 +1,5 @@
 import os
+import math as m
 
 # this file creates the phasor tables for the waveformers, as well as some
 # constants used by them (max and min freq for slow and fast phasors)
@@ -61,10 +62,14 @@ def vco_phasor_writer(f):
 def lfo_env_phasor_writer(f):
     min_pha, max_pha = 0, 0
     min_freq_hz, max_freq_hz = 1/max_lfo_env_period_s, 1/min_lfo_env_period_s
+    alpha = 3
+    r = min_freq_hz / max_freq_hz
+    d = (1 - r*2**alpha) / (1 - r)
+    p = (2**alpha - d) / max_freq_hz
     
     f.write(f"const uint32_t slow_phasor_table[{arr_len}] = {{\n")
     for idx in range(arr_len):
-        freq = linear_map(idx, 0, num_voltages-1, min_freq_hz, max_freq_hz)
+        freq = (2**(idx * alpha / num_voltages) - d) / p
         phasor = int(freq * hz_phasor)
         arr_write_item(f, idx, phasor, 16, arr_len)
         
