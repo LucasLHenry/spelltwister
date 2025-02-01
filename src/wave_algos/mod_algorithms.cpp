@@ -10,9 +10,10 @@ uint16_t difference(Waveformer& main, Waveformer& aux, Modulator& mod) {
 }
 
 uint16_t exclusive_or(Waveformer& main, Waveformer& aux, Modulator& mod) {
-    uint16_t top = main.val & 0xE000;
-    uint16_t bottom = (main.val & 0x1FFF) ^ (aux.val & 0x1FFF);
-    return top | bottom;
+    // static uint16_t bitmask = (1 << 16) - 1;
+    // uint16_t top = main.val & ~(bitmask);
+    // uint16_t bottom = (main.val & bitmask) ^ (aux.val & bitmask);
+    return main.val ^ aux.val;
 }
 
 uint16_t invert(Waveformer& main, Waveformer& aux, Modulator& mod) {
@@ -88,7 +89,7 @@ uint16_t amplitude_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
 
 uint16_t frequency_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
     // FIXME envelope set to off still creates offset
-    mod.core.acc += main.core.pha + ((static_cast<int32_t>(aux.val) - half_y) << 9);
+    mod.core.acc += main.core.pha + ((static_cast<int32_t>(aux.val) - half_y) << 11);
     mod.core.s_acc = mod.core.acc >> acc_downshift;
     return waveform_generator(mod.core.s_acc, main.shp, main.rat, main.uslp, main.dslp);
 }
