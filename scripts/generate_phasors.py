@@ -6,7 +6,7 @@ import math as m
 
 # set these!
 min_vco_freq_hz = 20
-min_lfo_env_period_s = 0.00625
+min_lfo_env_period_s = 0.01
 max_lfo_env_period_s = 60
 
 # hardware determined
@@ -62,7 +62,7 @@ def vco_phasor_writer(f):
 def lfo_env_phasor_writer(f):
     min_pha, max_pha = 0, 0
     min_freq_hz, max_freq_hz = 1/max_lfo_env_period_s, 1/min_lfo_env_period_s
-    alpha = 3
+    alpha = 5
     r = min_freq_hz / max_freq_hz
     d = (1 - r*2**alpha) / (1 - r)
     p = (2**alpha - d) / max_freq_hz
