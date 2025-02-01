@@ -192,7 +192,7 @@ int8_t Waveformer::calc_mod_idx() {
 }
 
 void Waveformer::reset() {
-    if (mode == ENV && core.s_acc >= rat && running) {
+    if (mode == ENV && core.s_acc >= rat && running && rat > 100) {
         core.reset(acc_by_val[val >> 5]);
     } else {
         core.reset(0);
