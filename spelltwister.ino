@@ -24,22 +24,22 @@ The main entry point file for the firmware, showing high-level logic.
 // --- SELECTED RING ALGORITHMS ---
 // on the front panel, runs clockwise starting at the bottom
 algo_f_ptr algo_arr[16] = {
-    phase_offset,              
-    half_freq,            
-    double_freq,          
-    invert,               
-    exclusive_or,         
-    maximum,           
-    sum,                  
-    frequency_mod,        
-    amplitude_mod,        
-    harmonic_fm,                 
-    binary_and,            
-    binary_or,            
-    sine_pm,           
-    sample_and_hold,        
-    rungle,      
-    crosscrush       
+    sine_pm,
+    maximum,
+    phase_offset,
+    double_freq,
+    invert,
+    half_freq,
+    sum,
+    amplitude_mod,
+    harmonic_fm,
+    frequency_mod,
+    crosscrush,
+    sample_and_hold,
+    rungle,
+    exclusive_or,
+    binary_and,
+    binary_or   
 };
 
 // --- GLOBAL VARIABLES ---
