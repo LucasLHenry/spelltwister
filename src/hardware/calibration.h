@@ -37,12 +37,10 @@
 //      Step 3: plug in 3V at v/o input, read to get value 2 for v/o scale
 //      Step 4: rotate encoder knob, press encoder knob to reverse direction if needed
 
-typedef enum _Step {ONE, TWO, THREE} _Step;
-
 void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, LedRing& ring, NVMWrapper& nvm);
 void _calibration_display_startup_leds(Adafruit_NeoPXL8& leds);
 void _calibration_wait_for_click(Adafruit_NeoPXL8& leds);
-void _calibration_display_module_leds(Adafruit_NeoPXL8& leds, bool is_a, _Step step);
+void _calibration_display_module_leds(Adafruit_NeoPXL8& leds, bool is_a, uint16_t voltage);
 void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf);
 uint16_t _calibration_do_scale_calibration(Waveformer& wf);
 bool _calibration_do_encoder_calibration(LedRing& ring, Adafruit_NeoPXL8& leds);

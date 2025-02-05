@@ -6,31 +6,31 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, LedRi
 
 
     /****************STEP ONE************************/
-    _calibration_display_module_leds(leds, true, ONE);
+    _calibration_display_module_leds(leds, true, 0);
     _calibration_wait_for_click(leds);
     _calibration_do_offset_calibration(a, a_configs);
 
-    _calibration_display_module_leds(leds, false, ONE);
+    _calibration_display_module_leds(leds, false, 0);
     _calibration_wait_for_click(leds);
     _calibration_do_offset_calibration(b, b_configs);
 
     /*****************STEP TWO**********************/
     uint16_t a_val_1v, b_val_1v, a_val_3v, b_val_3v;
-    _calibration_display_module_leds(leds, true, TWO);
+    _calibration_display_module_leds(leds, true, 1);
     _calibration_wait_for_click(leds);
     a_val_1v = _calibration_do_scale_calibration(a);
 
-    _calibration_display_module_leds(leds, false, TWO);
+    _calibration_display_module_leds(leds, false, 1);
     _calibration_wait_for_click(leds);
     b_val_1v = _calibration_do_scale_calibration(b);
 
 
     /*******************STEP THREE*******************/
-    _calibration_display_module_leds(leds, true, THREE);
+    _calibration_display_module_leds(leds, true, 3);
     _calibration_wait_for_click(leds);
     a_val_3v = _calibration_do_scale_calibration(a);
 
-    _calibration_display_module_leds(leds, false, THREE);
+    _calibration_display_module_leds(leds, false, 3);
     _calibration_wait_for_click(leds);
     b_val_3v = _calibration_do_scale_calibration(b);
 
@@ -87,6 +87,7 @@ bool _calibration_do_encoder_calibration(LedRing& ring, Adafruit_NeoPXL8& leds) 
             ring.reversed = _reversed;
             _encoder_dir_changed = false;
         }
+        leds.fill(black);
         ring.update(0, 0);
         ring.write_leds(leds);
         _blink_led_non_blocking(leds, FLW_LED, mix_colour, 500);
@@ -123,33 +124,21 @@ void _blink_led_non_blocking(Adafruit_NeoPXL8& leds, int led_num, uint32_t colou
     leds.show();
 }
 
-void _calibration_display_module_leds(Adafruit_NeoPXL8& leds, bool is_a, _Step step) {
+void _calibration_display_module_leds(Adafruit_NeoPXL8& leds, bool is_a, uint16_t voltage) {
     leds.fill(black);
-    uint8_t amt_ring_leds = 0;
-    switch (step) {
-        case ONE:
-            amt_ring_leds = 0;
-            break;
-        case TWO:
-            amt_ring_leds = 1;
-            break;
-        case THREE:
-            amt_ring_leds = 3;
-            break;
-    }
 
     if (is_a) {
         leds.setPixelColor(PRI_A_LED,  a_colour);
         leds.setPixelColor(SEC_A_LED,  a_colour);
         leds.setPixelColor(TRIG_A_LED, a_colour);
-        for (int i = 0; i < amt_ring_leds; i++) {
+        for (int i = 0; i < voltage; i++) {
             leds.setPixelColor(i, a_colour);
         }
     } else {
         leds.setPixelColor(PRI_B_LED,  b_colour);
         leds.setPixelColor(SEC_B_LED,  b_colour);
         leds.setPixelColor(TRIG_B_LED, b_colour);
-        for (int i = 0; i < amt_ring_leds; i++) {
+        for (int i = 0; i < voltage; i++) {
             leds.setPixelColor((NUM_RING_LEDS - i)%NUM_RING_LEDS, b_colour);
         }
     }
