@@ -114,6 +114,7 @@ class Waveformer {
         void read();
         void reset();
         void read_all();
+        bool get_follow();
         AllInputs get_all(uint16_t repeats);
         void print_info(bool verbose);
         bool end_of_cycle, prev_eos;

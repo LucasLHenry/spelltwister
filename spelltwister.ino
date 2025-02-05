@@ -81,6 +81,9 @@ void setup() {
     a.configs = nvm.get_config_data(true);
     b.configs = nvm.get_config_data(false);
     ring.reversed = nvm.get_encoder_direction();
+    if (nvm.get_follow()) {
+        b.toggle_follow_mode();
+    }
     leds.begin();
     leds.setBrightness(0x70);
 
@@ -104,6 +107,7 @@ void loop() {
         blink(leds, mix_colour, 50, 300);
         nvm.set_mod_pos(true, ring.a_idx_wo_cv);
         nvm.set_mod_pos(false, ring.b_idx_wo_cv);
+        nvm.set_follow(b.get_follow());
         nvm.save_mod_pos();
         pwm_set_enabled(a_pwm_slice, true);
         pwm_set_enabled(b_pwm_slice, true);

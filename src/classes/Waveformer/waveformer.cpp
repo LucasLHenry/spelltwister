@@ -255,6 +255,10 @@ void Waveformer::toggle_follow_mode() {
     }
 }
 
+bool Waveformer::get_follow() {
+    return follow_mode != DISABLED;
+}
+
 void Waveformer::set_follow_mode() {
     prev_follow_mode = follow_mode;
     if (mode == VCO && _other->mode == VCO) follow_mode = TONE_INTERVALS;

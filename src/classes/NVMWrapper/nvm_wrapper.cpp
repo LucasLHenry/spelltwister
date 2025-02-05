@@ -78,9 +78,19 @@ void NVMWrapper::set_mod_pos(bool is_a, uint8_t mod_pos) {
 
 void NVMWrapper::save_mod_pos() {
     mod_mem.data_exists = 'Y';
-    if (saved_a == mod_mem.a_idx && saved_b == mod_mem.b_idx) return;
+    if (saved_a == mod_mem.a_idx && saved_b == mod_mem.b_idx && saved_follow == mod_mem.follow_on) return;
     EEPROM.put(sizeof(ConfigMemoryLayout) + 1, mod_mem);
     EEPROM.commit();
     saved_a = mod_mem.a_idx;
     saved_b = mod_mem.b_idx;
+    saved_follow = mod_mem.follow_on;
+}
+
+void NVMWrapper::set_follow(bool follow) {
+    mod_mem.follow_on = follow;
+}
+
+bool NVMWrapper::get_follow() {
+    if (!mod_data_stored) return false;
+    return mod_mem.follow_on;
 }
