@@ -14,34 +14,28 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, LedRi
     _calibration_wait_for_click(leds);
     _calibration_do_offset_calibration(b, b_configs);
 
-    /*****************STEP TWO**********************/
-    uint16_t a_val_1v, b_val_1v, a_val_3v, b_val_3v;
-    _calibration_display_module_leds(leds, true, 1);
-    _calibration_wait_for_click(leds);
-    a_val_1v = _calibration_do_scale_calibration(a);
+    #define NUM_SCALE_VOLTAGES 2
+    uint16_t voltages[NUM_SCALE_VOLTAGES] = {1, 3};
+    uint16_t a_side_measurements[NUM_SCALE_VOLTAGES];
+    uint16_t b_side_measurements[NUM_SCALE_VOLTAGES];
+    for (uint16_t i = 0; i < NUM_SCALE_VOLTAGES; i++) {
+        _calibration_display_module_leds(leds, true, voltages[i]);
+        _calibration_wait_for_click(leds);
+        a_side_measurements[i] = _calibration_do_scale_calibration(a);
 
-    _calibration_display_module_leds(leds, false, 1);
-    _calibration_wait_for_click(leds);
-    b_val_1v = _calibration_do_scale_calibration(b);
-
-
-    /*******************STEP THREE*******************/
-    _calibration_display_module_leds(leds, true, 3);
-    _calibration_wait_for_click(leds);
-    a_val_3v = _calibration_do_scale_calibration(a);
-
-    _calibration_display_module_leds(leds, false, 3);
-    _calibration_wait_for_click(leds);
-    b_val_3v = _calibration_do_scale_calibration(b);
+        _calibration_display_module_leds(leds, false, voltages[i]);
+        _calibration_wait_for_click(leds);
+        b_side_measurements[i] = _calibration_do_scale_calibration(b);
+    }
 
 
     /******************STEP FOUR*********************/
     bool reversed = _calibration_do_encoder_calibration(ring, leds);
 
     /******************CALCULATIONS******************/
-    a_configs.vo_scale  = _calibration_calc_vo_scale(a_val_1v, a_val_3v);
+    a_configs.vo_scale  = _calibration_calc_vo_scale(a_side_measurements[0], a_side_measurements[1]);
     a_configs.vo_offset = _calibration_calc_vo_offset(a_configs.vo_scale, a_configs.vo_offset);
-    b_configs.vo_scale  = _calibration_calc_vo_scale(b_val_1v, b_val_3v);
+    b_configs.vo_scale  = _calibration_calc_vo_scale(b_side_measurements[0], b_side_measurements[1]);
     b_configs.vo_offset = _calibration_calc_vo_offset(b_configs.vo_scale, b_configs.vo_offset);
 
     /******************SAVE DATA*********************/
