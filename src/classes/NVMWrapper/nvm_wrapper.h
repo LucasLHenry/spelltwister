@@ -4,9 +4,16 @@
 #ifndef NVM_WRAPPER_H
 #define NVM_WRAPPER_H
 
+#define NUM_SCALE_VOLTAGES 5
+
 typedef struct ConfigData {
-    int16_t vo_offset;
-    int16_t vo_scale;
+    // values corresponding to the voltages {0,1,2,...,NUM_SCALE_VOLTAGES}
+    // used to decide which offset and scale to use
+    uint16_t vo_margins[NUM_SCALE_VOLTAGES+1];
+    // if x is between xi and x{i+1}, where xis are from vo_margins,
+    // the output value is (x*vo_scale[i] + vo_offset[i]) >> vo_oversample_amt
+    int32_t vo_offset[NUM_SCALE_VOLTAGES];
+    int32_t vo_scale[NUM_SCALE_VOLTAGES];
     int16_t fm_offset;
     int16_t mod_offset;
     int16_t shp_pot_offset;

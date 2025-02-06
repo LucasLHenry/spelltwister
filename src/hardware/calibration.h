@@ -44,8 +44,7 @@ void _calibration_display_module_leds(Adafruit_NeoPXL8& leds, bool is_a, uint16_
 void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf);
 uint16_t _calibration_do_scale_calibration(Waveformer& wf);
 bool _calibration_do_encoder_calibration(LedRing& ring, Adafruit_NeoPXL8& leds);
-uint16_t _calibration_calc_vo_scale(uint16_t one_volt, uint16_t three_volts);
-uint16_t _calibration_calc_vo_offset(uint16_t vo_scale, uint16_t zero_volts);
+void _calibration_calc_vo_scale_offset(ConfigData* conf);
 void _blink_led_non_blocking(Adafruit_NeoPXL8& leds, int led_num, uint32_t colour, uint64_t interval_ms);
 
 #endif

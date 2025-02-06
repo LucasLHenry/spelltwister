@@ -14,18 +14,14 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, LedRi
     _calibration_wait_for_click(leds);
     _calibration_do_offset_calibration(b, b_configs);
 
-    #define NUM_SCALE_VOLTAGES 2
-    uint16_t voltages[NUM_SCALE_VOLTAGES] = {1, 3};
-    uint16_t a_side_measurements[NUM_SCALE_VOLTAGES];
-    uint16_t b_side_measurements[NUM_SCALE_VOLTAGES];
-    for (uint16_t i = 0; i < NUM_SCALE_VOLTAGES; i++) {
-        _calibration_display_module_leds(leds, true, voltages[i]);
+    for (uint16_t i = 1; i < NUM_SCALE_VOLTAGES+1; i++) {
+        _calibration_display_module_leds(leds, true, i);
         _calibration_wait_for_click(leds);
-        a_side_measurements[i] = _calibration_do_scale_calibration(a);
+        a_configs.vo_margins[i] = _calibration_do_scale_calibration(a);
 
-        _calibration_display_module_leds(leds, false, voltages[i]);
+        _calibration_display_module_leds(leds, false, i);
         _calibration_wait_for_click(leds);
-        b_side_measurements[i] = _calibration_do_scale_calibration(b);
+        b_configs.vo_margins[i] = _calibration_do_scale_calibration(b);
     }
 
 
@@ -33,10 +29,8 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, LedRi
     bool reversed = _calibration_do_encoder_calibration(ring, leds);
 
     /******************CALCULATIONS******************/
-    a_configs.vo_scale  = _calibration_calc_vo_scale(a_side_measurements[0], a_side_measurements[1]);
-    a_configs.vo_offset = _calibration_calc_vo_offset(a_configs.vo_scale, a_configs.vo_offset);
-    b_configs.vo_scale  = _calibration_calc_vo_scale(b_side_measurements[0], b_side_measurements[1]);
-    b_configs.vo_offset = _calibration_calc_vo_offset(b_configs.vo_scale, b_configs.vo_offset);
+    _calibration_calc_vo_scale_offset(&a_configs);
+    _calibration_calc_vo_scale_offset(&b_configs);
 
     /******************SAVE DATA*********************/
     a.configs = a_configs;
@@ -50,7 +44,7 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, LedRi
 
 void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf) {
     AllInputs zero_vals = wf.get_all(64);
-    conf.vo_offset = zero_vals.pitch;
+    conf.vo_margins[0] = zero_vals.pitch;
     conf.fm_offset = zero_vals.fm;
     conf.shp_cv_offset = zero_vals.shape_cv;
     conf.rat_cv_offset = zero_vals.ratio_cv;
@@ -90,12 +84,23 @@ bool _calibration_do_encoder_calibration(LedRing& ring, Adafruit_NeoPXL8& leds) 
     return _reversed;
 }
 
-uint16_t _calibration_calc_vo_scale(uint16_t one_volt, uint16_t three_volts) {
-    return static_cast<uint16_t>((scale_factor) / static_cast<uint32_t>(one_volt - three_volts));
-}
-
-uint16_t _calibration_calc_vo_offset(uint16_t vo_scale, uint16_t zero_volts) {
-    return (zero_volts * vo_scale) >> 8;
+void _calibration_calc_vo_scale_offset(ConfigData* conf) {
+    int32_t b_i, m_i, m_i_minus_1, b_i_minus_1;
+    for (uint16_t i = 0; i < NUM_SCALE_VOLTAGES; i++) {
+        m_i = scale_factor / (conf->vo_margins[i+1] - conf->vo_margins[i]);
+        if (i == 0) {
+            b_i = conf->vo_margins[0] * ((1<<vo_upsample_amt) - m_i);
+        } else {
+            b_i = b_i_minus_1 - (m_i - m_i_minus_1)*conf->vo_margins[i-1];
+        }
+        conf->vo_scale[i] = m_i;
+        conf->vo_offset[i] = b_i;
+        m_i_minus_1 = m_i;
+        b_i_minus_1 = b_i;
+    }
+    for (uint16_t i = 0; i < NUM_SCALE_VOLTAGES; i++) {
+        conf->vo_offset[i] -= conf->vo_margins[1] << vo_upsample_amt;
+    }
 }
 
 void _calibration_wait_for_click(Adafruit_NeoPXL8& leds) {

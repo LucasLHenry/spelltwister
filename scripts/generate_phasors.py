@@ -8,6 +8,7 @@ import math as m
 min_vco_freq_hz = 20
 min_lfo_env_period_s = 0.01
 max_lfo_env_period_s = 60
+vo_upsample_amt = 10
 
 # hardware determined
 adc_bits = 12
@@ -40,8 +41,9 @@ def main():
         min_slow_phasor, max_slow_phasor = lfo_env_phasor_writer(f)
         f.write(f"const uint32_t min_slow_pha = {min_slow_phasor};\n")
         f.write(f"const uint32_t max_slow_pha = {max_slow_phasor};\n")
-        scale_factor = int(2**(adc_bits + 9) / voltage_max)
-        f.write(f"const uint32_t scale_factor = {scale_factor};\n")
+        scale_factor = int(2**(adc_bits + vo_upsample_amt) / voltage_max)
+        f.write(f"const int32_t scale_factor = {scale_factor};\n")
+        f.write(f"const uint32_t vo_upsample_amt = {vo_upsample_amt};\n")
         f.write(f"const uint32_t phasor_arr_len = {arr_len};\n")
         f.write(file_footer)
     

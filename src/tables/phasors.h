@@ -600,6 +600,7 @@ const uint32_t slow_phasor_table[4710] = {
 15636815, 15650302, 15663801, 15677311, 15690832, 15704365};
 const uint32_t min_slow_pha = 1538;
 const uint32_t max_slow_pha = 15704365;
-const uint32_t scale_factor = 299593;
+const int32_t scale_factor = 599186;
+const uint32_t vo_upsample_amt = 10;
 const uint32_t phasor_arr_len = 4710;
 #endif  // PHASORS_TABLES_H

@@ -129,10 +129,18 @@ uint16_t lfo_follow_intervals[8][2] = {
 uint32_t Waveformer::calc_phasor() {
     int16_t calibrated_lin = (raw_vals.fm - configs.fm_offset) << 1;
     int16_t filtered_val = pitch_filter.get_next(raw_vals.pitch);
+    filtered_val += calibrated_lin;
 
-    int32_t calibrated_exp = ((static_cast<int16_t>(configs.vo_offset) - static_cast<int16_t>(filtered_val)) * configs.vo_scale) >> 8;
-    calibrated_exp += calibrated_lin;
-    phasor_idx = (calibrated_exp < 0)? 0 : ((calibrated_exp > phasor_arr_len)? phasor_arr_len : calibrated_exp); // CLIP(calibrated_exp, 0, phasor_arr_len);
+    uint16_t cal_idx = 0;
+    if (filtered_val < configs.vo_margins[0]) {
+        for (cal_idx = 0; cal_idx < NUM_SCALE_VOLTAGES; cal_idx++) {
+            if (configs.vo_margins[cal_idx] > filtered_val) break;
+        }
+    }
+
+    int32_t calibrated_exp = ((configs.vo_scale[cal_idx]*filtered_val + configs.vo_offset[cal_idx]) >> vo_upsample_amt);
+
+    phasor_idx = (calibrated_exp < 0)? 0 : ((calibrated_exp > phasor_arr_len)? phasor_arr_len : calibrated_exp);
 
     if (!is_a && follow_mode != DISABLED) {
         if (follow_mode == TONE_INTERVALS) {

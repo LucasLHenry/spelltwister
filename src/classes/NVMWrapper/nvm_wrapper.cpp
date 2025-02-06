@@ -13,10 +13,18 @@ bool config_data_eq(ConfigData l, ConfigData r) {
 }
 
 void print_config_data(ConfigData& conf) {
-    Serial.print("vo_offset: ");
-    Serial.println(conf.vo_offset);
-    Serial.print("vo_scale: ");
-    Serial.println(conf.vo_scale);
+    Serial.println("vo_offset: ");
+    for (uint16_t i = 0; i < NUM_SCALE_VOLTAGES; i++) {
+        Serial.println(conf.vo_offset[i]);
+    }
+    Serial.println("vo_scale: ");
+    for (uint16_t i = 0; i < NUM_SCALE_VOLTAGES; i++) {
+        Serial.println(conf.vo_scale[i]);
+    }
+    Serial.println("vo margins: ");
+    for (uint16_t i = 0; i < NUM_SCALE_VOLTAGES+1; i++) {
+        Serial.println(conf.vo_margins[i]);
+    }
     Serial.print("fm_offset: ");
     Serial.println(conf.fm_offset);
     Serial.print("mod_offset: ");
