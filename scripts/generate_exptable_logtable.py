@@ -5,7 +5,7 @@ import math as m
 # constants used by them (max and min freq for slow and fast phasors)
 
 # set these!
-table_bits = 11
+table_bits = 12
 item_bits = 16
 
 path_to_tables = "/src/tables/"
