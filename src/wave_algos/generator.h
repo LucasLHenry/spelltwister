@@ -1,8 +1,7 @@
 #include <stdint.h>
 #include <avr/pgmspace.h>
 #include "../constants.hpp"
-#include "../tables/exptable.h"
-#include "../tables/logtable.h"
+#include "../tables/curve_tables.h"
 
 #ifndef GENERATOR_H
 #define GENERATOR_H

@@ -5,8 +5,8 @@ import math as m
 # constants used by them (max and min freq for slow and fast phasors)
 
 # set these!
-table_bits = 12
-item_bits = 32
+table_bits = 11
+item_bits = 16
 
 path_to_tables = "/src/tables/"
 file_name = "curve_tables.h"
@@ -31,13 +31,13 @@ def main():
         
         f.write(f"const uint32_t curve_table_bits = {table_bits};\n")
         
-        f.write(f"const uint32_t exptable[{table_len}] = {{")
+        f.write(f"const uint16_t exptable[{table_len}] = {{")
         for i in range(table_len):
             val =  max_val * (m.exp(scale_val * i) - 1) / (table_len - 1)
             arr_write_item(f, i, int(val), 32, table_len)
         f.write(array_footer)
         
-        f.write(f"const uint32_t logtable[{table_len}] = {{")
+        f.write(f"const uint16_t logtable[{table_len}] = {{")
         for i in range(table_len):
             val =  max_val - max_val * (m.exp(scale_val * (table_len-1 - i)) - 1) / (table_len - 1)
             arr_write_item(f, i, int(val), 32, table_len)
