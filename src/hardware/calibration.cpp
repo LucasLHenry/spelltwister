@@ -99,7 +99,7 @@ void _calibration_calc_vo_scale_offset(ConfigData* conf) {
         b_i_minus_1 = b_i;
     }
     for (uint16_t i = 0; i < NUM_SCALE_VOLTAGES; i++) {
-        conf->vo_offset[i] -= conf->vo_margins[1] << vo_upsample_amt;
+        conf->vo_offset[i] -= conf->vo_margins[0] << vo_upsample_amt;
     }
 }
 
