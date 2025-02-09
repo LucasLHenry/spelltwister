@@ -129,7 +129,7 @@ uint16_t lfo_follow_intervals[8][2] = {
 uint32_t Waveformer::calc_phasor() {
     int16_t calibrated_lin = (raw_vals.fm - configs.fm_offset) << 1;
     int16_t filtered_val = pitch_filter.get_next(raw_vals.pitch);
-    filtered_val += calibrated_lin;
+    filtered_val -= calibrated_lin;
 
     uint16_t cal_idx = 0;
     if (filtered_val < configs.vo_margins[0]) {
