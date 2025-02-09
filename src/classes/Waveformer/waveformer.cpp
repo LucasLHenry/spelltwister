@@ -129,7 +129,7 @@ uint16_t lfo_follow_intervals[8][2] = {
 uint32_t Waveformer::calc_phasor() {
     int16_t calibrated_lin = (raw_vals.fm - configs.fm_offset) << 1;
     int16_t filtered_val = pitch_filter.get_next(raw_vals.pitch);
-    filtered_val += calibrated_lin;
+    filtered_val -= calibrated_lin;
 
     uint16_t cal_idx = 0;
     if (filtered_val < configs.vo_margins[0]) {
@@ -208,19 +208,19 @@ void Waveformer::reset() {
 }
 
 void Waveformer::read_all() {
-    raw_vals.pitch     = mux.read(mux_sigs[VO_IDX]);   // pitch
-    raw_vals.fm        = analogRead(lin_time_pin);     // fm
-    raw_vals.shape_pot = mux.read(mux_sigs[S_PT_IDX]); // shape pot
-    raw_vals.shape_cv  = mux.read(mux_sigs[S_CV_IDX]); // shape cv
-    raw_vals.ratio_pot = mux.read(mux_sigs[R_PT_IDX]); // ratio pot
-    raw_vals.ratio_cv  = mux.read(mux_sigs[R_CV_IDX]); // ratio cv
-    raw_vals.algo_mod  = mux.read(mux_sigs[M_CV_IDX]); // algo mod
+    raw_vals.pitch     = adc_tf_lut[mux.read(mux_sigs[VO_IDX])]; // pitch
+    raw_vals.fm        = adc_tf_lut[analogRead(lin_time_pin)]; // fm
+    raw_vals.shape_pot = adc_tf_lut[mux.read(mux_sigs[S_PT_IDX])]; // shape pot
+    raw_vals.shape_cv  = adc_tf_lut[mux.read(mux_sigs[S_CV_IDX])]; // shape cv
+    raw_vals.ratio_pot = adc_tf_lut[mux.read(mux_sigs[R_PT_IDX])]; // ratio pot
+    raw_vals.ratio_cv  = adc_tf_lut[mux.read(mux_sigs[R_CV_IDX])]; // ratio cv
+    raw_vals.algo_mod  = adc_tf_lut[mux.read(mux_sigs[M_CV_IDX])]; // algo mod
 }
 
 void Waveformer::oversample_pitch() {
     uint64_t total = raw_vals.pitch;
     for (int i = 0; i < 7; i++) {
-        total += mux.read(mux_sigs[VO_IDX]);
+        total += adc_tf_lut[mux.read(mux_sigs[VO_IDX])];
     }
     raw_vals.pitch = static_cast<uint16_t>(total / 8);
 }
