@@ -207,7 +207,7 @@ void Waveformer::reset() {
     }
 }
 
-void Waveformer::read_all()
+void Waveformer::read_all() {
     raw_vals.pitch     = adc_tf_lut[mux.read(mux_sigs[VO_IDX])]; // pitch
     raw_vals.fm        = adc_tf_lut[analogRead(lin_time_pin)]; // fm
     raw_vals.shape_pot = adc_tf_lut[mux.read(mux_sigs[S_PT_IDX])]; // shape pot
