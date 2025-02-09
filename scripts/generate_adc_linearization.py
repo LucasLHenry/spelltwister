@@ -14,8 +14,8 @@ file_footer = "#endif"
 
 
 def linearize_adc(val: int):
-    if val == 0: return 0
-    if val == 4095: return 4095
+    # if val == 0: return 0
+    # if val == 4095: return 4095
     points = [
         (0, 0.75),
         (511, -2.75),
@@ -32,7 +32,7 @@ def linearize_adc(val: int):
         (3072, -2),
         (3583, -6),
         (3584, 3),
-        (4095, -1.2),
+        (4096, -1.2),
     ]
     x_pts = [pt[0] for pt in points]
     y_pts = [pt[1] for pt in points]
@@ -41,7 +41,7 @@ def linearize_adc(val: int):
     slope = (y_pts[idx+1] - y_pts[idx]) / (x_pts[idx+1] - x_pts[idx])
     offset = y_pts[idx]
     error = slope*(val - x_pts[idx]) + offset
-    return val - error
+    return val + error
 
 def main():
     file_path = f"{os.getcwd()}{path_to_tables}{file_name}"
