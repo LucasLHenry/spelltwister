@@ -7,6 +7,7 @@
 #include "../../tables/phasors.h"
 #include "../NVMWrapper/nvm_wrapper.h"
 #include "../../hardware/adc_filter.h"
+#include "../tables/adc_linearization_table.h"
 
 /*
 This is the core signal generator class, there is one for the left side and one for the right (A and B). I called it a waveformer
