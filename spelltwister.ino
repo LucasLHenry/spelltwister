@@ -181,10 +181,10 @@ void write_other_leds() {
     uint8_t b_mod_brightness = (mod_b.val < half_y)? 0 : mod_b.val - half_y >> 7;
 
     // write signal indicators
-    leds.setPixelColor(PRI_A_LED, a_brightness_table[a_brightness]);
-    leds.setPixelColor(SEC_A_LED, a_brightness_table[a_mod_brightness]);
-    leds.setPixelColor(PRI_B_LED, b_brightness_table[b_brightness]);
-    leds.setPixelColor(SEC_B_LED, b_brightness_table[b_mod_brightness]);
+    leds.setPixelColor(PRI_A_LED, (!a.running)? 0 : a_brightness_table[a_brightness]);
+    leds.setPixelColor(SEC_A_LED, (!a.running && !mod_a.running)? 0 : a_brightness_table[a_mod_brightness]);
+    leds.setPixelColor(PRI_B_LED, (!b.running)? 0 : b_brightness_table[b_brightness]);
+    leds.setPixelColor(SEC_B_LED, (!b.running && !mod_b.running)? 0 : b_brightness_table[b_mod_brightness]);
 
     // write trig LEDs
     leds.setPixelColor(TRIG_A_LED, (a.eos_led)? a_colour : black);
