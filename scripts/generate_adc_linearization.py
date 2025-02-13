@@ -14,8 +14,6 @@ file_footer = "#endif"
 
 
 def linearize_adc(val: int):
-    # if val == 0: return 0
-    # if val == 4095: return 4095
     points = [
         (0, 0.75),
         (511, -2.75),
