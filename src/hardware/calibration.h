@@ -1,5 +1,7 @@
 #include <stdint.h>
 #include <Adafruit_NeoPXL8.h>
+#include <hardware/pwm.h>
+
 #include "../classes/LedRing/led_ring.h"
 #include "../classes/Waveformer/waveformer.h"
 #include "../classes/NVMWrapper/nvm_wrapper.h"
@@ -41,10 +43,13 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, LedRi
 void _calibration_display_startup_leds(Adafruit_NeoPXL8& leds);
 void _calibration_wait_for_click(Adafruit_NeoPXL8& leds);
 void _calibration_display_module_leds(Adafruit_NeoPXL8& leds, bool is_a, uint16_t voltage);
+void _calibration_display_output_leds(Adafruit_NeoPXL8& leds, bool is_a);
 void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf);
 uint16_t _calibration_do_scale_calibration(Waveformer& wf);
 bool _calibration_do_encoder_calibration(LedRing& ring, Adafruit_NeoPXL8& leds);
 void _calibration_calc_vo_scale_offset(ConfigData* conf);
+int16_t _calibration_do_output_offset_calibration(Waveformer& a, Waveformer& b, ConfigData& a_configs, ConfigData& b_configs, bool is_a, bool is_pri);
+
 void _blink_led_non_blocking(Adafruit_NeoPXL8& leds, int led_num, uint32_t colour, uint64_t interval_ms);
 
 #endif

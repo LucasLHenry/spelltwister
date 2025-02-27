@@ -53,7 +53,7 @@ void Waveformer::update() {
 
 void Waveformer::generate() {
     val = (running)? waveform_generator(core.s_acc, shp, rat, uslp, dslp) : 0;
-    // if (mode == ENV) val = (val >> 1) + half_y;
+    if (mode == ENV) val = (val >> 1) + half_y;
     if (core.s_acc < rat && running) acc_by_val[val >> bit_diff] = core.acc;  // for retriggering of envelopes
     if (running && val < 64000) val += rand_u32() >> 28;  // amplitude dithering
 }

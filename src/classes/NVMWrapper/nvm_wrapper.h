@@ -20,6 +20,8 @@ typedef struct ConfigData {
     int16_t rat_pot_offset;
     int16_t shp_cv_offset;
     int16_t rat_cv_offset;
+    int16_t pri_out_offset;
+    int16_t sec_out_offset;
 } ConfigData;
 
 const ConfigData a_default_config_data = {3264, 260, 2272, 2271, 4085, 4083, 2291, 2275};

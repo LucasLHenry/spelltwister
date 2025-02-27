@@ -3,9 +3,10 @@
 void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, LedRing& ring, NVMWrapper& nvm) {
     _calibration_display_startup_leds(leds);
     ConfigData a_configs, b_configs;
+    a_configs = nvm.get_config_data(true);
+    b_configs = nvm.get_config_data(false);
 
-
-    /****************STEP ONE************************/
+    /****************OFFSET CALIBRATION*********************/
     _calibration_display_module_leds(leds, true, 0);
     _calibration_wait_for_click(leds);
     _calibration_do_offset_calibration(a, a_configs);
@@ -14,6 +15,8 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, LedRi
     _calibration_wait_for_click(leds);
     _calibration_do_offset_calibration(b, b_configs);
 
+
+    /*****************MULTIPOINT SCALE CALIBRATION***************/
     for (uint16_t i = 1; i < NUM_SCALE_VOLTAGES+1; i++) {
         _calibration_display_module_leds(leds, true, i);
         _calibration_wait_for_click(leds);
@@ -24,8 +27,19 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, LedRi
         b_configs.vo_margins[i] = _calibration_do_scale_calibration(b);
     }
 
+    /*******************OUTPUT OFFSET CALIBRATION*************/
+    _calibration_display_output_leds(leds, true);
+    _calibration_wait_for_click(leds);
+    a_configs.pri_out_offset = _calibration_do_output_offset_calibration(a, b, a_configs, b_configs, true, true);
+    a_configs.sec_out_offset = _calibration_do_output_offset_calibration(a, b, a_configs, b_configs, true, false);
 
-    /******************STEP FOUR*********************/
+    _calibration_display_output_leds(leds, false);
+    _calibration_wait_for_click(leds);
+    b_configs.pri_out_offset = _calibration_do_output_offset_calibration(a, b, a_configs, b_configs, false, true);
+    b_configs.sec_out_offset = _calibration_do_output_offset_calibration(a, b, a_configs, b_configs, false, false);
+
+
+    /*************ENCODER CALIBRATION****************/
     bool reversed = _calibration_do_encoder_calibration(ring, leds);
 
     /******************CALCULATIONS******************/
@@ -40,6 +54,28 @@ void run_calibration(Waveformer& a, Waveformer& b, Adafruit_NeoPXL8& leds, LedRi
     nvm.set_config_data(false, b_configs);
     nvm.set_encoder_direction(reversed);
     nvm.save_config_data();
+}
+
+int16_t _calibration_do_output_offset_calibration(Waveformer& a, Waveformer& b, ConfigData& a_configs, ConfigData& b_configs, bool is_a, bool is_pri) {
+    int16_t offset = 0;
+    int16_t error = 10000;
+    uint outpin = (is_a)? ((is_pri)? PRI_OUT_A : SEC_OUT_A) : ((is_pri)? PRI_OUT_B : SEC_OUT_B);
+    while (error > 1) {
+        pwm_set_gpio_level(outpin, max_x - ((half_y - offset) >> bit_diff));
+        delay(1);
+        int64_t acc_error = 0;
+        for (uint i = 0; i < 8; i++) {
+            a.read_all();
+            b.read_all();
+            acc_error += (is_pri)? (a.raw_vals.algo_mod - a_configs.mod_offset) : (b.raw_vals.algo_mod - b_configs.mod_offset);
+        }
+        error = acc_error >> 3;
+        if (error > 0) offset--;
+        else offset++;
+
+        if (error < 0) error *= -1;
+    }
+    return offset;
 }
 
 void _calibration_do_offset_calibration(Waveformer& wf, ConfigData& conf) {
@@ -123,6 +159,19 @@ void _blink_led_non_blocking(Adafruit_NeoPXL8& leds, int led_num, uint32_t colou
     leds.show();
 }
 
+void _calibration_display_output_leds(Adafruit_NeoPXL8& leds, bool is_a) {
+    leds.fill(black);
+
+    if (is_a) {
+        leds.setPixelColor(PRI_A_LED,  a_colour);
+        leds.setPixelColor(SEC_A_LED,  a_colour);
+    } else {
+        leds.setPixelColor(PRI_B_LED,  b_colour);
+        leds.setPixelColor(SEC_B_LED,  b_colour);
+    }
+    leds.show();
+}
+
 void _calibration_display_module_leds(Adafruit_NeoPXL8& leds, bool is_a, uint16_t voltage) {
     leds.fill(black);
 
@@ -167,3 +216,6 @@ void _calibration_display_startup_leds(Adafruit_NeoPXL8& leds) {
         }
     }
 }
+
+// user should patch modified output to bottom algo cv input (right side) and path unmodified output to top
+// algo cv input (left side)

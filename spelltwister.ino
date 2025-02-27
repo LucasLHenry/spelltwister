@@ -164,10 +164,11 @@ bool pwm_timer_ISR(repeating_timer_t* rt) {
 
     // push new values to outputs
     // subtract max_x to account for filter signal inversion
-    pwm_set_gpio_level(PRI_OUT_A, max_x - (a.val >> bit_diff));
-    pwm_set_gpio_level(PRI_OUT_B, max_x - (b.val >> bit_diff));
-    pwm_set_gpio_level(SEC_OUT_A, max_x - (mod_a.val >> bit_diff));
-    pwm_set_gpio_level(SEC_OUT_B, max_x - (mod_b.val >> bit_diff));
+    pwm_set_gpio_level(PRI_OUT_A, max_x - ((a.val - a.configs.pri_out_offset) >> bit_diff));
+    pwm_set_gpio_level(PRI_OUT_B, max_x - ((b.val - b.configs.pri_out_offset) >> bit_diff));
+    pwm_set_gpio_level(SEC_OUT_A, max_x - ((mod_a.val - a.configs.sec_out_offset) >> bit_diff));
+    pwm_set_gpio_level(SEC_OUT_B, max_x - ((mod_b.val - b.configs.sec_out_offset) >> bit_diff));
+
     gpio_put(TRIG_OUT_A, !a.end_of_cycle);
     gpio_put(TRIG_OUT_B, !b.end_of_cycle);
     return true;

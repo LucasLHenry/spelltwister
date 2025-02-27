@@ -37,6 +37,10 @@ void print_config_data(ConfigData& conf) {
     Serial.println(conf.rat_pot_offset);
     Serial.print("rat_cv_offset: ");
     Serial.println(conf.rat_cv_offset);
+    Serial.print("pri_out_offset: ");
+    Serial.println(conf.pri_out_offset);
+    Serial.print("sec_out_offset: ");
+    Serial.println(conf.sec_out_offset);
 }
 
 NVMWrapper::NVMWrapper() {

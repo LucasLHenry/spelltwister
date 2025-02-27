@@ -92,13 +92,13 @@ class Waveformer {
     uint32_t acc_by_val[2048];  // for envelope retriggering
     Waveformer* _other;
     uint64_t update_counter, EOS_start_time;
-    AllInputs raw_vals;
     FollowBehaviour prev_follow_mode;
     uint32_t get_follow_mult_div();
     void oversample_pitch();
     uint16_t follow_interval_idx;
     bool follow_interval_idx_changed;
     public:
+        AllInputs raw_vals;
         FollowBehaviour follow_mode;
         DDS_Wrapper core;
         ConfigData configs;

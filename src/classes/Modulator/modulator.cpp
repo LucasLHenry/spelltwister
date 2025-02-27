@@ -40,7 +40,7 @@ void Modulator::generate() {
 
     if (!_main.running && !running) val = 0;
 
-    // if (_main.mode == ENV) val = (val >> 1) + half_y;  // envelope scaling
+    if (_main.mode == ENV) val = (val >> 1) + half_y;  // envelope scaling
 
     // not an algorithm that modifies the accumulator, keep it up to date for one that does
     if (temp_acc == core.acc) {

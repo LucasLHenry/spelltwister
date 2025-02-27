@@ -2,7 +2,7 @@ import serial as s
 import matplotlib.pylab as plt
 import numpy as np
 
-port_str = "COM10"
+port_str = "COM8"
 display_len_s = 20
 print_freq_hz = int(1000 / 50)
 
