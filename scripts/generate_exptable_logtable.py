@@ -7,6 +7,7 @@ import math as m
 # set these!
 table_bits = 12
 item_bits = 16
+amplitude = 0.8
 
 path_to_tables = "/src/tables/"
 file_name = "curve_tables.h"
@@ -34,12 +35,21 @@ def main():
         f.write(f"const uint16_t exptable[{table_len}] = {{")
         for i in range(table_len):
             val =  max_val * (m.exp(scale_val * i) - 1) / (table_len - 1)
+            val = ((val - max_val/2) * amplitude) + max_val/2
             arr_write_item(f, i, int(val), 32, table_len)
         f.write(array_footer)
         
         f.write(f"const uint16_t logtable[{table_len}] = {{")
         for i in range(table_len):
             val =  max_val - max_val * (m.exp(scale_val * (table_len-1 - i)) - 1) / (table_len - 1)
+            val = ((val - max_val/2) * amplitude) + max_val/2
+            arr_write_item(f, i, int(val), 32, table_len)
+        f.write(array_footer)
+        
+        f.write(f"const uint16_t lintable[{table_len}] = {{")
+        for i in range(table_len):
+            val =  max_val*i / (table_len - 1)
+            val = ((val - max_val/2) * amplitude) + max_val/2
             arr_write_item(f, i, int(val), 32, table_len)
         f.write(array_footer)
         

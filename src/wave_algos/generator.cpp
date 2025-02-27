@@ -10,17 +10,15 @@ uint16_t calc_downslope(uint16_t rat) {
     return max_y / (max_x - rat);
 }
 
-uint16_t asym_lin_map(uint16_t x, uint16_t low, uint16_t mid, uint16_t high) {
-    if (x <= 0) return low;
-    if (x < half_x) return ((x * (mid - low)) >> (bit_diff << 1)) + low;
-    if (x == half_x) return mid;
-    if (x > half_x) return (((x - half_x) * (high - mid)) >> (bit_diff << 1)) + mid;
-    return high;
-}
-
 uint16_t waveform_generator(uint16_t shifted_acc, uint16_t shape, uint16_t ratio, uint16_t upslope, uint16_t downslope) {
-    uint16_t linval = (shifted_acc <= ratio)? upslope * shifted_acc : downslope * (max_x - shifted_acc);
-    uint16_t expval = exptable[linval >> 4]; 
-    uint16_t logval = logtable[linval >> 4];
-    return asym_lin_map(shape, expval, linval, logval);
+    uint16_t idx = (shifted_acc <= ratio)? upslope * shifted_acc : downslope * (max_x - shifted_acc);
+    uint16_t expval = exptable[idx >> 4]; 
+    uint16_t logval = logtable[idx >> 4];
+    uint16_t linval = lintable[idx >> 4];
+
+    if (shape <= 0) return expval;
+    if (shape < half_x) return ((shape * (linval - expval)) >> (bit_diff << 1)) + expval;
+    if (shape == half_x) return linval;
+    if (shape > half_x) return (((shape - half_x) * (logval - linval)) >> (bit_diff << 1)) + linval;
+    return logval;
 }
