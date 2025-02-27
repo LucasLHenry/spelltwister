@@ -31,25 +31,27 @@ def main():
         f.write(file_header)
         
         f.write(f"const uint32_t curve_table_bits = {table_bits};\n")
+        f.write(f"const uint16_t max_output_value = {int(shrink(max_val, max_val, amplitude))};\n")
+        f.write(f"const uint16_t min_output_value = {int(shrink(0, max_val, amplitude))};\n")
         
         f.write(f"const uint16_t exptable[{table_len}] = {{")
         for i in range(table_len):
             val =  max_val * (m.exp(scale_val * i) - 1) / (table_len - 1)
-            val = ((val - max_val/2) * amplitude) + max_val/2
+            val = shrink(val, max_val, amplitude)
             arr_write_item(f, i, int(val), 32, table_len)
         f.write(array_footer)
         
         f.write(f"const uint16_t logtable[{table_len}] = {{")
         for i in range(table_len):
             val =  max_val - max_val * (m.exp(scale_val * (table_len-1 - i)) - 1) / (table_len - 1)
-            val = ((val - max_val/2) * amplitude) + max_val/2
+            val = shrink(val, max_val, amplitude)
             arr_write_item(f, i, int(val), 32, table_len)
         f.write(array_footer)
         
         f.write(f"const uint16_t lintable[{table_len}] = {{")
         for i in range(table_len):
             val =  max_val*i / (table_len - 1)
-            val = ((val - max_val/2) * amplitude) + max_val/2
+            val = shrink(val, max_val, amplitude)
             arr_write_item(f, i, int(val), 32, table_len)
         f.write(array_footer)
         
@@ -67,6 +69,9 @@ def arr_write_item(f, idx, val_to_write, vals_per_line, arr_len):
     
     if (idx + 1) % vals_per_line == 0:
         f.write("\n")
+
+def shrink(val, max_val, amp):
+    return ((val - max_val/2) * amp) + max_val/2 
 
 if __name__ == "__main__":
     main()

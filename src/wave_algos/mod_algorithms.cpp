@@ -16,13 +16,12 @@ uint16_t exclusive_or(Waveformer& main, Waveformer& aux, Modulator& mod) {
     // static uint16_t bitmask = (1 << 16) - 1;
     // uint16_t top = main.val & ~(bitmask);
     // uint16_t bottom = (main.val & bitmask) ^ (aux.val & bitmask);
-    return main.val ^ aux.val;
+    return lintable[(main.val ^ aux.val) >> 4];
 }
 
 uint16_t invert(Waveformer& main, Waveformer& aux, Modulator& mod) {
     mod.running = false;
-    // FIXME only useful for LFO and ENV
-    return max_y - main.val;
+    return max_output_value - main.val;
 }
 
 uint16_t analog_pulse_pm(Waveformer& main, Waveformer& aux, Modulator& mod) {
@@ -55,7 +54,7 @@ uint16_t rectify(Waveformer& main, Waveformer& aux, Modulator& mod) {
 uint16_t crosscrush(Waveformer& main, Waveformer& aux, Modulator& mod) {
     mod.running = false;
     uint16_t crush_amt = static_cast<uint16_t>((static_cast<uint32_t>(aux.val) * (CRUSH_MAX - CRUSH_MIN)) >> 16) + CRUSH_MIN; // should go from CRUSH_MIN to CRUSH_MAX
-    return (main.val >> crush_amt) << crush_amt;
+    return lintable[(main.val >> crush_amt) << crush_amt >> 4];
 }
 
 
@@ -77,7 +76,7 @@ uint16_t sample_rate_reduce(Waveformer& main, Waveformer& aux, Modulator& mod) {
 uint16_t sine_pm(Waveformer& main, Waveformer& aux, Modulator& mod) {
     mod.running = false;
     // FIXME this should do more, not be just a sine wave when the waveformer generates a saw
-    return sine_table[main.val >> 5];
+    return lintable[sine_table[main.val >> 5] >> 4];
 }
 
 uint16_t ratio_mod(Waveformer& main, Waveformer& aux, Modulator& mod) {
@@ -162,20 +161,20 @@ uint16_t rungle(Waveformer& main, Waveformer& aux, Modulator& mod) {
         mod.param_a &= 0x00FF;  // shift register
     }
     mod.param_b = main.val;
-    return (mod.param_a & 0x00E0) << 8;
+    return lintable[(mod.param_a & 0x00E0) << 4];
 }
 
 
 uint16_t binary_and(Waveformer& main, Waveformer& aux, Modulator& mod) {
     mod.running = false;
-    if (main.val > trig_threshold && aux.val > trig_threshold) return max_y - 1;
-    else return 0;
+    if (main.val > trig_threshold && aux.val > trig_threshold) return max_output_value;
+    else return min_output_value;
 }
 
 uint16_t binary_or(Waveformer& main, Waveformer& aux, Modulator& mod) {
     mod.running = false;
-    if (main.val > trig_threshold || aux.val > trig_threshold) return max_y - 1;
-    else return 0;
+    if (main.val > trig_threshold || aux.val > trig_threshold) return max_output_value;
+    else return min_output_value;
 }
 
 uint16_t phase_offset(Waveformer& main, Waveformer& aux, Modulator& mod){
